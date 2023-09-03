@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="ssafy_2" type="mgeo_pub.py" name="mgeo_pub"  />
+    <node pkg="ssafy_2" type="gpsimu_parser.py" name="gpsimu_parser" />
+    <node pkg="ssafy_2" type="global_path_pub.py" name="global_path_pub"  />
+    <node pkg="ssafy_2" type="local_path_pub.py" name="local_path_pub" />
+    <node pkg="ssafy_2" type="acc.py" name="ACC"  />
+    <node pkg="ssafy_2" type="tf_pub.py" name="tf"  />
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ssafy_2)/rviz/kcity_rviz.rviz" />
+</launch>
