@@ -1,6 +1,5 @@
-# README
+### README
 
-- ver0.1.0
-  - 최초 front / back merge
-  - \[Front\] 프로젝트 시작, 컴포넌트 구성 및 파일 구조 정립
-  - \[Back\] 프로젝트 시작, DB 작업, API 구현, 구조 정립
+- 09-04 화요일(현명)    
+
+명세서 진행, get_gps 테스트
