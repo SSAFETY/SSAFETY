@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ssafety
+    username: a102
+    password: a102
+  jpa:
+    hibernate:
+      ddl-auto: create # ?????? ??? ?? ???? ?? (create, update, validate ? ??)
+    show-sql: true # SQL ??? ??? ???? ??
+google:
+  maps:
+    api:
+      key: AIzaSyDBmB_9TTghRYy3mxMhF0buI-1-4prFcmc
