@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * `Report` 엔티티 클래스는 교통 데이터 보고서를 나타냅니다.
  * 이 엔티티는 생성 시간, 촬영 영상 URL, GPS 정보, AI 판단 결과, 위반 차량 번호를 포함합니다.
  */
-public class Data {
+public class Report {
     /*
      * 보고서의 주요 식별자(primary key)로 데이터베이스에서 자동으로 생성됩니다.
      */

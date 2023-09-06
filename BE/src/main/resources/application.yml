@@ -7,7 +7,20 @@ spring:
     hibernate:
       ddl-auto: create # ?????? ??? ?? ???? ?? (create, update, validate ? ??)
     show-sql: true # SQL ??? ??? ???? ??
-google:
-  maps:
-    api:
-      key: AIzaSyDBmB_9TTghRYy3mxMhF0buI-1-4prFcmc
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAS42RRQAHDNJMABZF
+      secretKey: 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
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+kakao:
+  api:
+    key: 4dcde7448c280266730f45df159cd184
+
+logging:
+  level:
+    org.springframework: debug
