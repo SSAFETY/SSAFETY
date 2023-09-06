@@ -25,48 +25,47 @@ class global_path_pub :
         '''
         # Global Path 데이터를 Publish 하는 변수와 메세지를 담고있는 변수를 선언한다.
         # 이때 Global Path 는 map 좌표계를 기준으로 생성한다.
-        self.global_path_pub = 
-        self.global_path_msg = 
-        self.global_path_msg.header.frame_id = 
-
         '''
+        self.global_path_pub = rospy.Publisher('/global_path', Path, queue_size=10)
+        self.global_path_msg = Path()
+        self.global_path_msg.header.frame_id = "map"
+
 
         #TODO: (2) 읽어올 경로 의 텍스트파일 이름을 정하고, 읽기 모드로 열기
         '''
         # Path 데이터가 기록 된 txt 파일의 경로와 이름을 정한다.
         # 이후 읽기 모드로 연다.
         # pkg_name 과 path_name 은 21 번 줄 참고한다.
+        '''
         rospack = rospkg.RosPack()
         pkg_path = rospack.get_path(pkg_name)
-        full_path = 
-        self.f =         
+        full_path = pkg_path + '/path/' + path_name +'.txt'
+        self.f = open(full_path, 'r')        
         lines = self.f.readlines()
 
-        '''
 
         #TODO: (3) 읽어 온 경로 데이터를 Global Path 변수에 넣기
         '''
         # 읽어온 x y z 좌표 데이터를 self.global_path_msg 변수에 넣는다.
         # 넣어준 반복 문을 이용하여 작성한다.
+        '''
         for line in lines :
             tmp = line.split()
-            read_pose = 
-            read_pose.pose.position.x = 
-            read_pose.pose.position.y = 
+            read_pose = PoseStamped()
+            read_pose.pose.position.x = float(tmp[0])
+            read_pose.pose.position.y = float(tmp[1])
             read_pose.pose.orientation.w = 1
             self.global_path_msg.poses.append(read_pose)        
         self.f.close()
 
-        '''
 
         rate = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown():
             #TODO: (4) Global Path 정보 Publish
             '''
             # Global Path 메세지 를 전송하는 publisher 를 만든다.
-            self.global_path_pub.
-            
             '''
+            self.global_path_pub.publish(self.global_path_msg)
             rate.sleep()
 
 if __name__ == '__main__':
