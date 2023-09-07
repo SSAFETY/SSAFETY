@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ssafety
+    username: a102
+    password: a102
+  jpa:
+    hibernate:
+      ddl-auto: create # ?????? ??? ?? ???? ?? (create, update, validate ? ??)
+    show-sql: true # SQL ??? ??? ???? ??
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAS42RRQAHDNJMABZF
+      secretKey: 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
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+kakao:
+  api:
+    key: 4dcde7448c280266730f45df159cd184
+
+logging:
+  level:
+    org.springframework: debug
