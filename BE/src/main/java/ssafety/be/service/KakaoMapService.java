@@ -1,108 +1,77 @@
 package ssafety.be.service;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.Charset;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
+/**
+ * 카카오맵 API를 사용하여 경위도 좌표를 주소로 변환하는 서비스 클래스입니다.
+ */
 @Service
 public class KakaoMapService {
 
     @Value("${kakao.api.key}")
-    private static String apiKey;
+    private String apiKey;
 
     /**
-     * 경위도 정보로 주소를 불러오는 메소드
-     * @throws UnsupportedEncodingException
+     * 주어진 경위도 좌표를 사용하여 주소를 조회하고, 주소를 배열로 반환합니다.
+     *
+     * @param lati 경도
+     * @param longi 위도
+     * @return 주소 정보를 담은 배열 또는 오류 메시지를 담은 배열
      */
-    public static String coordToAddr(double longitude, double latitude){
-        String url = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+longitude+"&y="+latitude;
-        String addr = "";
-        try{
-            addr = getRegionAddress(getJSONData(url));
-            //LOGGER.info(addr);
-        }catch(Exception e){
-            System.out.println("주소 api 요청 에러");
-            e.printStackTrace();
-        }
-        return addr;
-    }
+    public String[] getAddress(String lati, String longi) {
+        try {
+            final String API_URL = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + longi + "&y=" + lati + "&input_coord=WGS84";
 
-    /**
-     * REST API로 통신하여 받은 JSON형태의 데이터를 JsonObject로 파싱하는 메소드
-     */
-    private static JsonObject getJSONData(String apiUrl) throws Exception {
-        HttpURLConnection conn = null;
-        JsonObject jsonResponse = null;
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", "KakaoAK " + apiKey);
 
-        // 인증키 - KakaoAK하고 한 칸 띄워주셔야해요!
-        String auth = "KakaoAK 4dcde7448c280266730f45df159cd184";
+            MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+            parameters.add("x", longi);
+            parameters.add("y", lati);
+            parameters.add("input_coord", "WGS84");
 
-        // URL 설정
-        URL url = new URL(apiUrl);
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> result = restTemplate.exchange(API_URL, HttpMethod.GET, new HttpEntity(headers), String.class);
 
-        conn = (HttpURLConnection) url.openConnection();
-
-        // Request 형식 설정
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("X-Requested-With", "curl");
-        conn.setRequestProperty("Authorization", auth);
-
-        // Response 받기
-        int responseCode = conn.getResponseCode();
-        if (responseCode == 400) {
-            System.out.println("400:: 해당 명령을 실행할 수 없음");
-        } else if (responseCode == 401) {
-            System.out.println("401:: Authorization이 잘못됨");
-        } else if (responseCode == 500) {
-            System.out.println("500:: 서버 에러, 문의 필요");
-        } else { // 성공 후 응답 JSON 데이터 받기
-            InputStreamReader reader = new InputStreamReader(conn.getInputStream(), Charset.forName("UTF-8"));
-            JsonElement jsonElement = JsonParser.parseReader(reader);
-            if (jsonElement.isJsonObject()) {
-                jsonResponse = jsonElement.getAsJsonObject();
+            if (result.getStatusCode().is4xxClientError()) {
+                String errorMessage = result.getBody();
+                System.err.println("Kakao API 요청 오류: " + errorMessage);
+                return new String[]{"error"};
             }
-        }
 
-        return jsonResponse;
-    }
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(result.getBody());
 
-    /**
-     * JsonObject에서 주소값(address_name)만 추출하는 메소드
-     */
-    private static String getRegionAddress(JsonObject jsonObject) {
-        String value = "";
-
-        if (jsonObject != null) {
-            JsonArray documentsArray = jsonObject.getAsJsonArray("documents");
-            if (documentsArray != null && documentsArray.size() > 0) {
-                JsonObject subJobj = documentsArray.get(0).getAsJsonObject();
-                JsonObject roadAddress = subJobj.getAsJsonObject("road_address");
-
-                if (roadAddress == null) {
-                    JsonObject subsubJobj = subJobj.getAsJsonObject("address");
-                    value = subsubJobj.get("address_name").getAsString();
-                } else {
-                    value = roadAddress.get("address_name").getAsString();
-                }
-
-                if (value.equals("") || value == null) {
-                    subJobj = documentsArray.get(1).getAsJsonObject();
-                    subJobj = subJobj.getAsJsonObject("address");
-                    value = subJobj.get("address_name").getAsString();
-                }
+            JsonArray jsonArray = (JsonArray) jsonObject.get("documents");
+            if(jsonArray == null) {
+                return new String[]{"잘못된 좌표입니다."};
             }
+            else if (jsonArray.size() == 0) {
+                return new String[]{"해당 좌표에 대한 주소 정보가 없습니다."};
+            }
+
+            JsonObject local = (JsonObject) jsonArray.get(0);
+            JsonObject jsonArray1 = (JsonObject) local.get("address");
+            String localAddress = jsonArray1.get("address_name").getAsString();
+            String[] address = localAddress.split(" ");
+            return address;
+        } catch (HttpClientErrorException e) {
+            return new String[]{"Kakao API 요청 오류: " + e.getMessage()};
+        } catch (Exception e) {
+            return new String[]{"오류가 발생했습니다: " + e.getMessage()};
         }
-        return value;
     }
 }
-

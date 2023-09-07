@@ -12,9 +12,8 @@ public class DataController {
     private final KakaoMapService kakaoMapService;
 
     @GetMapping("/getAddress")
-    public String getAddress(@RequestParam double latitude, @RequestParam double longitude) {
-        String result = kakaoMapService.coordToAddr(latitude, longitude);
-        System.out.println(result);
+    public String[] getAddress(@RequestParam String latitude, @RequestParam String longitude) {
+        String result[] = kakaoMapService.getAddress(latitude, longitude);
         return result;
     }
 }
