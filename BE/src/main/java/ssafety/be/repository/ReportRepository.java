@@ -9,6 +9,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     
     //조건에 따른 값들 불러오기
     //조건이 없으면 전체 데이터 불러옴
-    List<Report> findByCityAndGuAndAiResultAndCreationTimeBetween(String city, String gu, String aiResult, LocalDateTime startDateTime, LocalDateTime endDateTime);
+    List<Report> findBycityAndDepth3AndAiResultAndCreationTimeBetween(String city, String gu, String aiResult, LocalDateTime startDateTime, LocalDateTime endDateTime);
 }
 
