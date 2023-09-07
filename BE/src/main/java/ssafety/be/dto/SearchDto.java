@@ -10,8 +10,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class SearchDto {
-    private String city;
-    private String gu;
+    private String state;
+    private String depth3;
     private String aiResult;
     private Date date;
 }

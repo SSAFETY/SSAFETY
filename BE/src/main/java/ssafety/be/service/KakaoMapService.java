@@ -38,17 +38,18 @@ public class KakaoMapService {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", "KakaoAK " + apiKey);
 
-            MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+            MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
             parameters.add("x", longi);
             parameters.add("y", lati);
             parameters.add("input_coord", "WGS84");
 
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> result = restTemplate.exchange(API_URL, HttpMethod.GET, new HttpEntity(headers), String.class);
+            HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+            ResponseEntity<String> result = restTemplate.exchange(API_URL, HttpMethod.GET, requestEntity, String.class);
+
 
             if (result.getStatusCode().is4xxClientError()) {
                 String errorMessage = result.getBody();
-                System.err.println("Kakao API 요청 오류: " + errorMessage);
                 return new String[]{"error"};
             }
 
@@ -62,7 +63,6 @@ public class KakaoMapService {
             else if (jsonArray.size() == 0) {
                 return new String[]{"해당 좌표에 대한 주소 정보가 없습니다."};
             }
-
             JsonObject local = (JsonObject) jsonArray.get(0);
             JsonObject jsonArray1 = (JsonObject) local.get("address");
             String localAddress = jsonArray1.get("address_name").getAsString();
