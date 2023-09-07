@@ -15,28 +15,25 @@ from sensor_msgs.msg import Imu
 def imu_callback(data):
     '''
     # 시뮬레이터의 GPS 데이터를 아래와 같은 형식으로 터미널 창에 출력한다.
+    '''
     os.system('clear')
     rospy.loginfo('------------------ IMU Sensor Status ------------------')
+    # rospy.loginfo(data)
     rospy.loginfo("orientation:")
-    rospy.loginfo("x : {} y : {} z : {} w : {}".format( 변수 1 , 변수 2 , 변수 3 , 변수 4 ))
+    rospy.loginfo("x : {} y : {} z : {} w : {}".format(data.orientation.x, data.orientation.y, data.orientation.z, data.orientation.w))
     rospy.loginfo("angular_velocity:")
-    rospy.loginfo("x : {} y : {} z : {}".format( 변수 1 , 변수 2 , 변수 3 ))
+    rospy.loginfo("x : {} y : {} z : {}".format(data.angular_velocity.x, data.angular_velocity.y, data.angular_velocity.z))
     rospy.loginfo("linear_acceleration:")
-    rospy.loginfo("x : {} y : {} z : {}".format( 변수 1 , 변수 2 , 변수 3 ))
-
-    '''
-    rospy.loginfo(data)
+    rospy.loginfo("x : {} y : {} z : {}".format(data.linear_acceleration.x, data.linear_acceleration.y, data.linear_acceleration.z))
 
 def listener():
     rospy.init_node('imu_data_listener', anonymous=True)
-
     '''
     # Imu 라는 ROS 의 센서 메세지 형식을 사용하여 Topic Subscriber 를 완성한다.
     # Topic 이름은 시뮬레이터 Network 연결시 확인 가능하다.
-    
-
     '''
-    rospy.Subscriber("/imu", Imu, imu_callback)
+    rospy.Subscriber('/imu', Imu, imu_callback)
+
     rospy.spin()
 
 if __name__ == '__main__':

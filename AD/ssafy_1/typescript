@@ -1,35 +1,0 @@
-Script started on 2023-09-01 14:09:45+0900
-]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1[00m$ sudo apt-get innstall blueman s[A]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1[00m$ [K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cl[Kcd scripts/
-]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[00m$ ls
-[0m[01;32mget_camera.py[0m            [01;32mget_gps.py[0m         [01;32mget_traffic_status.py[0m  [01;32mtalker.py[0m
-[01;32mget_collision_status.py[0m  [01;32mget_imu.py[0m         [01;32mset_ctrl_cmd.py[0m
-[01;32mget_ego_status.py[0m        [01;32mget_obj_status.py[0m  [01;32msrv_event_cmd.py[0m
-]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[00m$ ls
-[0m[01;32mclient.py[0m                [01;32mget_imu.py[0m             [01;32mmy_name_talker.py[0m   [01;32msrv_scenario_load.py[0m
-[01;32mget_camera.py[0m            [01;32mget_obj_status.py[0m      [01;32mserver.py[0m           [01;32mtalker.py[0m
-[01;32mget_collision_status.py[0m  [01;32mget_traffic_status.py[0m  [01;32mset_ctrl_cmd.py[0m
-[01;32mget_ego_status.py[0m        [01;32mlistener.py[0m            set_ego_setting.py
-[01;32mget_gps.py[0m               [01;32mmy_name_listener.py[0m    [01;32msrv_event_cmd.py[0m
-]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[00m$ se[K[Kc[Kvim se [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[Krosrun  ssafy_1 [K 
-client.py                get_obj_status.py        set_ctrl_cmd.py
-get_camera.py            get_traffic_status.py    srv_event_cmd.py
-get_collision_status.py  listener.py              srv_scenario_load.py
-get_ego_status.py        my_name_listener.py      talker.py
-get_gps.py               my_name_talker.py        
-get_imu.py               server.py                
-]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[00m$ rosrun  ssafy_1 srv_se[Kcenario_load.py 
-^C]0;ssafy@ssafy-850XCJ: ~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[01;32mssafy@ssafy-850XCJ[00m:[01;34m~/s-09-p-21-a-102-chyuk-98/auto_drive/catkin_ws/src/ssafy_1/scripts[00m$ rosrun  ssafy_1 srv_scenario_load.py 
-[INFO] [1693545323.854155]: response: 
-  result: True
-[INFO] [1693545324.859358]: response: 
-  result: True
-[INFO] [1693545325.911878]: response: 
-  result: True
-[INFO] [1693545326.855984]: response: 
-  result: True
-[INFO] [1693545327.857495]: response: 
-  result: True
-[INFO] [1693545328.874500]: response: 
-  result:
