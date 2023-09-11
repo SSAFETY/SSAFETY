@@ -37,6 +37,8 @@ class local_path_pub :
         # local Path 데이터를 Publish 하는 변수를 선언한다.
         '''
         self.local_path_pub = rospy.Publisher('/local_path',Path, queue_size=1)
+
+
         
         # 초기화
         self.is_odom = False
@@ -50,9 +52,10 @@ class local_path_pub :
         '''
         self.local_path_size = 50
 
+
         rate = rospy.Rate(20) # 20hz
         while not rospy.is_shutdown():
-
+   
             if self.is_odom == True and self.is_path == True:
                 local_path_msg=Path()
                 local_path_msg.header.frame_id='/map'
@@ -63,24 +66,24 @@ class local_path_pub :
                 #TODO: (5) Global Path 에서 차량 위치와 가장 가까운 포인트(current Waypoint) 탐색
                 '''
                 # global Path 에서 차량의 현재 위치를 찾습니다.
-                # 현재 위치는 WayPoint 로 기록하며 현재 차량이 Path 에서 몇 번째 위치에 있는지 나타내는 값이 됩니다.
+                # 현제 위치는 WayPoint 로 기록하며 현재 차량이 Path 에서 몇번 째 위치에 있는지 나타내는 값이 됩니다.
                 # 차량의 현재 위치는 Local Path 를 만드는 시작 위치가 됩니다.
                 # 차량의 현재 위치를 탐색하는 반복문은 작성해 current_waypoint 찾습니다.
-
                 '''
                 min_dis = float('inf')
                 current_waypoint = -1
                 cnt = 0
-                for witch in self.global_path_msg.poses:
-                    #print(witch.pose.position)
-                    tmp_dis = sqrt((witch.pose.position.x - x)**2 + (witch.pose.position.y - y)**2)
+                for waypoint in self.global_path_msg.poses:
+
+                    tmp_dis = sqrt((waypoint.pose.position.x - x)**2 + (waypoint.pose.position.y - y)**2)
                     if tmp_dis < min_dis:
                         min_dis = tmp_dis
                         current_waypoint = cnt
 
                     cnt+=1
 
-
+                
+                
                 #TODO: (6) 가장 가까운 포인트(current Waypoint) 위치부터 Local Path 생성 및 예외 처리
                 '''
                 # 차량의 현재 위치 부터 local_path_size 로 지정한 Path 의 크기 만큼의 Path local_path 를 생성합니다.
@@ -95,20 +98,22 @@ class local_path_pub :
                             tmp_point.pose.orientation.w = 1
                             local_path_msg.poses.append(tmp_point)
                     else :
-                        for i in len(self.global_path_msg.poses) - current_waypoint:
+                        for i in range(len(self.global_path_msg.poses) - current_waypoint):
                             tmp_point = PoseStamped()
                             tmp_point.pose.position.x = self.global_path_msg.poses[current_waypoint + i].pose.position.x
                             tmp_point.pose.position.y = self.global_path_msg.poses[current_waypoint + i].pose.position.y
                             tmp_point.pose.orientation.w = 1
                             local_path_msg.poses.append(tmp_point)
+                
 
-
-                # print(x,y)
+                print(x,y)
                 #TODO: (7) Local Path 메세지 Publish
                 '''
-                # Local Path 메세지 를 전송하는 publisher 를 만든다.                
+                # Local Path 메세지 를 전송하는 publisher 를 만든다.
                 '''
                 self.local_path_pub.publish(local_path_msg)
+                
+                
 
             rate.sleep()
 
@@ -123,6 +128,7 @@ class local_path_pub :
         self.x = msg.pose.pose.position.x
         self.y = msg.pose.pose.position.y
 
+        
 
     def global_path_callback(self,msg):
         self.is_path = True

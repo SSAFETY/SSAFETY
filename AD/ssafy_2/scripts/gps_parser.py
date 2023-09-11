@@ -34,20 +34,24 @@ class LL2UTMConverter:
         # 아래 주소의 링크를 클릭하여 Ptoj 의 사용 방법을 확인한다.
         # https://pyproj4.github.io/pyproj/stable/api/proj.html
         # " proj= , zone= , ellps =  , preserve_units = "
-        '''
-        self.proj_UTM = Proj( proj='utm', zone=52, ellps='WGS84', preserve_units=False )
+        self.proj_UTM = Proj( 좌표 변환을 위한 변수 입력 )
 
+        '''
+        self.proj_UTM = Proj(proj='utm',zone=10,ellps='WGS84', preserve_units=False)
 
     #TODO: (2) 시뮬레이터에서 GPS 데이터를 받아오는 Callback 함수 생성
     def navsat_callback(self, gps_msg):
         '''
         GPS 센서에서 수신되는 위도 경도 데이터를 확인한다.
+        self.lat = 
+        self.lon = 
+
         '''
+
         self.lat = gps_msg.latitude
         self.lon = gps_msg.longitude
-
+        
         self.convertLL2UTM()
-
         utm_msg = Float32MultiArray()
 
         #TODO: (4) 위도 경도 데이터와 변환한 UTM 좌표를 터미널 창에 출력 하여 확인
@@ -56,10 +60,12 @@ class LL2UTMConverter:
         '''
         utm_msg.data = [self.x, self.y]
         os.system('clear')
-        print(' lat : {}'.format(self.lat))
-        print(' lon : {}'.format(self.lon))
-        print(' utm X : {}'.format(utm_msg.data[0]))
-        print(' utm Y : {}'.format(utm_msg.data[1]))
+        print(' lat : ', self.lat)
+        print(' lon : ', self.lon)
+        print(utm_msg.data)
+        print(' utm X : ', self.x)
+        print(' utm Y : ', self.y)
+
 
 
 
@@ -67,12 +73,17 @@ class LL2UTMConverter:
     def convertLL2UTM(self):
         '''
         # pyproj 라이브러리를 이용해 정의한 좌표 변환 변수를 이용하여 위 경도 데이터를 변환한다.
-        '''
-        xy_zone = self.proj_UTM(self.lon, self.lat)
+        xy_zone = self.proj_UTM(위도 데이터, 경도 데이터)
 
         self.x = xy_zone[0]
         self.y = xy_zone[1]
 
+        '''
+
+        xy_zone = self.proj_UTM(self.lon, self.lat)
+        #xy_zone = self.korea_utm(13,13)
+        self.x = xy_zone[0]
+        self.y = xy_zone[1]
 
 if __name__ == '__main__':
 

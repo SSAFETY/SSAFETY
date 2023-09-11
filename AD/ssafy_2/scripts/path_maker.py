@@ -35,17 +35,14 @@ class pathMaker :
         '''
         rospack = rospkg.RosPack()
         pkg_path = rospack.get_path(pkg_name)
-        # pkg_path = /home/ssafy/mobility-autodriving-skeleton/ssafy_ad/src/ssafy_2
         full_path = pkg_path + '/path/' + path_name +'.txt'
-        # full_path = /home/ssafy/mobility-autodriving-skeleton/ssafy_ad/src/ssafy_2/path/make_path.txt
         self.f = open(full_path, 'w')
 
-        # rate = rospy.Rate(5)
+    
         while not rospy.is_shutdown():
             if self.is_odom == True :
                 # Ego 위치 기록
                 self.path_make()
-                #rate.sleep()
         self.f.close()
 
     def path_make(self):
@@ -57,9 +54,12 @@ class pathMaker :
         # 현재 차량의 위치와 이전에 지나온 위치의 좌표 데이터를 구한다.
         # 구해진 좌표 사이의 거리를 계산한다.
         # 이전 위치 좌표는 아래 #TODO: (4)에서 정의 한다.
+        distance = 
+
         '''
         distance = sqrt((x - self.prev_x)**2 + (y - self.prev_y)**2)
-        print(distance)
+        #print(distance)
+
 
         #TODO: (4) 이전 위치보다 0.5m 이상일 때 위치를 저장        
         if distance >0.5:
@@ -68,13 +68,15 @@ class pathMaker :
             # 현재 위치 좌표를 data 에 담은 뒤 txt 파일로 작성한다.
             # data 는 문자열 이며 x y z 사이는 \t 로 구분한다
             '''
-            data ='{0}\t{1}\t{2}\n'.format(x, y, z)
+            data = '{0}\t{1}\t{2}\n'.format(x,y,z)
             self.f.write(data)
             self.prev_x = x
             self.prev_y = y
             self.prev_z = z
-            
-            # print(self.prev_x, self.prev_y, self.prev_z)
+
+            print(data)
+
+
 
 
     def odom_callback(self,msg):
@@ -84,8 +86,11 @@ class pathMaker :
         '''
         # gpsimu_parser.py 예제에서 Publish 해주는 Odometry 메세지 데이터를 Subscrib 한다.
         # Odometry 메세지 에 담긴 물체의 위치 데이터를 아래 변수에 넣어준다.
+        self.x = 물체의 x 좌표 
+        self.y = 물체의 y 좌표
+
         '''
-        self.x = msg.pose.pose.position.x
+        self.x = msg.pose.pose.position.x 
         self.y = msg.pose.pose.position.y
 
 if __name__ == '__main__' :

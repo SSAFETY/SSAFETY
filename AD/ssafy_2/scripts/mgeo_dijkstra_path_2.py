@@ -98,6 +98,7 @@ class dijkstra_path_pub :
             self.global_path_pub.
             
             '''
+            self.global_path_pub.publish(self.global_path_msg)
             rate.sleep()
     
     def init_callback(self,msg):
@@ -111,9 +112,21 @@ class dijkstra_path_pub :
         # 해당 형식의 메세지를 Subscribe 해서  2D Pose Estimate 로 지정한 위치와 가장 가까운 노드를 탐색하는 합니다.
         # 가장 가까운 Node 가 탐색 된다면 이를 "self.start_node" 변수에 해당 Node Idx 를 지정합니다.
 
-        self.start_node = node_idx
-
         '''
+
+        start_min_dis=float('inf')
+        self.init_msg=msg
+        self.init_x=self.init_msg.pose.pose.position.x
+        self.init_y=self.init_msg.pose.pose.position.y
+        
+        for node_idx in self.nodes:
+            node_pose_x=self.nodes[node_idx].point[0]
+            node_pose_y=self.nodes[node_idx].point[1]
+            start_dis = sqrt(pow(self.init_x - node_pose_x, 2) + pow(self.init_y - node_pose_y, 2))
+            if start_dis < start_min_dis :
+                start_min_dis=start_dis
+                self.start_node = node_idx
+
 
         self.is_init_pose = True
 
@@ -128,9 +141,22 @@ class dijkstra_path_pub :
         # 해당 형식의 메세지를 Subscribe 해서  2D Nav Goal 로 지정한 위치와 가장 가까운 노드를 탐색하는 합니다.
         # 가장 가까운 Node 가 탐색 된다면 이를 "self.start_node" 변수에 해당 Node Idx 를 지정합니다.
 
-        self.end_node = node_idx
-
         '''
+
+
+        goal_min_dis=float('inf')
+        self.goal_msg = msg
+        self.goal_x=self.goal_msg.pose.position.x
+        self.goal_y=self.goal_msg.pose.position.y
+        
+        for node_idx in self.nodes:
+            node_pose_x=self.nodes[node_idx].point[0]
+            node_pose_y=self.nodes[node_idx].point[1]
+            goal_dis = sqrt(pow(self.goal_x - node_pose_x, 2) + pow(self.goal_y - node_pose_y, 2))
+
+            if goal_dis < goal_min_dis :
+                goal_min_dis=goal_dis
+                self.end_node = node_idx
 
         self.is_goal_pose = True
 
@@ -145,7 +171,14 @@ class dijkstra_path_pub :
         # dijkstra 경로 데이터 중 Point 정보를 이용하여 Path 데이터를 만들어 줍니다.
 
         '''
-
+        for waypoint in path["point_path"] :
+            path_x = waypoint[0]
+            path_y = waypoint[1]
+            read_pose = PoseStamped()
+            read_pose.pose.position.x = path_x
+            read_pose.pose.position.y = path_y
+            read_pose.pose.orientation.w = 1
+            out_path.poses.append(read_pose)
         return out_path
 
 class Dijkstra:
@@ -197,7 +230,24 @@ class Dijkstra:
         # shortest_link 의 min_cost 를 계산 합니다.
 
         '''
+        to_links = []
+        for link in from_node.get_to_links():
+            if link.to_node is to_node:
+                to_links.append(link)
+                print(link.cost)
 
+        
+
+        if len(to_links) == 0:
+            raise BaseException('[ERROR] Dijkstra.find_shortest_path ')
+
+        shortest_link = None
+        min_cost = float('inf')
+        for link in to_links:
+            if link.cost < min_cost:
+                min_cost = link.cost
+                shortest_link = link
+                
         return shortest_link, min_cost
         
     def find_nearest_node_idx(self, distance, s):        
