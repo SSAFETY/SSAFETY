@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import rospy
@@ -71,7 +71,7 @@ class pure_pursuit :
                 steering = self.calc_pure_pursuit()
                 if self.is_look_forward_point :
                     self.ctrl_cmd_msg.steering = steering
-                    self.ctrl_cmd_msg.velocity = 20.0
+                    self.ctrl_cmd_msg.velocity = 25.0
                     print(self.ctrl_cmd_msg.steering)
                 else : 
                     print("no found forward point")

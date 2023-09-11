@@ -8,6 +8,5 @@
     <!-- <node pkg="ssafy_2" type="velocity_planning.py" name="velocity_planning"  /> -->
     <!-- <node pkg="ssafy_2" type="advanced_purepursuit.py" name="advanced_purepursuit"  /> -->
     <node pkg="ssafy_2" type="tf_pub.py" name="tf"  />
-
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ssafy_2)/rviz/kcity_rviz.rviz" />
 </launch>
