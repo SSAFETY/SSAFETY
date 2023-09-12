@@ -21,7 +21,9 @@
   - 최소자승법: 곡률 반지름(r) 계산
 - ACC(Adaptive Cruise Control): 앞차와의 속도 유지  
 
-- 현재 최종 코드: `velocity_planning.py`
+- 현재 최종 코드: `advanced_purepursuit.py`
+  - pub; `ctrl_cmd`
+  - sub; `/global_path`, `/local_path`, `/odom`, `/Ego_topic`
 
 
 #### 출처

@@ -51,8 +51,8 @@ class pure_pursuit :
         # Gloabl Path 데이터는 경로의 곡률을 이용한 속도 계획을 위해 사용한다.
         '''
         rospy.Subscriber("/global_path", Path, self.global_path_callback)
-        rospy.Subscriber("local_path", Path, self.path_callback)
-        rospy.Subscriber("odom", Odometry, self.odom_callback)
+        rospy.Subscriber("/local_path", Path, self.path_callback)
+        rospy.Subscriber("/odom", Odometry, self.odom_callback)
         rospy.Subscriber("/Ego_topic", EgoVehicleStatus, self.status_callback)
         self.ctrl_cmd_pub = rospy.Publisher('ctrl_cmd', CtrlCmd, queue_size=1)
 
