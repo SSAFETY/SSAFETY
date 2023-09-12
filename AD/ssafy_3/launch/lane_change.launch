@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="ssafy_2" type="mgeo_pub.py" name="mgeo_pub"  />
+    <node pkg="ssafy_2" type="gpsimu_parser.py" name="gpsimu_parser" />
+    <node pkg="ssafy_2" type="tf_pub.py" name="tf"  />
+    <node pkg="ssafy_3" type="lane_change_1.py" name="lane_change" args="/Object_topic"/>
+    <!-- <node pkg="ssafy_3" type="lane_change_2.py" name="lane_change" args="/Object_topic"/> -->
+    <!-- <node pkg="ssafy_3" type="lane_change_3.py" name="lane_change" args="/Object_topic"/> -->
+    <node pkg="ssafy_3" type="advanced_purepursuit.py" name="advanced_purepursuit"  args="/lane_change_path"/>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ssafy_3)/rviz/lane_detection_rviz.rviz" />
+</launch>

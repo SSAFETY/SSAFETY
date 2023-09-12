@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="ssafy_2" type="mgeo_pub.py" name="mgeo_pub"  />
+    <node pkg="ssafy_2" type="gpsimu_parser.py" name="gpsimu_parser" />
+    <node pkg="ssafy_2" type="global_path_pub.py" name="global_path_pub"  />
+    <node pkg="ssafy_2" type="local_path_pub.py" name="local_path_pub" />    
+    <node pkg="ssafy_2" type="tf_pub.py" name="tf"  />
+    <node pkg="ssafy_3" type="lattice_planner.py" name="lattice_planner" output="screen" args="/Object_topic_to_lidar"/>
+    <node pkg="ssafy_3" type="advanced_purepursuit.py" name="advanced_purepursuit"  args="/lattice_path"/>
+
+
+    <node pkg="ssafy_3" type="lidar_velodyne_cluster.py" name="lidar_velodyne_cluster"  />
+    <node pkg="ssafy_3" type="lidar_velodyne_cluster_viz.py" name="lidar_velodyne_cluster_viz"  />
+
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ssafy_3)/rviz/lane_detection_rviz.rviz" />
+    <node pkg="tf" type="static_transform_publisher" name="tf_lidar" args="2 0 1.25 0 0 0 1 Ego velodyne 100"/>
+</launch>
