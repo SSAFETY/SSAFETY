@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import korea from '../mapData/korea-topo.json';
+import '../css/Home.css';
+import DetailMap from './DetailMap';
 
 const featureData = feature(korea, korea.objects['korea-topo']);
 
 const KoreaMap = () => {
   const chart = useRef(null);
+  const [showDetailMap, setShowDetailMap] = useState(false);
 
   const printD3 = () => {
     const width = window.innerWidth; // 페이지 너비로 설정
@@ -53,14 +56,12 @@ const KoreaMap = () => {
         popupGroup.style('display', 'block');
         popupGroup.selectAll('*').remove(); // 팝업 내용 초기화
 
-        // 팝업 배경
+        // 동그라미 모양 팝업 배경
         popupGroup
-          .append('rect')
-          .attr('x', path.centroid(d)[0] - 50) // 팝업 가로 위치 조정
-          .attr('y', path.centroid(d)[1] - 30) // 팝업 세로 위치 조정
-          .attr('width', 100) // 팝업 가로 크기
-          .attr('height', 60) // 팝업 세로 크기
-          .attr('rx', 5) // 팝업 둥근 모서리 반지름
+          .append('circle')
+          .attr('cx', path.centroid(d)[0])
+          .attr('cy', path.centroid(d)[1] - 30) // 위로 조금 이동
+          .attr('r', 30) // 원의 반지름 설정
           .style('fill', 'white') // 팝업 배경색
           .style('stroke', 'blue') // 팝업 테두리 색
           .style('stroke-width', 2); // 팝업 테두리 두께
@@ -69,7 +70,7 @@ const KoreaMap = () => {
         popupGroup
           .append('text')
           .attr('x', path.centroid(d)[0]) // 텍스트 가로 위치 조정
-          .attr('y', path.centroid(d)[1]) // 텍스트 세로 위치 조정
+          .attr('y', path.centroid(d)[1] - 30) // 텍스트 세로 위치 조정 (원 위에 배치)
           .attr('text-anchor', 'middle') // 가운데 정렬
           .attr('alignment-baseline', 'middle') // 가운데 정렬
           .text(d.properties.CTP_KOR_NM) // 지역 이름 데이터 필드 이름으로 변경
@@ -81,6 +82,23 @@ const KoreaMap = () => {
 
         // 팝업 숨기기
         popupGroup.style('display', 'none');
+      })
+      .on('click', function (event, d) {
+        if (d.properties.CTP_KOR_NM === '경기도') {
+          popupGroup.selectAll('*')
+            .transition()
+            .style('opacity', 0) // 팝업 투명도 조정
+            .style('fill', 'none')
+            .remove(); // 팝업 요소 삭제
+          mapLayer.selectAll('path')
+            .transition()
+            .duration(1000) // 1초 동안 애니메이션 적용
+            .style('opacity', 0)
+            .remove();
+
+          // 이제 DetailMap 표시 (DetailMap 컴포넌트를 렌더링하도록 상태 업데이트)
+          setShowDetailMap(true);
+        }
       });
   };
 
@@ -88,7 +106,16 @@ const KoreaMap = () => {
     printD3();
   }, []);
 
-  return <div ref={chart} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}></div>;
+  return (
+    <div>
+      {showDetailMap ? (
+        // 여기에 DetailMap 컴포넌트를 렌더링하는 코드 추가
+        <DetailMap />
+      ) : (
+        <div ref={chart} className="korea-map" style={{ height: 'calc(100vh - 40px)' }}></div>
+      )}
+    </div>
+  );
 };
 
 export default KoreaMap;

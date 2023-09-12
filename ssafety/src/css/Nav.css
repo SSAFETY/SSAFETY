@@ -1,0 +1,17 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; /* 화면 너비만큼 네비바를 확장 */
+    background-color: gray; /* 투명도를 조절할 수 있음 */
+    z-index: 100; /* 다른 요소 위에 표시하도록 z-index 설정 */
+    width: 100%;
+    padding: 15px 0px;
+    text-align: right;
+  }
+  
+.navbarMenu {
+    color: white;
+    margin: 8px;
+    text-decoration: none;
+}
