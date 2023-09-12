@@ -82,7 +82,6 @@ class dijkstra_path_pub :
         self.end_node = 'A119BS010148'
 
 
-
         self.global_path_msg = Path()
         self.global_path_msg.header.frame_id = '/map'
 
@@ -93,9 +92,9 @@ class dijkstra_path_pub :
             #TODO: (11) dijkstra 이용해 만든 Global Path 정보 Publish
             '''
             # dijkstra 이용해 만든 Global Path 메세지 를 전송하는 publisher 를 만든다.
-            self.global_path_pub.
-            
+
             '''
+            
             self.global_path_pub.publish(self.global_path_msg)
             rate.sleep()
 

@@ -30,7 +30,6 @@ class global_path_pub :
         self.global_path_msg = Path()
         self.global_path_msg.header.frame_id = "map"
 
-      
 
         #TODO: (2) 읽어올 경로 의 텍스트파일 이름을 정하고, 읽기 모드로 열기
         '''
@@ -44,7 +43,6 @@ class global_path_pub :
         self.f = open(full_path, 'r')        
         lines = self.f.readlines()
 
-        #print(lines)
 
         #TODO: (3) 읽어 온 경로 데이터를 Global Path 변수에 넣기
         '''
@@ -61,13 +59,11 @@ class global_path_pub :
         self.f.close()
 
 
-
         rate = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown():
             #TODO: (4) Global Path 정보 Publish
             '''
             # Global Path 메세지 를 전송하는 publisher 를 만든다.
-            
             '''
             self.global_path_pub.publish(self.global_path_msg)
             rate.sleep()

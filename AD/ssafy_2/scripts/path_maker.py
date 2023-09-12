@@ -58,7 +58,7 @@ class pathMaker :
 
         '''
         distance = sqrt((x - self.prev_x)**2 + (y - self.prev_y)**2)
-        #print(distance)
+        # print(distance)
 
 
         #TODO: (4) 이전 위치보다 0.5m 이상일 때 위치를 저장        
@@ -68,15 +68,13 @@ class pathMaker :
             # 현재 위치 좌표를 data 에 담은 뒤 txt 파일로 작성한다.
             # data 는 문자열 이며 x y z 사이는 \t 로 구분한다
             '''
-            data = '{0}\t{1}\t{2}\n'.format(x,y,z)
+            data = '{0}\t{1}\t{2}\n'.format(x, y, z)
             self.f.write(data)
             self.prev_x = x
             self.prev_y = y
             self.prev_z = z
 
             print(data)
-
-
 
 
     def odom_callback(self,msg):
@@ -86,11 +84,8 @@ class pathMaker :
         '''
         # gpsimu_parser.py 예제에서 Publish 해주는 Odometry 메세지 데이터를 Subscrib 한다.
         # Odometry 메세지 에 담긴 물체의 위치 데이터를 아래 변수에 넣어준다.
-        self.x = 물체의 x 좌표 
-        self.y = 물체의 y 좌표
-
         '''
-        self.x = msg.pose.pose.position.x 
+        self.x = msg.pose.pose.position.x
         self.y = msg.pose.pose.position.y
 
 if __name__ == '__main__' :

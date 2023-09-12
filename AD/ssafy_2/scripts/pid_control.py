@@ -71,7 +71,7 @@ class pure_pursuit :
 
         self.vehicle_length = 1
         self.lfd = 5
-        self.target_vel = 60
+        self.target_vel = 30
 
         self.pid = pidControl()
 

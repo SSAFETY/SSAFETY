@@ -43,7 +43,6 @@ class get_mgeo :
         # 각각의 Node Link 정보는 이름인 idx 정보를 가집니다 idx 는 중복 될 수 없습니다. 
         # to_links , from_links , to_node , from_node ... 등 
         # MGeo에 정의되어 있는 데이터를 활용해 각 Node 와 Link 간 연결 성을 나타낼 수 있습니다.
-        
         '''
         load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PG_K-City'))
         mgeo_planner_map = MGeo.create_instance_from_json(load_path)
@@ -60,15 +59,12 @@ class get_mgeo :
         print('# of nodes: ', len(node_set.nodes))
         print('# of links: ', len(link_set.lines))
 
-        rate = rospy.Rate(1) 
+        rate = rospy.Rate(1)
         while not rospy.is_shutdown():
 
             #TODO: (4) 변환한 Link, Node 정보 Publish
             '''
-            # 변환한 Link, Node 정보 를 전송하는 publisher 를 만든다.
-            self.link_pub.
-            self.node_pub.
-            
+            # 변환한 Link, Node 정보 를 전송하는 publisher 를 만든다.            
             '''
             self.link_pub.publish(self.link_msg)
             self.node_pub.publish(self.node_msg)
@@ -85,18 +81,13 @@ class get_mgeo :
         # Point Cloud 형식으로 Link 의 좌표 정보를 변환합니다.
         # Link 의 개수 만큼 반복하는 반복 문을 이용해 Link 정보를 Point Cloud 형식 데이터에 넣습니다.
 
-        for link_idx in self.links :
-            for  in :
-
-        
-        ''' 
-
+        '''
         for link_idx in self.links :
             for link_point in self.links[link_idx].points:
-                tmp_point=Point32()
-                tmp_point.x=link_point[0]
-                tmp_point.y=link_point[1]
-                tmp_point.z=link_point[2]
+                tmp_point = Point32()
+                tmp_point.x = link_point[0]
+                tmp_point.y = link_point[1]
+                tmp_point.z = link_point[2]
                 all_link.points.append(tmp_point)
 
         return all_link
@@ -110,15 +101,14 @@ class get_mgeo :
         # Point Cloud 형식으로 Node 의 좌표 정보를 변환합니다.
         # Node 의 개수 만큼 반복하는 반복 문을 이용해 Node 정보를 Point Cloud 형식 데이터에 넣습니다.
 
-        for node_idx in self.nodes :
-
         '''
         for node_idx in self.nodes :
-            tmp_point=Point32()
-            tmp_point.x=self.nodes[node_idx].point[0]
-            tmp_point.y=self.nodes[node_idx].point[1]
-            tmp_point.z=self.nodes[node_idx].point[2]
+            tmp_point = Point32()
+            tmp_point.x = self.nodes[node_idx].point[0]
+            tmp_point.y = self.nodes[node_idx].point[1]
+            tmp_point.z = self.nodes[node_idx].point[2]
             all_node.points.append(tmp_point)
+
 
         return all_node
 
