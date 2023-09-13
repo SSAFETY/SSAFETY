@@ -33,6 +33,8 @@ const KoreaMap = () => {
 
     const mapLayer = svg.append('g');
 
+    console.log(featureData.features);
+
     // 기본 지도 스타일 (하늘색)
     mapLayer
       .selectAll('path')
@@ -84,20 +86,14 @@ const KoreaMap = () => {
         popupGroup.style('display', 'none');
       })
       .on('click', function (event, d) {
-        if (d.properties.CTP_KOR_NM === '경기도') {
-          popupGroup.selectAll('*')
-            .transition()
-            .style('opacity', 0) // 팝업 투명도 조정
-            .style('fill', 'none')
-            .remove(); // 팝업 요소 삭제
-          mapLayer.selectAll('path')
-            .transition()
-            .duration(1000) // 1초 동안 애니메이션 적용
-            .style('opacity', 0)
-            .remove();
-
-          // 이제 DetailMap 표시 (DetailMap 컴포넌트를 렌더링하도록 상태 업데이트)
+        if (d.properties.CTP_KOR_NM === '서울특별시') {
+          // 이제 DetailMap 표시 (DetailMap 컴포넌트를 보이도록 상태 업데이트)
           setShowDetailMap(true);
+
+          // 0.5초 후에 스크롤을 맨 아래로 이동
+          setTimeout(() => {
+            window.scroll({ top: document.body.scrollHeight, behavior: 'smooth' });
+          }, 500);
         }
       });
   };
@@ -107,12 +103,12 @@ const KoreaMap = () => {
   }, []);
 
   return (
-    <div>
-      {showDetailMap ? (
-        // 여기에 DetailMap 컴포넌트를 렌더링하는 코드 추가
-        <DetailMap />
-      ) : (
-        <div ref={chart} className="korea-map" style={{ height: 'calc(100vh - 40px)' }}></div>
+    <div className="korea-map-container">
+      <div className="korea-map" ref={chart} style={{ height: '100vh' }}></div>
+      {showDetailMap && (
+        <div className="detail-map" style={{ top: 0, left: '25%', width: '75%', height: '100%'}}>
+          <DetailMap />
+        </div>
       )}
     </div>
   );
