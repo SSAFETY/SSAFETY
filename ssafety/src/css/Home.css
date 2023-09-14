@@ -2,3 +2,31 @@
     height: 100vh;
     overflow: hidden;
 }
+
+.seoulmap {
+    height: 95vh;
+    overflow: hidden;
+}
+
+.selected-data-right {
+    position: absolute;
+    right: 0;
+    top: 7%;
+    bottom: 0;
+    margin: auto;
+    width: 45%; /* 크기 조절 */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px; /* 패딩을 늘려서 내용을 좀 더 떨어뜨립니다 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex; /* Flexbox를 사용하여 내용을 가운데 정렬 */
+    flex-direction: column; /* 수직 방향으로 정렬 */
+    justify-content: center; /* 수직 방향 가운데 정렬 */
+    text-align: center;
+    border-radius: 10px; /* 둥근 테두리를 추가합니다 */
+    letter-spacing: 2px; /* 글자 사이 간격을 늘립니다 */
+}
+
+
+  
+  
