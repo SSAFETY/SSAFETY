@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ssafety.be.dto.ReportDto;
 import ssafety.be.dto.SearchDto;
 import ssafety.be.entity.Report;
+import ssafety.be.repository.ReportRepository;
 import ssafety.be.service.KakaoMapService;
 import ssafety.be.service.ReportDataService;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class ReportController {
     private final KakaoMapService kakaoMapService;
     private final ReportDataService reportDataService;
+    private final ReportRepository reportRepository;
 
     @PostMapping("/report")
     public ResponseEntity<String> getDataFromRos(@RequestBody ReportDto data) {
@@ -29,6 +31,11 @@ public class ReportController {
             e.printStackTrace();
             return new ResponseEntity<>("요청 처리 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/getAll")
+    public List<Report> getAllReports() {
+        return reportRepository.findAll();
     }
 
     @PostMapping("/searchReports")

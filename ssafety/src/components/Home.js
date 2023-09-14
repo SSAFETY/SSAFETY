@@ -1,16 +1,18 @@
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef} from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import korea from '../mapData/korea-topo.json';
 import '../css/Home.css';
-import DetailMap from './DetailMap';
+import { useNavigate } from 'react-router-dom';
+
 
 const featureData = feature(korea, korea.objects['korea-topo']);
 
 const KoreaMap = () => {
   const chart = useRef(null);
-  const [showDetailMap, setShowDetailMap] = useState(false);
+
+  const navigate = useNavigate();
 
   const printD3 = () => {
     const width = window.innerWidth; // 페이지 너비로 설정
@@ -32,8 +34,6 @@ const KoreaMap = () => {
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
 
     const mapLayer = svg.append('g');
-
-    console.log(featureData.features);
 
     // 기본 지도 스타일 (하늘색)
     mapLayer
@@ -87,13 +87,7 @@ const KoreaMap = () => {
       })
       .on('click', function (event, d) {
         if (d.properties.CTP_KOR_NM === '서울특별시') {
-          // 이제 DetailMap 표시 (DetailMap 컴포넌트를 보이도록 상태 업데이트)
-          setShowDetailMap(true);
-
-          // 0.5초 후에 스크롤을 맨 아래로 이동
-          setTimeout(() => {
-            window.scroll({ top: document.body.scrollHeight, behavior: 'smooth' });
-          }, 500);
+          navigate('detail');
         }
       });
   };
@@ -103,14 +97,7 @@ const KoreaMap = () => {
   }, []);
 
   return (
-    <div className="korea-map-container">
-      <div className="korea-map" ref={chart} style={{ height: '100vh' }}></div>
-      {showDetailMap && (
-        <div className="detail-map" style={{ top: 0, left: '25%', width: '75%', height: '100%'}}>
-          <DetailMap />
-        </div>
-      )}
-    </div>
+      <div className="korea-map" ref={chart} style={{ height: '95vh'}}></div>
   );
 };
 
