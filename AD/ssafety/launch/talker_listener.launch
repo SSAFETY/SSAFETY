@@ -1,0 +1,6 @@
+<launch>
+    <!-- Talker Topic Publisher -->
+    <node pkg="ssafy_1" type="talker.py" name="talker" />
+    <!-- Listener Topic Subscriber -->
+    <node pkg="ssafy_1" type="listener.py" name="listener" output="screen" />
+</launch>
