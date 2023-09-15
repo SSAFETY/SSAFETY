@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# 차량 종/횡 방향 제어에 대한 코드
+# Purpusuit 알고리즘의 Look Ahead Distance(전방 주시 거리) 값을 속도에 비례하여 가변 값으로 만들어 횡 방향 주행 성능을 올린다.
+# 횡방향 제어 입력은 주행할 Local Path(지역경로)와 Odometry(차량의 상태 정보)를 받아 차량을 제어
+# 종방향 제어 입력은 목표 속도를 지정 한뒤 목표 속도에 도달하기 위한 Throttle control 을 합니다.
+# 종방향 제어 입력은 longlCmdType 1(Throttle control) 이용합니다.
+
 import os, sys
 import time
 import rospy
 import rospkg
-from math import cos,sin,pi,sqrt,pow,atan2
-from geometry_msgs.msg import Point,PoseWithCovarianceStamped
-from nav_msgs.msg import Odometry,Path
-from morai_msgs.msg import CtrlCmd,EgoVehicleStatus
+from math import cos, sin, pi, sqrt, pow, atan2
+from geometry_msgs.msg import Point, PoseWithCovarianceStamped
+from nav_msgs.msg import Odometry, Path
+from morai_msgs.msg import CtrlCmd, EgoVehicleStatus
 import numpy as np
 import tf
-from tf.transformations import euler_from_quaternion,quaternion_from_euler
+from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
-# advanced_purepursuit 은 차량의 차량의 종 횡 방향 제어 예제입니다.
-# Purpusuit 알고리즘의 Look Ahead Distance 값을 속도에 비례하여 가변 값으로 만들어 횡 방향 주행 성능을 올립니다.
-# 횡방향 제어 입력은 주행할 Local Path (지역경로) 와 차량의 상태 정보 Odometry 를 받아 차량을 제어 합니다.
-# 종방향 제어 입력은 목표 속도를 지정 한뒤 목표 속도에 도달하기 위한 Throttle control 을 합니다.
-# 종방향 제어 입력은 longlCmdType 1(Throttle control) 이용합니다.
 
 # 노드 실행 순서 
 # 0. 필수 학습 지식
@@ -32,41 +33,32 @@ from tf.transformations import euler_from_quaternion,quaternion_from_euler
 
 #TODO: (0) 필수 학습 지식
 '''
-# advanced_purepursuit 은 Pure Pursuit 알고리즘을 강화 한 예제입니다.
-# 이전까지 사용한 Pure Pursuit 알고리즘은 고정된 전방주시거리(Look Forward Distance) 값을 사용하였습니다.
-# 해당 예제에서는 전방주시거리(Look Forward Distance) 값을 주행 속도에 비례한 값으로 설정합니다.
-# 이때 최소 최대 전방주시거리(Look Forward Distance) 를 설정합니다.
-# 주행 속도에 비례한 값으로 변경 한 뒤 "self.lfd_gain" 을 변경 하여서 직접 제어기 성능을 튜닝 해보세요.
-# 
-
+# Look Ahead Distance 값을 현재 속도에 비례하여 설정해서 최대/최소 값을 정함
+# 주행 속도에 비례한 값으로 변경 한 뒤 "self.lfd_gain" 을 변경한다.
 '''
+
 class pure_pursuit :
     def __init__(self):
         rospy.init_node('pure_pursuit', anonymous=True)
 
         '''
         #TODO: ros Launch File <arg> Tag 
-        # ros launch 파일 에는 여러 태그 를 사용 할 수 있지만 
-        # 그중 <arg> 태그를 사용하여 변수를 정의 할 수 있습니다.
-        # 3 장 에서는 사용하는 Path 정보와 Object 각 예제 별로 다르기 때문에
-        # launch 파일의 <arg> 태그를 사용하여 예제에 맞게 변수를 설정합니다.
-        
+        # ros launch 파일에 arg 태그 이용하여 변수 정의 가능        
         '''
         arg = rospy.myargv(argv=sys.argv)
         local_path_name = arg[1]
 
+        # arg 값으로 받은 변수(local path)로 사용한다 - L61 대체
         rospy.Subscriber(local_path_name, Path, self.path_callback)
 
         #TODO: (1) subscriber, publisher 선언
-        
-        # Local/Gloabl Path 와 Odometry Ego Status 데이터를 수신 할 Subscriber 를 만들고 
-        # CtrlCmd 를 시뮬레이터로 전송 할 publisher 변수를 만든다.
-        # CtrlCmd 은 1장을 참고 한다.
-        # Ego topic 데이터는 차량의 현재 속도를 알기 위해 사용한다.
+        # Subscriber; Local Path, Global Path & Odometry Ego Status
+        # Publisher; CtrlCmd(User -> Simul)
+        # Ego topic 데이터는 차량의 "현재 속도"를 알기 위해 사용한다.
         # Gloabl Path 데이터는 경로의 곡률을 이용한 속도 계획을 위해 사용한다.
         
         rospy.Subscriber("/global_path", Path, self.global_path_callback)
-        # rospy.Subscriber("/local_path", Path, self.path_callback) # 58번째 줄로 대체
+        # rospy.Subscriber("/local_path", Path, self.path_callback)     # L58로 대체
         rospy.Subscriber("/odom", Odometry, self.odom_callback)
         rospy.Subscriber("/Ego_topic", EgoVehicleStatus, self.status_callback)
         self.ctrl_cmd_pub = rospy.Publisher("/ctrl_cmd", CtrlCmd, queue_size=1)
@@ -103,7 +95,6 @@ class pure_pursuit :
 
         rate = rospy.Rate(30) # 30hz
         while not rospy.is_shutdown():
-            
 
             if self.is_path == True and self.is_odom == True and self.is_status == True:
                 prev_time = time.time()
