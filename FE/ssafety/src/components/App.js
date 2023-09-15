@@ -6,7 +6,7 @@ import Road from './Road';
 import Statistics from './Statistics';
 import LiveVideo from './LiveVideo';
 import Violation from './Violation';
-import DetailMap from './DetailMap';
+import DetailSiMap from './DetailSiMap';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/road" element={<Road />} />
           <Route path="/livevideo" element={<LiveVideo />} />
-          <Route path="/detail" element={<DetailMap />} />
+          <Route path="/detailsi" element={<DetailSiMap />} />
         </Routes>
       </div>
     </Router>

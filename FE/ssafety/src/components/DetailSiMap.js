@@ -35,7 +35,6 @@ const SeoulMap = () => {
         .then((response) => {
           const reportData = response.data;
           const newData = {};
-          console.log(reportData)
 
           reportData.forEach((report) => {
             const depth3 = report.depth3;
@@ -45,26 +44,6 @@ const SeoulMap = () => {
             } else {
               newData[region] = 1;
             }
-
-            // GPS 좌표 정보를 가져옵니다.
-            const latitude = report.gpsLatitude;
-            const longitude = report.gpsLongitude;
-            // GPS 좌표를 사용하여 핀을 추가합니다.
-            svg
-              .append('circle')
-              .attr('class', 'pin')
-              .attr('cx', projection([longitude, latitude])[0])
-              .attr('cy', projection([longitude, latitude])[1])
-              .attr('r', 5) // 핀의 반지름
-              .style('fill', 'red') // 핀의 색상
-              .style('stroke', 'blue') // 핀의 테두리 색상
-              .style('stroke-width', 2) // 핀의 테두리 두께
-              .on('click', function (event, d) {
-                const pinlongitude = longitude;
-                const pinlatitude = latitude;
-                const selected = reportData.find((report) => report.gpsLongitude === pinlongitude && report.gpsLatitude === pinlatitude);
-                setSelectedData(selected);
-              })
           });
 
           setData(newData);

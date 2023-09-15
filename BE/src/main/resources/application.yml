@@ -5,8 +5,12 @@ spring:
     password: a102
   jpa:
     hibernate:
-      ddl-auto: create # ?????? ??? ?? ???? ?? (create, update, validate ? ??)
-    show-sql: true # SQL ??? ??? ???? ??
+      ddl-auto: create
+    show-sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+      write-date-timestamps-as-nanoseconds: false
 cloud:
   aws:
     credentials:
