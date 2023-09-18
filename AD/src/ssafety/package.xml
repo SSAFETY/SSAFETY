@@ -2,12 +2,12 @@
 <package format="2">
   <name>ssafety</name>
   <version>0.0.0</version>
-  <description>The ssafety package</description>
+  <description>The ssafety package for special pjt</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="ssafy01@todo.todo">ssafy01</maintainer>
+  <maintainer email="zxskmj@gmail.com">Minjae Kim</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -25,7 +25,7 @@
   <!-- Author tags are optional, multiple are allowed, one per tag -->
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <author email="zxskmj@gmail.com">Minjae Kim</author>
 
 
   <!-- The *depend tags are used to specify dependencies -->
