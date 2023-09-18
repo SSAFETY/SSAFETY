@@ -1,0 +1,877 @@
+[
+  {
+    "idx": "SSN000000",
+    "link_id_list": [
+      "146",
+      "144",
+      "241"
+    ],
+    "point": [
+      [
+        -239.1844,
+        737.8397,
+        5.407906
+      ],
+      [
+        -234.2344,
+        737.7648,
+        5.405907
+      ],
+      [
+        -229.6644,
+        737.6937,
+        5.411907
+      ]
+    ],
+    "intersection_controller_id": "IntTL1",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (19)",
+      "Traffic_Light_Arrow (18)",
+      "Traffic_Light (52)"
+    ]
+  },
+  {
+    "idx": "SSN000001",
+    "link_id_list": [
+      "147",
+      "145",
+      "148",
+      "237"
+    ],
+    "point": [
+      [
+        -251.1844,
+        705.9747,
+        5.408905
+      ],
+      [
+        -247.8444,
+        706.0537,
+        5.413906
+      ],
+      [
+        -243.8943,
+        706.1407,
+        5.420906
+      ]
+    ],
+    "intersection_controller_id": "IntTL1",
+    "signal_id_list": [
+      "Traffic_Light (36)",
+      "Traffic_Light (34)",
+      "Traffic_Light_Arrow (16)"
+    ]
+  },
+  {
+    "idx": "SSN000002",
+    "link_id_list": [
+      "240",
+      "239",
+      "238"
+    ],
+    "point": [
+      [
+        -255.4124,
+        730.1627,
+        5.459904
+      ]
+    ],
+    "intersection_controller_id": "IntTL1",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (15)"
+    ]
+  },
+  {
+    "idx": "SSN000003",
+    "link_id_list": [
+      "246",
+      "244",
+      "LN000025"
+    ],
+    "point": [
+      [
+        21.83563,
+        748.2428,
+        5.411907
+      ],
+      [
+        25.88562,
+        748.2528,
+        5.409904
+      ],
+      [
+        28.45563,
+        748.2727,
+        5.409904
+      ]
+    ],
+    "intersection_controller_id": "IntTL2",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (22)",
+      "Traffic_Light (50)",
+      "Traffic_Light (55)"
+    ]
+  },
+  {
+    "idx": "SSN000004",
+    "link_id_list": [
+      "247",
+      "250",
+      "245"
+    ],
+    "point": [
+      [
+        33.83563,
+        728.9728,
+        5.407906
+      ],
+      [
+        33.75964,
+        724.4427,
+        5.407906
+      ],
+      [
+        33.71167,
+        721.0527,
+        5.403904
+      ]
+    ],
+    "intersection_controller_id": "IntTL2",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (21)",
+      "Traffic_Light (58)",
+      "Traffic_Light (57)"
+    ]
+  },
+  {
+    "idx": "SSN000005",
+    "link_id_list": [
+      "243",
+      "LN000046",
+      "252",
+      "LN000047"
+    ],
+    "point": [
+      [
+        2.273651,
+        735.4227,
+        5.410904
+      ],
+      [
+        2.261658,
+        732.0627,
+        5.410904
+      ],
+      [
+        2.248657,
+        727.5227,
+        5.414906
+      ]
+    ],
+    "intersection_controller_id": "IntTL2",
+    "signal_id_list": [
+      "Traffic_Light (54)",
+      "Traffic_Light (59)",
+      "Traffic_Light_Arrow (17)"
+    ]
+  },
+  {
+    "idx": "SSN000006",
+    "link_id_list": [
+      "242",
+      "149",
+      "248"
+    ],
+    "point": [
+      [
+        14.16565,
+        713.2858,
+        5.411907
+      ],
+      [
+        17.58563,
+        713.3098,
+        5.409904
+      ],
+      [
+        22.13562,
+        713.3187,
+        5.413906
+      ]
+    ],
+    "intersection_controller_id": "IntTL2",
+    "signal_id_list": [
+      "Traffic_Light (47)",
+      "Traffic_Light (45)",
+      "Traffic_Light_Arrow (20)"
+    ]
+  },
+  {
+    "idx": "SSN000007",
+    "link_id_list": [
+      "160",
+      "166",
+      "167",
+      "151"
+    ],
+    "point": [
+      [
+        555.0156,
+        -411.3232,
+        5.409904
+      ],
+      [
+        556.5056,
+        -411.3342,
+        5.410904
+      ],
+      [
+        559.6156,
+        -411.3562,
+        5.410904
+      ],
+      [
+        562.2556,
+        -411.3903,
+        5.412907
+      ]
+    ],
+    "intersection_controller_id": "IntTL3",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (26)",
+      "Traffic_Light (53)",
+      "Traffic_Light (51)",
+      "Traffic_Light (56)"
+    ]
+  },
+  {
+    "idx": "SSN000008",
+    "link_id_list": [
+      "150",
+      "161",
+      "162",
+      "163",
+      "158"
+    ],
+    "point": [
+      [
+        572.2216,
+        -436.0172,
+        5.432907
+      ],
+      [
+        537.3846,
+        -439.6273,
+        5.412907
+      ],
+      [
+        537.0656,
+        -435.8372,
+        5.407906
+      ],
+      [
+        536.7766,
+        -432.2572,
+        5.411907
+      ],
+      [
+        536.4746,
+        -428.7072,
+        5.414906
+      ]
+    ],
+    "intersection_controller_id": "IntTL3",
+    "signal_id_list": [
+      "Traffic_Light (64)",
+      "Traffic_Light_Arrow (23)",
+      "Traffic_Light (62)",
+      "Traffic_Light (63)",
+      "Traffic_Light (67)"
+    ]
+  },
+  {
+    "idx": "SSN000009",
+    "link_id_list": [
+      "154",
+      "155",
+      "156",
+      "157",
+      "152"
+    ],
+    "point": [
+      [
+        536.5966,
+        -438.8073,
+        5.416904
+      ],
+      [
+        571.8217,
+        -439.9072,
+        5.400906
+      ],
+      [
+        572.1256,
+        -443.6772,
+        5.403904
+      ],
+      [
+        572.4016,
+        -447.0273,
+        5.403904
+      ],
+      [
+        571.4536,
+        -435.2473,
+        5.394905
+      ]
+    ],
+    "intersection_controller_id": "IntTL3",
+    "signal_id_list": [
+      "Traffic_Light (66)",
+      "Traffic_Light (61)",
+      "Traffic_Light (60)",
+      "Traffic_Light (65)",
+      "Traffic_Light_Arrow (25)"
+    ]
+  },
+  {
+    "idx": "SSN000010",
+    "link_id_list": [
+      "153",
+      "164",
+      "165",
+      "159"
+    ],
+    "point": [
+      [
+        552.8756,
+        -461.4633,
+        5.415905
+      ],
+      [
+        549.4756,
+        -461.4432,
+        5.410904
+      ],
+      [
+        545.6057,
+        -461.4312,
+        5.411907
+      ]
+    ],
+    "intersection_controller_id": "IntTL3",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (24)",
+      "Traffic_Light (46)",
+      "Traffic_Light (48)"
+    ]
+  },
+  {
+    "idx": "SSN000011",
+    "link_id_list": [
+      "198",
+      "199",
+      "209",
+      "210",
+      "211",
+      "205"
+    ],
+    "point": [
+      [
+        -244.1244,
+        -426.9572,
+        5.409904
+      ],
+      [
+        -239.3544,
+        -427.0363,
+        5.419907
+      ],
+      [
+        -235.5444,
+        -427.0812,
+        5.412907
+      ],
+      [
+        -232.1143,
+        -427.1263,
+        5.422905
+      ],
+      [
+        -246.2444,
+        -498.5222,
+        5.407906
+      ]
+    ],
+    "intersection_controller_id": "IntTL4",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (4)",
+      "Traffic_Light (10)",
+      "Traffic_Light (9)",
+      "Traffic_Light (8)",
+      "Traffic_Light (2)"
+    ]
+  },
+  {
+    "idx": "SSN000012",
+    "link_id_list": [
+      "214",
+      "213",
+      "202",
+      "203",
+      "194"
+    ],
+    "point": [
+      [
+        -243.1644,
+        -426.2542,
+        5.414906
+      ],
+      [
+        -245.3,
+        -497.8112,
+        5.406906
+      ],
+      [
+        -249.982,
+        -497.7452,
+        5.415905
+      ],
+      [
+        -253.7543,
+        -497.6812,
+        5.417904
+      ],
+      [
+        -257.2244,
+        -497.6353,
+        5.418907
+      ]
+    ],
+    "intersection_controller_id": "IntTL4",
+    "signal_id_list": [
+      "Traffic_Light (11)",
+      "Traffic_Light_Arrow (2)",
+      "Traffic_Light",
+      "Traffic_Light (1)",
+      "Traffic_Light (3)"
+    ]
+  },
+  {
+    "idx": "SSN000013",
+    "link_id_list": [
+      "195",
+      "196",
+      "206",
+      "207",
+      "208",
+      "197"
+    ],
+    "point": [
+      [
+        -219.1954,
+        -473.19,
+        5.294907
+      ],
+      [
+        -219.1754,
+        -478.0472,
+        5.288906
+      ],
+      [
+        -219.2614,
+        -481.8572,
+        5.303905
+      ],
+      [
+        -219.3284,
+        -485.2072,
+        5.288906
+      ],
+      [
+        -280.3144,
+        -459.1172,
+        5.424904
+      ]
+    ],
+    "intersection_controller_id": "IntTL4",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (3)",
+      "Traffic_Light (6)",
+      "Traffic_Light (5)",
+      "Traffic_Light (4)",
+      "Traffic_Light (15)"
+    ]
+  },
+  {
+    "idx": "SSN000014",
+    "link_id_list": [
+      "201",
+      "200",
+      "212",
+      "215",
+      "216",
+      "204"
+    ],
+    "point": [
+      [
+        -279.6584,
+        -460.03,
+        5.422905
+      ],
+      [
+        -279.3404,
+        -455.5273,
+        5.420906
+      ],
+      [
+        -279.0233,
+        -451.5472,
+        5.412907
+      ],
+      [
+        -278.7784,
+        -448.3472,
+        5.412907
+      ],
+      [
+        -218.5144,
+        -474.1873,
+        5.293907
+      ]
+    ],
+    "intersection_controller_id": "IntTL4",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (1)",
+      "Traffic_Light (14)",
+      "Traffic_Light (13)",
+      "Traffic_Light (12)",
+      "Traffic_Light (7)"
+    ]
+  },
+  {
+    "idx": "SSN000015",
+    "link_id_list": [
+      "219",
+      "218",
+      "230",
+      "229",
+      "224"
+    ],
+    "point": [
+      [
+        -241.9944,
+        -136.2392,
+        5.414906
+      ],
+      [
+        -237.6143,
+        -136.2552,
+        5.411907
+      ],
+      [
+        -233.6743,
+        -136.2832,
+        5.409904
+      ],
+      [
+        -230.6044,
+        -136.2943,
+        5.409904
+      ],
+      [
+        -243.6987,
+        -178.1062,
+        5.430904
+      ]
+    ],
+    "intersection_controller_id": "IntTL5",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (9)",
+      "Traffic_Light_Arrow (8)",
+      "Traffic_Light (26)",
+      "Traffic_Light (25)",
+      "Traffic_Light (18)"
+    ]
+  },
+  {
+    "idx": "SSN000016",
+    "link_id_list": [
+      "226",
+      "233",
+      "231",
+      "232",
+      "222",
+      "223"
+    ],
+    "point": [
+      [
+        -242.8643,
+        -177.3772,
+        5.406906
+      ],
+      [
+        -247.2144,
+        -177.3642,
+        5.411907
+      ],
+      [
+        -251.1644,
+        -177.3392,
+        5.411907
+      ],
+      [
+        -254.3643,
+        -177.3132,
+        5.408905
+      ],
+      [
+        -241.0644,
+        -135.5212,
+        5.414906
+      ]
+    ],
+    "intersection_controller_id": "IntTL5",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (6)",
+      "Traffic_Light (16)",
+      "Traffic_Light (17)",
+      "Traffic_Light (19)",
+      "Traffic_Light (27)"
+    ]
+  },
+  {
+    "idx": "SSN000017",
+    "link_id_list": [
+      "221",
+      "220",
+      "236",
+      "217"
+    ],
+    "point": [
+      [
+        -268.4404,
+        -159.5672,
+        5.457905
+      ],
+      [
+        -217.1273,
+        -170.1672,
+        5.288906
+      ],
+      [
+        -217.1174,
+        -167.1772,
+        5.288906
+      ],
+      [
+        -217.0974,
+        -158.8472,
+        5.287907
+      ]
+    ],
+    "intersection_controller_id": "IntTL5",
+    "signal_id_list": [
+      "Traffic_Light (31)",
+      "Traffic_Light (20)",
+      "Traffic_Light (21)",
+      "Traffic_Light_Arrow (7)"
+    ]
+  },
+  {
+    "idx": "SSN000018",
+    "link_id_list": [
+      "225",
+      "234",
+      "235",
+      "228",
+      "227"
+    ],
+    "point": [
+      [
+        -216.3914,
+        -159.7473,
+        5.291904
+      ],
+      [
+        -267.6204,
+        -149.7272,
+        5.418907
+      ],
+      [
+        -267.6443,
+        -152.1572,
+        5.412907
+      ],
+      [
+        -267.6774,
+        -156.1572,
+        5.423904
+      ],
+      [
+        -267.7133,
+        -160.4973,
+        5.407906
+      ]
+    ],
+    "intersection_controller_id": "IntTL5",
+    "signal_id_list": [
+      "Traffic_Light (23)",
+      "Traffic_Light (28)",
+      "Traffic_Light (29)",
+      "Traffic_Light (30)",
+      "Traffic_Light_Arrow (5)"
+    ]
+  },
+  {
+    "idx": "SSN000019",
+    "link_id_list": [
+      "177",
+      "172",
+      "171",
+      "170"
+    ],
+    "point": [
+      [
+        -243.5444,
+        286.0078,
+        5.416904
+      ],
+      [
+        -238.7944,
+        285.9327,
+        5.407906
+      ],
+      [
+        -234.9644,
+        285.8727,
+        5.409904
+      ],
+      [
+        -231.5544,
+        285.8307,
+        5.413906
+      ],
+      [
+        -243.3344,
+        253.0088,
+        5.409904
+      ]
+    ],
+    "intersection_controller_id": "IntTL6",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (14)",
+      "Traffic_Light_Arrow (13)",
+      "Traffic_Light (37)",
+      "Traffic_Light (44)",
+      "Traffic_Light (43)"
+    ]
+  },
+  {
+    "idx": "SSN000020",
+    "link_id_list": [
+      "175",
+      "176",
+      "173"
+    ],
+    "point": [
+      [
+        -242.5844,
+        286.6987,
+        5.443905
+      ],
+      [
+        -242.3844,
+        253.7628,
+        5.416904
+      ],
+      [
+        -246.1244,
+        253.6777,
+        5.412907
+      ],
+      [
+        -249.8943,
+        253.5948,
+        5.411907
+      ],
+      [
+        -253.2944,
+        253.5157,
+        5.407906
+      ]
+    ],
+    "intersection_controller_id": "IntTL6",
+    "signal_id_list": [
+      "Traffic_Light (38)",
+      "Traffic_Light_Arrow (11)",
+      "Traffic_Light (22)",
+      "Traffic_Light (32)",
+      "Traffic_Light (33)"
+    ]
+  },
+  {
+    "idx": "SSN000021",
+    "link_id_list": [
+      "174",
+      "178",
+      "253"
+    ],
+    "point": [
+      [
+        -260.1344,
+        269.7928,
+        5.413906
+      ],
+      [
+        -224.7343,
+        266.1827,
+        5.287907
+      ],
+      [
+        -224.8513,
+        262.5527,
+        5.281906
+      ]
+    ],
+    "intersection_controller_id": "IntTL6",
+    "signal_id_list": [
+      "Traffic_Light (42)",
+      "Traffic_Light_Arrow (12)",
+      "Traffic_Light (35)"
+    ]
+  },
+  {
+    "idx": "SSN000022",
+    "link_id_list": [],
+    "point": [
+      [
+        -259.4113,
+        268.8627,
+        5.417904
+      ],
+      [
+        -259.3344,
+        273.6428,
+        5.423904
+      ],
+      [
+        -259.3574,
+        277.4028,
+        5.406906
+      ],
+      [
+        -259.3383,
+        280.8027,
+        5.407906
+      ]
+    ],
+    "intersection_controller_id": "IntTL6",
+    "signal_id_list": [
+      "Traffic_Light_Arrow (10)",
+      "Traffic_Light (41)",
+      "Traffic_Light (40)",
+      "Traffic_Light (39)"
+    ]
+  }
+]

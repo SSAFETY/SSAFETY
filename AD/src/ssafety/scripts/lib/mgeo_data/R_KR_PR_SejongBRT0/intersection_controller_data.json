@@ -1,0 +1,3313 @@
+[
+  {
+    "idx": "IntTL0",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 25,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL1",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL2",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL3",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "R",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL4",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        3,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL5",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL6",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL7",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL8",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL9",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL10",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL11",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL12",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL13",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL14",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL15",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL16",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "SG",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL17",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "R",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL18",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        3,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL19",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL20",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL21",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL22",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL23",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL24",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL25",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL26",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL27",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL28",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL29",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL30",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL31",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL32",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL33",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL34",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL35",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL36",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL37",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL38",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL39",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL40",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": []
+  },
+  {
+    "idx": "IntTL41",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL42",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL43",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL44",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL45",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL46",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL47",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL48",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        1,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL49",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL50",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL51",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL52",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL53",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL54",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        1,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL55",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL56",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL57",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL58",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL59",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL60",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R_with_GLeft",
+          "R",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL61",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL62",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL63",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "SG",
+          "SG"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        0,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL64",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "SG",
+          "R"
+        ]
+      },
+      {
+        "duration": 20,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "G_with_GLeft"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        0,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        2,
+        2,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL65",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL66",
+    "TLState": [
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "R",
+          "SG",
+          "SG"
+        ]
+      },
+      {
+        "duration": 30,
+        "lightcolor": [
+          "R",
+          "R",
+          "R_with_GLeft",
+          "R_with_GLeft"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "G_with_GLeft",
+          "R",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "G_with_GLeft",
+          "R",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "PSState": [
+      [
+        2,
+        0,
+        0,
+        12,
+        15
+      ],
+      [
+        3,
+        1,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        2,
+        0,
+        12,
+        15
+      ],
+      [
+        0,
+        3,
+        0,
+        12,
+        15
+      ]
+    ]
+  },
+  {
+    "idx": "IntTL67",
+    "TLState": [
+      {
+        "duration": 30,
+        "lightcolor": [
+          "SG",
+          "R",
+          "SG"
+        ]
+      },
+      {
+        "duration": 20,
+        "lightcolor": [
+          "R_with_GLeft",
+          "R",
+          "R"
+        ]
+      },
+      {
+        "duration": 40,
+        "lightcolor": [
+          "R",
+          "SG",
+          "R"
+        ]
+      }
+    ],
+    "yelloduration": [
+      3,
+      3,
+      3
+    ],
+    "PSState": []
+  }
+]
