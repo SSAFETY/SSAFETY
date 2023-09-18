@@ -4,12 +4,16 @@ import { feature } from 'topojson-client';
 import axios from 'axios';
 import korea from '../mapData/skorea-municipalities-2018-topo.json';
 import '../css/Home.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const SeoulMap = () => {
   const chart = useRef(null);
   const featureData = feature(korea, korea.objects['SeoulMap']);
   const [data, setData] = useState({});
   const [selectedData, setSelectedData] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -22,7 +26,7 @@ const SeoulMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 6 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x + 900, height / 2 - scale * y + 2050];
+    const translate = [width / 2 - scale * x + 850, height / 2 - scale * y + 1950];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
@@ -114,6 +118,11 @@ const SeoulMap = () => {
         const originalColor = d3.select(this).attr('data-original-color'); // 기존 색상 가져오기
         d3.select(this).style('fill', originalColor).attr('transform', 'translate(0, 0)');
         popupGroup.style('display', 'none');
+      })
+      .on('click', function (event, d) {
+        if (d.properties.name === '마포구') {
+          navigate('detailgu');
+        }
       });
   }, []); // 빈 배열로 전달하여 초기 렌더링 시에만 호출되도록 설정
 

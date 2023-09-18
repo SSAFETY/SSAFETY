@@ -49,3 +49,8 @@
     border-radius: 10px; /* 둥근 테두리를 추가합니다 */
     letter-spacing: 2px; /* 글자 사이 간격을 늘립니다 */
 }
+
+.gumap {
+  height: 95vh;
+  overflow: hidden;
+}

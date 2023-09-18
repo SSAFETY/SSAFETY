@@ -7,9 +7,10 @@ import ssafety.be.dto.ReportDto;
 import ssafety.be.entity.Report;
 import ssafety.be.repository.ReportRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -78,14 +79,22 @@ public class ReportDataService {
      * @param state    지역 대분류
      * @param depth3   지역 소분류
      * @param aiResult AI 판단 결과
-     * @param date     날짜
+     * @param dateStr     날짜
      * @return 검색된 보고서 목록
      */
-    public List<Report> findReportsByConditions(String state, String depth3, String aiResult, Date date) {
-        LocalDateTime startDateTime = convertToLocalDateTime(date).with(LocalTime.MIN);
-        LocalDateTime endDateTime = convertToLocalDateTime(date).with(LocalTime.MAX);
-
-        return reportRepository.findBycityAndDepth3AndAiResultAndCreationTimeBetween(state, depth3, aiResult, startDateTime, endDateTime);
+    public List<Report> findReportsByConditions(String state, String depth3, String aiResult, String dateStr) {
+        System.out.println("도시 : " + state + " 구 : " + depth3 + " ai결과 : " + aiResult + " 날짜 : " + dateStr);
+        LocalDateTime dateTime = null;
+        if (dateStr != null && !dateStr.isEmpty()) {
+            // "2023-09-18" 형식의 문자열을 LocalDate로 변환
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date = LocalDate.parse(dateStr, formatter);
+            // LocalDate를 LocalDateTime으로 변환
+            dateTime = date.atStartOfDay();
+            System.out.println(dateTime);
+        }
+        System.out.println(reportRepository.findByCityAndDepth3AndAiResultAndCreationTime(state, depth3, aiResult, dateTime));
+        return reportRepository.findByCityAndDepth3AndAiResultAndCreationTime(state, depth3, aiResult, dateTime);
     }
 
     /**
