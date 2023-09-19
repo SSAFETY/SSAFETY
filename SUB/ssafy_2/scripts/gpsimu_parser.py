@@ -25,7 +25,7 @@ class GPSIMUParser:
         rospy.init_node('GPS_IMU_parser', anonymous=True)
         self.gps_sub = rospy.Subscriber("/gps", GPSMessage, self.navsat_callback)
         self.imu_sub = rospy.Subscriber("/imu", Imu, self.imu_callback)
-        self.odom_pub = rospy.Publisher('/odom',Odometry, queue_size=1)
+        self.odom_pub = rospy.Publisher('/odom', Odometry, queue_size=1)
         # 초기화
         self.x, self.y = None, None
         self.is_imu=False
@@ -41,7 +41,7 @@ class GPSIMUParser:
         # https://pyproj4.github.io/pyproj/stable/api/proj.html
         # " proj= , zone= , ellps =  , preserve_units = "
         '''
-        self.proj_UTM = Proj(proj = 'utm', zone = 52, ellps = 'WGS84', preserve_units = False)
+        self.proj_UTM = Proj(proj= 'utm', zone= 52, ellps= 'WGS84', preserve_units= False)
 
 
         #TODO: (2) 송신 될 Odometry 메세지 변수 생성
@@ -57,7 +57,7 @@ class GPSIMUParser:
 
         rate = rospy.Rate(30) # 30hz
         while not rospy.is_shutdown():
-            if self.is_imu==True and self.is_gps == True:
+            if self.is_imu == True and self.is_gps == True:
                 self.convertLL2UTM()
 
                 #TODO: (5) Odometry 메세지 Publish
@@ -88,14 +88,14 @@ class GPSIMUParser:
     def convertLL2UTM(self):
         '''
         # pyproj 라이브러리를 이용해 정의한 좌표 변환 변수를 이용하여 위 경도 데이터를 변환한다.
-        # 변환 시 이전 gps_parser.py 예제와 달리 시뮬레이터 GPS 센서의 offset 값을 적용 한다.
+        # 변환 시 이전 gps_parser.py 예제와 달리 시뮬레이터 GPS 센서의 offset 값을 적용한다.
         # GPS 센서에서 출력되는 Offset 값은 시뮬레이터에 맵 좌표계로 변경을 위한 값이다.
-        # UTM 좌표로 변환 된 x, y 값에 offset 값을 빼주면 된다.
+        # UTM 좌표로 변환된 x, y 값에 offset 값을 빼주면 된다.
 
-        # if 문을 이용 예외처리를 하는 이유는 시뮬레이터 음영 구간 설정 센서 데이터가 0.0 으로 나오기 때문이다.
+        # if 문을 이용, 예외처리를 하는 이유는 시뮬레이터 음영 구간 설정 센서 데이터가 0.0 으로 나오기 때문이다.
         '''
         xy_zone = self.proj_UTM(self.lon, self.lat)
-        # if 문 이용해서 예외처리 "음영구간"??? 설정 센서 데이터 0.0으로 나와서
+        
         if self.lon == 0 and self.lat == 0:
             self.x = 0.0
             self.y = 0.0
@@ -115,12 +115,10 @@ class GPSIMUParser:
 
 
     def imu_callback(self, data):
-
         #TODO: (4) Odometry 메세지 변수에 차량의 위치 및 상태 데이터 담기
         '''
         # IMU 를 통해 받은 물체의 자세 데이터를 Odometry 메세지에 넣는다.
         # if 문을 이용 예외처리를 하는 이유는 시뮬레이터 음영 구간 설정 센서 데이터가 0.0 으로 나오기 때문이다.
-
         '''
         if data.orientation.w == 0:
             self.odom_msg.pose.pose.orientation.x = 0.0
