@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class SearchDto {
-    private String state;
+    private String city;
     private String depth3;
     private String aiResult;
     private String date;

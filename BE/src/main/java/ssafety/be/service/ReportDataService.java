@@ -1,6 +1,7 @@
 package ssafety.be.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ssafety.be.dto.ReportDto;
@@ -23,6 +24,7 @@ import java.util.List;
 public class ReportDataService {
     private final ReportRepository reportRepository;
     private final KakaoMapService kakaoMapService;
+    private final ReportSpecification reportSpecification;
 
     /**
      * ReportDto를 사용하여 Report 엔티티를 생성하고 저장합니다.
@@ -76,25 +78,35 @@ public class ReportDataService {
     /**
      * 지정된 조건에 따라 교통 데이터 보고서를 검색합니다.
      *
-     * @param state    지역 대분류
+     * @param city    지역 대분류
      * @param depth3   지역 소분류
      * @param aiResult AI 판단 결과
      * @param dateStr     날짜
      * @return 검색된 보고서 목록
      */
-    public List<Report> findReportsByConditions(String state, String depth3, String aiResult, String dateStr) {
-        System.out.println("도시 : " + state + " 구 : " + depth3 + " ai결과 : " + aiResult + " 날짜 : " + dateStr);
-        LocalDateTime dateTime = null;
+    public List<Report> findReportsByConditions(String city, String depth3, String aiResult, String dateStr) {
+        System.out.println("도시 : " + city + " 구 : " + depth3 + " ai결과 : " + aiResult + " 날짜 : " + dateStr);
+        LocalDateTime startTime = null;
+        LocalDateTime endTime = null;
+
         if (dateStr != null && !dateStr.isEmpty()) {
             // "2023-09-18" 형식의 문자열을 LocalDate로 변환
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateStr, formatter);
-            // LocalDate를 LocalDateTime으로 변환
-            dateTime = date.atStartOfDay();
-            System.out.println(dateTime);
+
+            // 시작 시간 설정 (자정)
+            startTime = date.atStartOfDay();
+
+            // 종료 시간 설정 (23:59:59)
+            endTime = date.atTime(23, 59, 59);
+
+            System.out.println("시작 시간: " + startTime);
+            System.out.println("종료 시간: " + endTime);
         }
-        System.out.println(reportRepository.findByCityAndDepth3AndAiResultAndCreationTime(state, depth3, aiResult, dateTime));
-        return reportRepository.findByCityAndDepth3AndAiResultAndCreationTime(state, depth3, aiResult, dateTime);
+
+        Specification<Report> spec = reportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
+        System.out.println(spec);
+        return reportRepository.findAll(spec);
     }
 
     /**

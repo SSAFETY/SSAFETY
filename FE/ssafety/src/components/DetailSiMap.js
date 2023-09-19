@@ -3,9 +3,10 @@ import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import axios from 'axios';
 import korea from '../mapData/skorea-municipalities-2018-topo.json';
-import '../css/Home.css';
+import jsonData from '../mapData/SeoulDong.json';
+import '../css/DetailSi.css';
 import { useNavigate } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 
 const SeoulMap = () => {
   const chart = useRef(null);
@@ -13,7 +14,34 @@ const SeoulMap = () => {
   const [data, setData] = useState({});
   const [selectedData, setSelectedData] = useState(null);
   const navigate = useNavigate();
+  const [selectedRegion, setSelectedRegion] = useState("서울시");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [selectedDong, setSelectedDong] = useState(""); // 추가된 부분
+  const districtsInSelectedRegion = jsonData[selectedRegion][selectedDistrict] || [];
 
+  const handleRegionChange = (e) => {
+    const selectedRegion = e.target.value;
+    setSelectedRegion(selectedRegion);
+  };
+
+  const handleDistrictChange = (e) => {
+    const selectedDistrict = e.target.value;
+    setSelectedDistrict(selectedDistrict);
+    setSelectedDong(""); // 구를 바꿀 때 동을 초기화
+  };
+
+  const handleDongChange = (e) => { // 추가된 부분
+    const selectedDong = e.target.value;
+    setSelectedDong(selectedDong);
+  };
+
+  const handleButton = () => {
+    if(selectedRegion === "서울시" && selectedDistrict === "마포구" && selectedDong === "상암동") {
+      navigate('/detailsi/detailgu');
+    } else {
+      Swal.fire('아직 지원하지 않는 구역입니다!');
+    }
+  }
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -26,13 +54,12 @@ const SeoulMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 6 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x + 850, height / 2 - scale * y + 1950];
+    const translate = [width / 2 - scale * x + 800, height / 2 - scale * y + 1950];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
     const mapLayer = svg.append('g');
 
-    // 데이터를 받아오는 함수
     const fetchData = () => {
       axios
         .get('http://localhost:8080/getAll')
@@ -42,7 +69,7 @@ const SeoulMap = () => {
 
           reportData.forEach((report) => {
             const depth3 = report.depth3;
-            const region = depth3; // depth3 값 그대로 사용
+            const region = depth3;
             if (newData[region]) {
               newData[region]++;
             } else {
@@ -56,7 +83,6 @@ const SeoulMap = () => {
             .domain([0, d3.max(Object.values(newData))])
             .range(['skyblue', 'darkblue']);
 
-          // 데이터를 받아온 후에 지도의 색상을 변경합니다.
           mapLayer
             .selectAll('path')
             .style('fill', (d) => {
@@ -71,7 +97,6 @@ const SeoulMap = () => {
         });
     };
 
-    // fetchData 함수를 호출하여 데이터를 받아옵니다.
     fetchData();
 
     mapLayer
@@ -87,7 +112,7 @@ const SeoulMap = () => {
     mapLayer
       .selectAll('path')
       .on('mouseover', function (event, d) {
-        const originalColor = d3.select(this).style('fill'); // 마우스를 올리기 전의 색상 기억
+        const originalColor = d3.select(this).style('fill');
         d3.select(this).style('fill', 'red').attr('transform', 'translate(0, -5)');
 
         popupGroup.style('display', 'block');
@@ -115,36 +140,62 @@ const SeoulMap = () => {
         d3.select(this).attr('data-original-color', originalColor);
       })
       .on('mouseout', function (event, d) {
-        const originalColor = d3.select(this).attr('data-original-color'); // 기존 색상 가져오기
+        const originalColor = d3.select(this).attr('data-original-color');
         d3.select(this).style('fill', originalColor).attr('transform', 'translate(0, 0)');
         popupGroup.style('display', 'none');
       })
       .on('click', function (event, d) {
         if (d.properties.name === '마포구') {
           navigate('detailgu');
+        } else {
+          Swal.fire('아직 지원하지 않는 구역입니다!');
         }
       });
-  }, []); // 빈 배열로 전달하여 초기 렌더링 시에만 호출되도록 설정
+  }, []);
 
   return (
     <div className='seoulmap-container'>
-      <div className='seoulmap' ref={chart}></div>
-      {selectedData && (
-        <div className='selected-data-right'>
-          <h2>Selected Data</h2>
-          <p>Creation Time: {selectedData.creationTime}</p>
-          <p>AI Result: {selectedData.aiResult}</p>
-          <p>GPS Location: {selectedData.gpsLocation}</p>
-          <p>Vehicle Number: {selectedData.vehicleNumber}</p>
-          {selectedData.videoUrl && (
-            <video controls width="100%">
-            <source src={selectedData.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-            </video>
-          )}
-        </div>
-      )}
-    </div>
+  <div className='seoulmap' ref={chart}></div>
+  <div className='rightbox'>
+    {/* 지역 드롭다운 */}
+    <select
+      value={selectedRegion}
+      onChange={handleRegionChange}
+    >
+      <option value="서울시">서울시</option>
+      {/* 다른 지역 추가 가능 */}
+    </select>
+    {/* 구 드롭다운 */}
+    <select
+      value={selectedDistrict}
+      onChange={handleDistrictChange}
+    >
+      <option value="">구 선택</option>
+      {Object.keys(jsonData[selectedRegion]).map((district) => (
+        <option key={district} value={district}>
+          {district}
+        </option>
+      ))}
+    </select>
+    {/* 동 드롭다운 */}
+    <select
+      value={selectedDong}
+      onChange={handleDongChange}
+    >
+      <option value="">동 선택</option>
+      {districtsInSelectedRegion.map((dong) => (
+        <option key={dong} value={dong}>
+          {dong}
+        </option>
+      ))}
+    </select>
+  </div>
+  {/* 버튼 컨테이너를 다른 줄로 내립니다 */}
+  <div className="button-container">
+    <button onClick={handleButton}>선택</button>
+  </div>
+</div>
+
   );
 };
 

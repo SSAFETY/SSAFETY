@@ -1,17 +1,29 @@
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0; /* 화면 너비만큼 네비바를 확장 */
-    background-color: gray; /* 투명도를 조절할 수 있음 */
-    z-index: 100; /* 다른 요소 위에 표시하도록 z-index 설정 */
-    width: 100%;
-    padding: 15px 0px;
-    text-align: right;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: gray;
+  z-index: 100;
+  width: 100%;
+  padding: 15px 0px;
+  text-align: right;
+  color: white;
+  text-decoration: none;
+  height: 3vh;
+}
+
 .navbarMenu {
-    color: white;
-    margin: 8px;
-    text-decoration: none;
+  color: white;
+  margin: 8px;
+  text-decoration: none;
+  font-size: 1em; /* 기본 글꼴 크기 설정 */
+  transition: font-size 0.5s, transform 0.5s; /* 글꼴 크기 및 변환에 대한 트랜지션 설정 */
+  transform-origin: center bottom; /* 변환 축을 하단 중앙으로 설정 */
+}
+
+.navbarMenu:hover {
+  font-size: 1.2em; /* 글꼴 크기를 1.2배로 확대 */
+  transform: scaleY(1.2); /* Y 축을 기준으로 확대 변환 */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* 빛 번짐 효과 */
 }

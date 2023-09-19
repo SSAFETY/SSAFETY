@@ -1,8 +1,10 @@
 package ssafety.be.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -25,8 +27,9 @@ public class Report {
     /**
      * 생성 시간은 보고서가 생성된 일시를 나타냅니다.
      */
+    @CreationTimestamp
     @Column(nullable = false)
-    private LocalDateTime creationTime;
+    private LocalDateTime creationTime = LocalDateTime.now();
 
     /**
      * 촬영 영상의 URL은 보고서에 연결된 영상 파일의 경로를 나타냅니다.

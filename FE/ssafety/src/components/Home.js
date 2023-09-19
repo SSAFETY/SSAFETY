@@ -6,6 +6,7 @@ import korea from '../mapData/korea-topo.json';
 import '../css/Home.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 const featureData = feature(korea, korea.objects['korea-topo']);
 
@@ -27,7 +28,7 @@ const KoreaMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 0.9 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x - 400, height / 2 - scale * y];
+    const translate = [width / 2 - scale * x - 350, height / 2 - scale * y];
 
     projection.scale(scale).translate(translate);
 
@@ -82,6 +83,8 @@ const KoreaMap = () => {
       .on('click', function (event, d) {
         if (d.properties.CTP_KOR_NM === '서울특별시') {
           navigate('detailsi');
+        } else {
+          Swal.fire('아직 지원하지 않는 구역입니다!');
         }
       });
   };
@@ -102,6 +105,23 @@ const KoreaMap = () => {
     }
   }, [data]);
 
+  const formatCreationTime = (creationTime) => {
+    // creationTime을 문자열로 변환하여 앞에 0을 붙입니다.
+    const timeString = String(creationTime).padStart(14, '0');
+    const time = timeString.split(",")
+    // 연도, 월, 일, 시, 분, 초 부분 추출
+    const year = time[0];
+    const month = time[1];
+    const day = time[2];
+    const hour = time[3];
+    const minute = time[4];
+  
+    // 변환된 문자열 생성
+    const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
+  
+    return formattedTime;
+  };
+
   return (
     <div className="korea-map-container">
       <div className="korea-map" ref={chart}></div>
@@ -119,23 +139,19 @@ const KoreaMap = () => {
             {data.map((item, index) => {
               const timeDifference = calculateTimeDifference(item.creationTime);
               const isWithin24Hours = timeDifference < 24;
-              const rowClass = isWithin24Hours ? 'highlighted-row' : '';
+              const isWithin72Hours = timeDifference < 168;
+              let rowClass = '';
+              if (isWithin24Hours) {
+                rowClass = 'highlighted-row';
+              } else if (!isWithin72Hours) {
+                rowClass = 'hidden-row';
+              }
 
               return (
                 <tr key={index} className={rowClass}>
-                  <td data-th="address">{item.detail}</td>
+                  <td data-th="address">{item.city} {item.depth3}</td>
                   <td data-th="violation">{item.aiResult}</td>
-                  <td data-th="time">
-                    {`${item.creationTime[0]}년 ${
-                      item.creationTime[1] < 10 ? '0' : ''
-                    }${item.creationTime[1]}월 ${item.creationTime[2]}일 ${
-                      item.creationTime[3] < 10 ? '0' : ''
-                    }${item.creationTime[3]}:${
-                      item.creationTime[4] < 10 ? '0' : ''
-                    }${item.creationTime[4]}:${
-                      item.creationTime[5] < 10 ? '0' : ''
-                    }${item.creationTime[5]}`}
-                  </td>
+                  <td data-th="time">{formatCreationTime(item.creationTime)}</td>
                   <td data-th="carnum">{item.vehicleNumber}</td>
                 </tr>
               );

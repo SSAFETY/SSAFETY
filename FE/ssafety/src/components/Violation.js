@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/Violation.css';
+import Swal from "sweetalert2";
 
 // JSON 파일 경로
 import districtsData from '../mapData/listdata.json';
@@ -47,14 +48,15 @@ const Violation = () => {
 
   // 일자 선택 핸들러
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    const timezoneOffsetMinutes = date.getTimezoneOffset();
+    const adjustedDate = new Date(date.getTime() - timezoneOffsetMinutes * 60000);
+    setSelectedDate(adjustedDate);
   };
 
   // 검색 함수
   const filterData = async () => {
     try {
       const dateValue = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
-      console.log(dateValue)
       const response = await fetch('http://localhost:8080/searchReports', {
         method: 'POST',
         headers: {
@@ -77,6 +79,24 @@ const Violation = () => {
       console.error('검색 요청 중 오류가 발생했습니다.', error);
     }
   };
+
+  const formatCreationTime = (creationTime) => {
+    // creationTime을 문자열로 변환하여 앞에 0을 붙입니다.
+    const timeString = String(creationTime).padStart(14, '0');
+    const time = timeString.split(",")
+    // 연도, 월, 일, 시, 분, 초 부분 추출
+    const year = time[0];
+    const month = time[1];
+    const day = time[2];
+    const hour = time[3];
+    const minute = time[4];
+  
+    // 변환된 문자열 생성
+    const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
+  
+    return formattedTime;
+  };
+  
 
   return (
     <div className="violation-container">
@@ -136,10 +156,10 @@ const Violation = () => {
           <tbody>
             {filteredData.map((item) => (
               <tr key={item.id}>
-                <td>{item.province}</td>
                 <td>{item.city}</td>
-                <td>{item.violation}</td>
-                <td>{item.date}</td>
+                <td>{item.depth3}</td>
+                <td>{item.aiResult}</td>
+                <td>{formatCreationTime(item.creationTime)}</td>
               </tr>
             ))}
           </tbody>
