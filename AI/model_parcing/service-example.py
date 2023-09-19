@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
 # In[1]:
@@ -15,6 +15,7 @@ import mmdet
 import time
 import subprocess
 import requests
+import time
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
@@ -36,6 +37,8 @@ from constants import ImageInfo, ObjectInfo, VEHICLE_LIST, \
     VIOLATION_MAP, VLT_COLOR, DANGER_COLOR, NORMAL_COLOR
 from lane_detection.model import LaneSegModel
 from utils import viz_inference_result
+#import video_parcing 
+
 
 device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
 
@@ -314,11 +317,37 @@ def detect_violation(object_info, violation_model, device):
 
 
 # # Config 파일 지정 및 학습된 모델 경로 지정
+output_filename = './parsing/normal_cut.mp4'
+
+def parsing():
+    global new_fps, main_web_mp4, output_filename
+
+    vidcap = cv2.VideoCapture(main_web_mp4)    
+    total_frames = int(vidcap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+    cut_duration_seconds = 10
+    cut_frame_count = new_fps * cut_duration_seconds
+
+    output_fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # 저장할 동영상 코덱 설정
+    
+    parcing_out = cv2.VideoWriter(output_filename, output_fourcc, new_fps, (int(vidcap.get(3)), int(vidcap.get(4))))
+
+    print("TOTAL :",total_frames)
+    print("par : ", total_frames - cut_frame_count)
+
+    for i in range(total_frames):
+        ret, frame = vidcap.read()
+        if not ret:
+            break
+        if i >= total_frames - cut_frame_count:
+            parcing_out.write(frame)
+
+    vidcap.release()
+    parcing_out.release()
 
 # In[4]:
 
 path = '/home/ssafy/nia-82-134-main'
-
 
 vehicle_cfg_path = f'{path}/configs/vehicle_detection_config.py'
 vehicle_ckpt_path = f"{path}/best_models/vehicle_detection_model.pth"
@@ -371,11 +400,13 @@ curr_img = Image.open(img_path)
 result_img = None
 
 # 새로운 FPS 값을 설정
-new_fps = 10
+new_fps = 10.0
 
 # 웹캠 열기
+main_web_mp4 = './parsing/webcam_out_DIVX.avi'
 webcam = cv2.VideoCapture(0)
-
+fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+webcam_out = cv2.VideoWriter(main_web_mp4, fourcc, new_fps, (1280, 720))
 
 if not webcam.isOpened():
     print("Could not open webcam")
@@ -387,6 +418,22 @@ webcam.set(cv2.CAP_PROP_FPS, new_fps)
 
 frame_interval = 30
 frame_count = 0
+violation_frame = 0
+violation_flag = False
+
+wait_frame = 0
+wait_flag = True
+
+
+time_interval = 5
+
+print(os.getcwd())
+
+if not os.path.isdir('./parsing'):
+    os.mkdir('./parsing')
+
+if os.path.exists(output_filename):
+    os.remove(output_filename)
 
 while webcam.isOpened():
     status, frame = webcam.read()
@@ -394,24 +441,61 @@ while webcam.isOpened():
     if not status:
         break
 
-    if frame_count % frame_interval == 0:
-        resized_frame = cv2.resize(frame, (1920, 1080))
+    if violation_flag:
+        violation_frame += 1
+        if violation_frame >= 50:
+            violation_flag = False
+            
+            #video_parcing.parcing(frame, time_interval*2, './parsing/webcam_out.mp4')
 
-        image_info = inference(resized_frame, vehicle_model, lane_model, device)
+            webcam_out.release()
 
-        result_list = detect_violation(image_info.objects, violation_model, device)
-        if not result_list:
-            print("empty")
-        else:
-            labels = [obj.label for obj in result_list]
-            print(labels)
-            if "violation" in labels:
-                data = {"fileName": "/home/ssafy01/Downloads/2023-09-18-172106.mp4"}
-                headers = {'Content-Type': 'application/json'}
-                #response = requests.post("http://localhost:8080/api/hi", data=json.dumps(data), headers=headers)
-        image_info.objects = result_list
-        result_img = viz_inference_result(resized_frame, image_info)        
+            parsing()
 
+            data = {"fileName": "/home/ssafy01/Downloads/2023-09-18-172106.mp4"}
+            headers = {'Content-Type': 'application/json'}
+            #response = requests.post("http://localhost:8080/api/hi", data=json.dumps(data), headers=headers)
+
+            wait_flag = True
+            wait_frame = 0
+
+            webcam_out = cv2.VideoWriter('./parsing/webcam_out.mp4', fourcc, 10, (1280, 720))
+    elif wait_flag:
+         wait_frame += 1
+         if wait_frame >= 50:
+             wait_flag = False
+        
+    else :
+
+        if frame_count % frame_interval == 0:
+            
+            if not os.path.exists(output_filename):
+
+                resized_frame = cv2.resize(frame, (1920, 1080))
+
+                image_info = inference(resized_frame, vehicle_model, lane_model, device)
+
+                result_list = detect_violation(image_info.objects, violation_model, device)
+                if not result_list:
+                    print("empty")
+                else:
+                    labels = [obj.label for obj in result_list]
+                    print(labels)
+                    if "violation" in labels:
+
+                        violation_frame = 0
+                        violation_flag = True
+            else :
+                print("exist") 
+
+
+            
+                
+
+        #image_info.objects = result_list
+        #result_img = viz_inference_result(resized_frame, image_info)        
+
+    webcam_out.write(frame)
     cv2.imshow("test", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -419,4 +503,6 @@ while webcam.isOpened():
     frame_count += 1
 
 webcam.release()
+webcam_out.release()
+print(webcam_out)
 cv2.destroyAllWindows()
