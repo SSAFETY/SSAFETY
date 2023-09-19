@@ -1,6 +1,0 @@
-<launch>
-    <!-- Talker Topic Publisher -->
-    <node pkg="ssafety" type="talker.py" name="talker" />
-    <!-- Listener Topic Subscriber -->
-    <node pkg="ssafety" type="listener.py" name="listener" output="screen" />
-</launch>
