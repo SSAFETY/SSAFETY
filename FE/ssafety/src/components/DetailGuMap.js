@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
-import axios from 'axios';
 import mapogu from '../mapData/mapo.json';
 import '../css/Home.css';
+import Swal from "sweetalert2";
 
 const GuMap = () => {
   const chart = useRef(null);

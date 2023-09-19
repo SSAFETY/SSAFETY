@@ -28,3 +28,4 @@ kakao:
 logging:
   level:
     org.springframework: debug
+    org.hibernate.SQL: DEBUG

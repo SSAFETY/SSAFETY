@@ -40,7 +40,7 @@ public class ReportController {
 
     @PostMapping("/searchReports")
     public List<Report> searchReports(@RequestBody SearchDto request) {
-        return reportDataService.findReportsByConditions(request.getState(), request.getDepth3(), request.getAiResult(), request.getDate());
+        return reportDataService.findReportsByConditions(request.getCity(), request.getDepth3(), request.getAiResult(), request.getDate());
     }
 
     @GetMapping("/getAddress")
