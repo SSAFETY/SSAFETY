@@ -45,11 +45,16 @@ class get_mgeo :
         # MGeo에 정의되어 있는 데이터를 활용해 각 Node 와 Link 간 연결 성을 나타낼 수 있습니다.
         
         '''
-        load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PG_K-City'))
+        
+        load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PR_Sangam_NoBuildings'))
+        #load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PG_K-City'))
+
         mgeo_planner_map = MGeo.create_instance_from_json(load_path)
 
         node_set = mgeo_planner_map.node_set
         link_set = mgeo_planner_map.link_set
+
+        print(node_set.nodes)
 
         self.nodes=node_set.nodes
         self.links=link_set.lines

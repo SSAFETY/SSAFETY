@@ -45,22 +45,23 @@ def load_node_and_link(node_save_info_list, line_save_info_list, global_info):
 
         # 교차로 생성하기 (노드 생성하면서 같이 수행)
         if file_ver >= Version(2,5):
-            junction_list = save_info['junction']
+            # ch : 예외처리가 None 으로 하면 안됨;; 
+            if 'junction' in save_info:
 
-            if junction_list is None:
-                continue
-            elif len(junction_list) == 0:
-                node.junctions = list()
-            else:
-                for junction_id in junction_list:
-                    if junction_id in junction_set.junctions.keys():
-                        repeated_jc = junction_set.junctions[junction_id]
-                        repeated_jc.add_jc_node(node)
-                    else:
-                        new_junction = Junction(junction_id)
-                        new_junction.add_jc_node(node)
+                junction_list = save_info['junction']
 
-                        junction_set.append_junction(new_junction)
+                if len(junction_list) == 0:
+                    node.junctions = list()
+                else:
+                    for junction_id in junction_list:
+                        if junction_id in junction_set.junctions.keys():
+                            repeated_jc = junction_set.junctions[junction_id]
+                            repeated_jc.add_jc_node(node)
+                        else:
+                            new_junction = Junction(junction_id)
+                            new_junction.add_jc_node(node)
+
+                            junction_set.append_junction(new_junction)
         
         elif file_ver >= Version(2,3):
             junction_id = save_info['junction']
@@ -75,7 +76,6 @@ def load_node_and_link(node_save_info_list, line_save_info_list, global_info):
 
                     junction_set.append_junction(new_junction)
                     
-
         node_set.append_node(node, create_new_key=False)
 
     # 링크 생성하기
