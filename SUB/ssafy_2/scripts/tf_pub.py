@@ -15,7 +15,7 @@ class Ego_listener():
     def __init__(self):
         rospy.init_node('status_listener', anonymous=True)
         
-        rospy.Subscriber("/odom", Odometry, self.odom_callback)
+        rospy.Subscriber("odom", Odometry, self.odom_callback)
         rospy.spin()
 
 
@@ -41,7 +41,6 @@ class Ego_listener():
         # TF 데이터를 broadcast 해주는 변수를 선언한다.
         # TF 데이터에 물체의 좌표와 자세 데이터를 시간 그리고 Frame ID 를 넣어주면 된다.
         # TF 예제는 map 좌표 를 기준으로 Ego 차량의 위치를 좌표를 나타낸다
-
         '''
         br = tf.TransformBroadcaster()
         br.sendTransform((self.x, self.y, 0),
