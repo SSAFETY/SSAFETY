@@ -29,10 +29,8 @@ from tf.transformations import euler_from_quaternion,quaternion_from_euler
 
 #TODO: (0) 필수 학습 지식
 '''
-# ACC(Adaptive Cruise Control): 차량 경로상의 장애물을 탐색하여 탐색된 차량과의 속도 차이 계산
 # 앞선 NPC 차량 인식하여 일정한 간격을 유지하여 주행하도록 하는 Car-Following 알고리즘
 # 전방 차량 "위치 좌표"와 "속도 값"을 이용하여 "상대 거리"와 "상대 속도"를 측정
-
 '''
 class pure_pursuit :
     def __init__(self):
@@ -58,13 +56,13 @@ class pure_pursuit :
 
         self.is_look_forward_point = False
         
+        self.forward_point = Point()
+        self.current_postion = Point()
+
         #========================================================#
         # 교통 상황 - 신호등 데이터
         self.is_get_traffic = False
         #========================================================#
-
-        self.forward_point = Point()
-        self.current_postion = Point()
 
         self.vehicle_length = 2.6
         self.lfd = 8
@@ -73,8 +71,11 @@ class pure_pursuit :
         self.lfd_gain = 0.78
         self.target_velocity = 60
 
+        # 종 방향 속도 제어 - PID 제어
         self.pid = pidControl()
-        self.adaptive_cruise_control = AdaptiveCruiseControl(velocity_gain = 0.5, distance_gain = 1, time_gap = 0.8, vehicle_length = 2.7)
+        # 장애물과의 거리로 속도 조절 - ACC
+        self.adaptive_cruise_control = AdaptiveCruiseControl(velocity_gain = 0.5, distance_gain = 1, time_gap = 0.8, vehicle_length = 2.7, current_postion = self.current_postion)
+        # 횡 방향 속도 계획
         self.vel_planning = velocityPlanning(self.target_velocity/3.6, 0.15)
 
         while True:
@@ -90,7 +91,7 @@ class pure_pursuit :
             if self.is_path == True and self.is_odom == True and self.is_status == True:
 
                 # global_obj,local_obj
-                result = self.calc_vaild_obj([self.current_postion.x,self.current_postion.y,self.vehicle_yaw],self.object_data)
+                result = self.calc_vaild_obj([self.current_postion.x, self.current_postion.y, self.vehicle_yaw], self.object_data)
                 
                 global_npc_info = result[0]
                 local_npc_info = result[1]
@@ -100,8 +101,9 @@ class pure_pursuit :
                 local_obs_info = result[5]
                 
                 self.current_waypoint = self.get_current_waypoint([self.current_postion.x, self.current_postion.y], self.global_path)
-                self.target_velocity = self.velocity_list[self.current_waypoint]*3.6
+                self.target_velocity = self.velocity_list[self.current_waypoint] * 3.6
 
+                # 조향각 계산 - steering = theta
                 steering = self.calc_pure_pursuit()
                 if self.is_look_forward_point :
                     self.ctrl_cmd_msg.steering = steering
@@ -130,20 +132,20 @@ class pure_pursuit :
             rate.sleep()
 
     def path_callback(self,msg):
-        self.is_path=True
-        self.path=msg  
+        self.is_path = True
+        self.path = msg
 
     def odom_callback(self,msg):
-        self.is_odom=True
-        odom_quaternion=(msg.pose.pose.orientation.x,msg.pose.pose.orientation.y,msg.pose.pose.orientation.z,msg.pose.pose.orientation.w)
-        _,_,self.vehicle_yaw=euler_from_quaternion(odom_quaternion)
-        self.current_postion.x=msg.pose.pose.position.x
-        self.current_postion.y=msg.pose.pose.position.y
+        self.is_odom = True
+        odom_quaternion = (msg.pose.pose.orientation.x, msg.pose.pose.orientation.y, msg.pose.pose.orientation.z, msg.pose.pose.orientation.w)
+        _,_,self.vehicle_yaw = euler_from_quaternion(odom_quaternion)
+        self.current_postion.x = msg.pose.pose.position.x
+        self.current_postion.y = msg.pose.pose.position.y
 
     def status_callback(self,msg): ## Vehicl Status Subscriber 
-        self.is_status=True
-        self.status_msg=msg    
-        
+        self.is_status = True
+        self.status_msg = msg    
+
     def global_path_callback(self,msg):
         self.global_path = msg
         self.is_global_path = True
@@ -225,10 +227,15 @@ class pure_pursuit :
                     global_ped_info.append([ped_list.type, ped_list.position.x, ped_list.position.y, ped_list.velocity.x])
                     local_ped_info.append([ped_list.type, local_result[0][0], local_result[1][0], ped_list.velocity.x])
 
+
+                if local_result[0][0]> 0 :
+                    global_obs_info.append([obs_list.type,obs_list.position.x,obs_list.position.y,obs_list.velocity.x])
+                    local_obs_info.append([obs_list.type,local_result[0][0],local_result[1][0],obs_list.velocity.x])
+
             # obs translation - 정지선 라인
             for obs_list in self.all_object.obstacle_list:
-                global_result=np.array([[obs_list.position.x], [obs_list.position.y], [1]])
-                local_result=tmp_det_t.dot(global_result)
+                global_result = np.array([[obs_list.position.x], [obs_list.position.y], [1]])
+                local_result = tmp_det_t.dot(global_result)
                 if local_result[0][0] > 0:
                     global_obs_info.append([obs_list.type, obs_list.position.x, obs_list.position.y, obs_list.velocity.x])
                     local_obs_info.append([obs_list.type, local_result[0][0], local_result[1][0], obs_list.velocity.x])
@@ -290,6 +297,7 @@ class pure_pursuit :
         # Steering 각도는 Pure Pursuit 알고리즘의 각도 계산 수식을 적용하여 조향 각도를 계산합니다.
         '''
         theta = atan2(local_path_point[1],local_path_point[0])
+        # steering = atan2(2*self.vehicle_length*sin(theta), self.lfd)
         steering = theta / pi
 
         return steering
@@ -381,7 +389,7 @@ class velocityPlanning:
         return out_vel_plan
 
 class AdaptiveCruiseControl:
-    def __init__(self, velocity_gain, distance_gain, time_gap, vehicle_length):
+    def __init__(self, velocity_gain, distance_gain, time_gap, vehicle_length, current_postion):
         self.npc_vehicle = [False, 0]
         self.object = [False, 0]
         self.Person = [False, 0]
@@ -389,6 +397,8 @@ class AdaptiveCruiseControl:
         self.distance_gain = distance_gain      # 거리 이득 값
         self.time_gap = time_gap                # 시간 차이 - two-second-rules(2초)
         self.vehicle_length = vehicle_length    # 차량 길이 - default Distance
+        # 230920 KMJ 추가 - 현재 위치 추가
+        self.current_postion = current_postion
 
         self.object_type = None
         self.object_distance = 0
