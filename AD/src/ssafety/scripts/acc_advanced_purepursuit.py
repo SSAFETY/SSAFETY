@@ -14,14 +14,13 @@ import rospkg
 from math import cos, sin, pi, sqrt, pow, atan2
 from geometry_msgs.msg import Point, PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry, Path
-from morai_msgs.msg import CtrlCmd, EgoVehicleStatus
+from morai_msgs.msg import CtrlCmd, EgoVehicleStatus, ObjectStatusList, GetTrafficLightStatus
 import numpy as np
 import tf
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 #========================================================#
-from morai_msgs.msg import ObjectStatusList, GetTrafficLightStatus
-from morai_msgs.msg import EventInfo, Lamps
+# from morai_msgs.msg import EventInfo, Lamps
 # from morai_msgs.srv import MoraiEventCmdSrv
 #========================================================#
 
@@ -173,7 +172,7 @@ class pure_pursuit :
         # print('신호등 상태: ', traffic_light_status)
         # print("신호등 상태: ", traffic_light_status)
         # rospy.loginfo("self 값:", self.is_traffic_light)
-        rospy.loginfo("신호등 상태: %d", traffic_light_status)
+        # rospy.loginfo("신호등 상태: %d", traffic_light_status)
 
         # 신호등 상태에 따라 교통 방향 제시
         if traffic_light_status == 1:   # Red
