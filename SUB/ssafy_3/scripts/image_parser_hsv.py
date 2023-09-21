@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
  
 import rospy
@@ -9,8 +9,7 @@ import os, rospkg
 from sensor_msgs.msg import CompressedImage
 from cv_bridge import CvBridgeError
 
-# image parser hsv Node 는 시뮬레이터에서 송신하는 Camera 센서 정보를 받아 실시간으로 출력하는 예제입니다.
-# 출력시 bgr 이미지가 아닌 hsv 형식으로 변환 된 이미지를 출력 합니다.
+# image parser hsv Node - bgr 이미지가 아닌 hsv 형식으로 변환된 이미지를 출력
 
 # 노드 실행 순서 
 # 1. bgr 이미지를 hsv로 변환 
@@ -19,46 +18,29 @@ from cv_bridge import CvBridgeError
 
 class IMGParser:
     def __init__(self):
-
         self.image_sub = rospy.Subscriber("/image_jpeg/compressed", CompressedImage, self.callback)
 
     def callback(self, msg):
         try:
-            '''
+            # 카메라 데이터 받아서 데이터 변환 - Byte 단위 이미지 -> np.array
+            # np.fromstring 함수를 이용하여 데이터를 uint8 형태로 변환
+            np_arr = np.frombuffer(msg.data, dtype='uint8')
 
-            np_arr = np.fromstring(             )
-            img_bgr = cv2.imdecode(             )
+            # 1차원 배열 형태 np_arr를 3차원 배열의 bgr 형태로 변환
+            img_bgr = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
-            '''
         except CvBridgeError as e:
             print(e)
 
-        #TODO: (1)
-        '''
-        # cv2.cvtColor 함수를 이용하여 bgr 이미지를 hsv 이미지로 변환합니다.
-        # cv2.cvtColor 함수는 색상 공간 변환 함수로 이미지를 원하는 색상 코드로 변환합니다.
-        # 이번 예제에서는 bgr이미지를 HSV 이미지로 변환합니다.
+        # cv2.cvtColor() - bgr 이미지 -> HSV 이미지 
+        img_hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
+        # np.concatenate() - 서로 다른 두 배열 합치는 함수
+        img_concat = np.concatenate((img_bgr, img_hsv), axis=1)
 
-        img_hsv = cv2.cvtColor(                 )
-
-        '''
-        #TODO: (2)
-        '''
-        # np.concatenate 함수는 는 서로 다른 두 배열을 합치는 예제입니다.
-        # bgr 이미지와 hsv 이미지를 동시에 출력하기 위해 np.concatenate 함수를 사용해 이미지를 합칩니다.
-
-        img_concat = np.concatenate(            )
-
-        '''
-
-        #TODO: (3)
-        '''
-        # 이미지를 출력 합니다.
-
-        cv2.imshow(         )
-        cv2.waitKey(        ) 
-
-        '''
+        # 출력
+        # cv2.imshow("Ego-0 Live Cam", img_bgr)
+        cv2.imshow("Ego-0 HSV Cam", img_concat)
+        cv2.waitKey(1)      # 단위: ms
 
 
 if __name__ == '__main__':
