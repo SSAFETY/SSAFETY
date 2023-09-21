@@ -62,9 +62,12 @@ class dijkstra_path_pub :
         rospy.Subscriber('/move_base_simple/goal', PoseStamped, self.goal_callback)
         rospy.Subscriber('/initialpose', PoseWithCovarianceStamped, self.init_callback)
 
+
         #TODO: (1) Mgeo data 읽어온 후 데이터 확인
-        load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PG_K-City'))
+        load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PR_Sangam_NoBuildings'))
         mgeo_planner_map = MGeo.create_instance_from_json(load_path)
+
+  
 
         node_set = mgeo_planner_map.node_set
         link_set = mgeo_planner_map.link_set
@@ -77,18 +80,26 @@ class dijkstra_path_pub :
         self.is_goal_pose = False
         self.is_init_pose = False
 
+        
+        self.start_node = "A119AS318227"
+        '''
+        self.end_node = ""
+        '''
         while True:
-            if self.is_goal_pose == True and self.is_init_pose == True:
+            if self.is_goal_pose == True:
                 break
             else:
-                rospy.loginfo('Waiting goal pose data')
-                rospy.loginfo('Waiting init pose data')
+                pass
+                #rospy.loginfo('Waiting goal pose data')
+                #rospy.loginfo('Waiting init pose data')
+        
 
 
         self.global_path_msg = Path()
         self.global_path_msg.header.frame_id = '/map'
 
         self.global_path_msg = self.calc_dijkstra_path_node(self.start_node, self.end_node)
+
 
         rate = rospy.Rate(10) # 10hz
         while not rospy.is_shutdown():
@@ -117,8 +128,6 @@ class dijkstra_path_pub :
         self.init_msg=msg
         self.init_x=self.init_msg.pose.pose.position.x
         self.init_y=self.init_msg.pose.pose.position.y
-
-        print('yep')
         
         for node_idx in self.nodes:
             node_pose_x=self.nodes[node_idx].point[0]
@@ -158,6 +167,7 @@ class dijkstra_path_pub :
                 goal_min_dis=goal_dis
                 self.end_node = node_idx
 
+        print(self.end_node)
         self.is_goal_pose = True
 
     def calc_dijkstra_path_node(self, start_node, end_node):
@@ -303,6 +313,10 @@ class Dijkstra:
 
         node_path.reverse()
 
+
+
+
+
         #TODO: (7) link path 생성
         link_path = []
         for i in range(len(node_path) - 1):
@@ -325,6 +339,24 @@ class Dijkstra:
             link = self.links[link_id]
             for point in link.points:
                 point_path.append([point[0], point[1], 0])
+
+
+        # ch: (1) path 이름 추가 후 파일 열기
+        pkg_name = 'ssafety'
+        path_name = 'sangam_path'
+        rospack = rospkg.RosPack()
+        pkg_path = rospack.get_path(pkg_name)
+        full_path = pkg_path + '/path/' + path_name +'.txt'
+        self.f = open(full_path, 'a')
+
+        # ch: 만들어진 path 다 파일에 쓰자
+        node_index =""
+        for point in point_path:
+            data = '{0}\t{1}\t0.0\n'.format(point[0], point[1])
+            self.f.write(data)
+
+        #ch: (1)
+        self.f.close()
 
         return True, {'node_path': node_path, 'link_path':link_path, 'point_path':point_path}
 
