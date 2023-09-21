@@ -9,7 +9,8 @@ import os, rospkg
 from sensor_msgs.msg import CompressedImage
 from cv_bridge import CvBridgeError
 
-# image parser binarization Node - HSV 영역의 특정 색상 범위만 출력합니다.
+# image parser binarization Node - HSV 영역의 특정 색상(white & yellow) 범위만 출력
+# white & yellow 색상 범위 - 합친 코드
 
 # 노드 실행 순서 
 # 1. HSV 색상 영역 지정
