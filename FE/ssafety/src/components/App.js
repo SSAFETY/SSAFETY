@@ -18,7 +18,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/violation" element={<Violation />} />
           <Route path="/statistics" element={<Statistics />} />
-          <Route path="/road" element={<Road />} />
           <Route path="/livevideo" element={<LiveVideo />} />
           <Route path="/detailsi" element={<DetailSiMap />} />
           <Route path="/detailsi/detailgu" element={<DetailGuMap />} />

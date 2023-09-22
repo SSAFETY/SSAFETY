@@ -1,15 +1,21 @@
 package ssafety.be.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ssafety.be.dto.ReportDto;
 import ssafety.be.dto.SearchDto;
+import ssafety.be.dto.SmsRequestDto;
 import ssafety.be.entity.Report;
-import ssafety.be.repository.ReportRepository;
 import ssafety.be.service.KakaoMapService;
 import ssafety.be.service.ReportDataService;
+import ssafety.be.service.SmsService;
 
 import java.util.List;
 
@@ -18,7 +24,7 @@ import java.util.List;
 public class ReportController {
     private final KakaoMapService kakaoMapService;
     private final ReportDataService reportDataService;
-    private final ReportRepository reportRepository;
+    private final SmsService smsService;
 
     @PostMapping("/report")
     public ResponseEntity<String> getDataFromRos(@RequestBody ReportDto data) {
@@ -34,17 +40,37 @@ public class ReportController {
     }
 
     @GetMapping("/getAll")
-    public List<Report> getAllReports() {
-        return reportRepository.findAll();
+    public Page<Report> getAllReports(@PageableDefault(size = 10) Pageable pageable) {
+        // 페이지 번호 추출
+        int pageNumber = pageable.getPageNumber();
+
+        // 새로운 Pageable 객체 생성 (페이지 번호만 변경)
+        Pageable newPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(Sort.Order.desc("id")));
+
+        System.out.println(reportDataService.getAll(newPageable));
+
+        // 데이터를 조회할 때 새로운 Pageable 객체 사용
+        return reportDataService.getAll(newPageable);
     }
 
+    @GetMapping("/getData")
+    public List<Report> getData() {
+        return reportDataService.getData();
+    }
+
+
     @PostMapping("/searchReports")
-    public List<Report> searchReports(@RequestBody SearchDto request) {
-        return reportDataService.findReportsByConditions(request.getCity(), request.getDepth3(), request.getAiResult(), request.getDate());
+    public Page<Report> searchReports(@RequestBody SearchDto request,@PageableDefault(size = 15) Pageable pageable) {
+        return reportDataService.findReportsByConditions(request.getCity(), request.getDepth3(), request.getAiResult(), request.getDate(), pageable);
     }
 
     @GetMapping("/getAddress")
     public String[] getAddress(@RequestParam String latitude, @RequestParam String longitude) {
         return kakaoMapService.getAddress(latitude, longitude);
+    }
+
+    @PostMapping("/send")
+    public String sendSms(@RequestBody SmsRequestDto request) {
+        return smsService.sendSms(request);
     }
 }

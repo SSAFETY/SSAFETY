@@ -4,10 +4,28 @@ import { feature } from 'topojson-client';
 import mapogu from '../mapData/mapo.json';
 import '../css/Home.css';
 import Swal from "sweetalert2";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
+  authDomain: "ssafy9th-19ed3.firebaseapp.com",
+  databaseURL: "https://ssafy9th-19ed3-default-rtdb.firebaseio.com",
+  projectId: "ssafy9th-19ed3",
+  storageBucket: "ssafy9th-19ed3.appspot.com",
+  messagingSenderId: "219156140787",
+  appId: "1:219156140787:web:007d653d7bae027a1f9d86",
+  measurementId: "G-M7W3LJDE33"
+}
+
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
 
 const GuMap = () => {
   const chart = useRef(null);
   const featureData = feature(mapogu, mapogu.objects['mapo']);
+  console.log(analytics)
 
   useEffect(() => {
     const width = window.innerWidth;

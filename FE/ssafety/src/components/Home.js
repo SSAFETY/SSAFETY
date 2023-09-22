@@ -1,12 +1,14 @@
-import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import korea from '../mapData/korea-topo.json';
 import '../css/Home.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
+import '../css/Modal.css'
+
+import { formatCreationTime } from './Modal';
 
 const featureData = feature(korea, korea.objects['korea-topo']);
 
@@ -14,6 +16,28 @@ const KoreaMap = () => {
   const chart = useRef(null);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const limit = 10;
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태
+  const [selectedData, setSelectedData] = useState(null); // 모달에 표시할 데이터
+  const [selectedImageData, setSelectedImageData] = useState(null);
+
+  const openModal = (data) => {
+    setSelectedData(data);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedData(null);
+    setIsModalOpen(false);
+  };
+
+  const handleOverlayClick = (event) => {
+    if (isModalOpen && event.target.classList.contains('modal-overlay')) {
+      closeModal();
+    }
+  };
 
   const printD3 = () => {
     const width = window.innerWidth;
@@ -67,12 +91,12 @@ const KoreaMap = () => {
         // 팝업 텍스트
         popupGroup
           .append('text')
-          .attr('x', path.centroid(d)[0]) 
+          .attr('x', path.centroid(d)[0])
           .attr('y', path.centroid(d)[1] - 30)
           .attr('text-anchor', 'middle')
           .attr('alignment-baseline', 'middle')
           .text(d.properties.CTP_KOR_NM)
-          .style('fill', 'black') 
+          .style('fill', 'black')
           .style('font-size', '12px');
       })
       .on('mouseout', function (event, d) {
@@ -94,38 +118,57 @@ const KoreaMap = () => {
   }, []);
 
   useEffect(() => {
-    if (data.length === 0) {
-      axios.get('http://localhost:8080/getAll')
-        .then((response) => {
-          setData(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [data]);
+    // 데이터 요청 함수
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/getAll?page=${page}`);
+        console.log(response.data);
+        const responseData = response.data;
+        const totalPages = Math.ceil(responseData.totalElements / limit);
+        setTotalPages(totalPages);
+        setData(responseData.content);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const formatCreationTime = (creationTime) => {
-    // creationTime을 문자열로 변환하여 앞에 0을 붙입니다.
-    const timeString = String(creationTime).padStart(14, '0');
-    const time = timeString.split(",")
-    // 연도, 월, 일, 시, 분, 초 부분 추출
-    const year = time[0];
-    const month = time[1];
-    const day = time[2];
-    const hour = time[3];
-    const minute = time[4];
-  
-    // 변환된 문자열 생성
-    const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
-  
-    return formattedTime;
+    if (data.length === 0) {
+      fetchData();
+    }
+  }, [data, page]);
+
+  // 페이지 데이터 추출 함수
+  const getPageData = () => {
+    const startIndex = (page) * limit;
+    const endIndex = startIndex + limit;
+    console.log(startIndex)
+    console.log(endIndex)
+    return data.slice(startIndex, endIndex);
   };
+
+  const displayedData = getPageData();
 
   return (
     <div className="korea-map-container">
       <div className="korea-map" ref={chart}></div>
       <div className="table-container">
+        <div className="pagination">
+          <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+            Previous
+          </button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => setPage(index)}
+              className={page === index  ? 'active' : ''}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+            Next
+          </button>
+        </div>
         <table className="rwd-table">
           <thead>
             <tr>
@@ -136,36 +179,96 @@ const KoreaMap = () => {
             </tr>
           </thead>
           <tbody id="table-body">
-            {data.map((item, index) => {
+            {displayedData.map((item, index) => {
               const timeDifference = calculateTimeDifference(item.creationTime);
               const isWithin24Hours = timeDifference < 24;
-              const isWithin72Hours = timeDifference < 168;
               let rowClass = '';
               if (isWithin24Hours) {
                 rowClass = 'highlighted-row';
-              } else if (!isWithin72Hours) {
-                rowClass = 'hidden-row';
-              }
-
+              } 
               return (
-                <tr key={index} className={rowClass}>
-                  <td data-th="address">{item.city} {item.depth3}</td>
+                <tr
+                  key={index}
+                  className={rowClass}
+                  onClick={() => openModal(item)} // 모달 열기
+                >
+                  <td data-th="address">
+                    {item.city} {item.depth3}
+                  </td>
                   <td data-th="violation">{item.aiResult}</td>
                   <td data-th="time">{formatCreationTime(item.creationTime)}</td>
-                  <td data-th="carnum">{item.vehicleNumber}</td>
+                  <td data-th="carnum">
+                    <img src={item.vehicleNumber} alt="차량 번호" style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
+      {isModalOpen && (
+        <>
+          <div className="modal-overlay" onClick={handleOverlayClick}></div>
+          <div className={`modal ${isModalOpen ? 'active' : ''}`}>
+            <div className="modal-content">
+              <button className="close-modal" onClick={closeModal}></button>
+              <h2>상세 정보</h2>
+              {selectedImageData && (
+                <div className="image-container" >
+                  <img src={selectedImageData} alt="차량 이미지" style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+                </div>
+              )}
+              <table className="modal-table">
+                <tbody>
+                  <tr>
+                    <td>위반 장소:</td>
+                    <td>
+                      {selectedData.city} {selectedData.depth3}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>위반 종류:</td>
+                    <td>{selectedData.aiResult}</td>
+                  </tr>
+                  <tr>
+                    <td>일시:</td>
+                    <td>{formatCreationTime(selectedData.creationTime)}</td>
+                  </tr>
+                  <tr>
+                    <td>차량 번호:</td>
+                    <td>
+                      <img src={selectedData.vehicleNumber} alt="차량 번호" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              {selectedData.videoUrl && (
+                <div className="video-container">
+                  <h3>사건 영상</h3>
+                  <video controls>
+                    <source src={selectedData.videoUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
 function calculateTimeDifference(creationTime) {
   const currentTime = new Date();
-  const creationTimestamp = new Date(creationTime[0], creationTime[1] - 1, creationTime[2], creationTime[3], creationTime[4], creationTime[5]);
+  const creationTimestamp = new Date(
+    creationTime[0],
+    creationTime[1] - 1,
+    creationTime[2],
+    creationTime[3],
+    creationTime[4],
+    creationTime[5]
+  );
   const timeDifference = (currentTime - creationTimestamp) / (1000 * 60 * 60);
   return timeDifference;
 }

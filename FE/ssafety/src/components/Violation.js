@@ -71,12 +71,14 @@ const Violation = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        setFilteredData(data);
+        setFilteredData(data.content); // "content"에 실제 데이터가 들어있는 경우에 대한 처리
       } else {
         console.error('서버에서 오류 응답을 받았습니다.');
+        setFilteredData([]); // 오류 발생 시 빈 배열로 초기화
       }
     } catch (error) {
       console.error('검색 요청 중 오류가 발생했습니다.', error);
+      setFilteredData([]); // 오류 발생 시 빈 배열로 초기화
     }
   };
 
