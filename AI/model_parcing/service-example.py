@@ -437,11 +437,11 @@ curr_img = Image.open(img_path)
 result_img = None
 
 # 새로운 FPS 값을 설정
-new_fps = 10
+new_fps = 30
 
 # 웹캠 열기
 # webcam = cv2.VideoCapture(0)
-webcam = cv2.VideoCapture("/home/ssafy01/Downloads/20230920_153715 (1).mp4")
+webcam = cv2.VideoCapture("/home/ssafy01/Downloads/20230921_081358_REC_F.mp4")
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 webcam_out = cv2.VideoWriter(main_web_mp4, fourcc, new_fps, (1280, 720))
 
@@ -460,10 +460,12 @@ violation_flag = False
 
 wait_frame = 0
 #True로 변경해야 함
-wait_flag = False
+wait_flag = True
 
 
 time_interval = 5
+
+now = time.time()
 
 print(os.getcwd())
 
@@ -478,7 +480,7 @@ while webcam.isOpened():
 
     if violation_flag:
         violation_frame += 1
-        if violation_frame >= 50:
+        if violation_frame >= new_fps * 5:
             violation_flag = False
             
             #video_parcing.parcing(frame, time_interval*2, './parsing/webcam_out.mp4')
@@ -486,16 +488,16 @@ while webcam.isOpened():
             webcam_out.release()
 
             parsing()
-            data = {"fileName": "/home/ssafy01/nia-82-134-main/parsing/normal_cut.webm"}
+            data = {"nowTime": f"{str(int(now))}"}
             headers = {'Content-Type': 'application/json'}
-            # response = requests.post("http://localhost:8080/api/hi", data=json.dumps(data), headers=headers)
+            response = requests.post("http://localhost:8080/api/hi", headers=headers, data=json.dumps(data))
             wait_flag = True
             wait_frame = 0
 
             webcam_out = cv2.VideoWriter('./parsing/webcam_out.mp4', fourcc, 10, (1280, 720))
     elif wait_flag:
          wait_frame += 1
-         if wait_frame >= 50:
+         if wait_frame >= new_fps * 5:
              wait_flag = False
         
     else :
@@ -515,6 +517,8 @@ while webcam.isOpened():
                     labels = [obj.label for obj in result_list]
                     print(labels)
                     if "violation" in labels:
+                        now = time.time()
+
                         vehicle_polygons = [obj.poly for obj in image_info.objects if obj.obj_type == 'vehicle']
                         make_plate(resized_frame, vehicle_polygons[0])
 
@@ -524,8 +528,10 @@ while webcam.isOpened():
         #image_info.objects = result_list
         #result_img = viz_inference_result(resized_frame, image_info)        
 
-    webcam_out.write(frame)
-    cv2.imshow("test", frame)
+    # webcam_out.write(frame)
+    resize_frame = cv2.resize(frame, (1280, 720))
+    webcam_out.write(resize_frame)
+    cv2.imshow("test", resize_frame )
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
