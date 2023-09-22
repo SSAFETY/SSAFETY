@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding:utf-8 -*-
 
 import rospy
 import cv2
 import numpy as np
+from math import atan2
 
 from sensor_msgs.msg import PointCloud2
 import sensor_msgs.point_cloud2 as pc2
@@ -22,7 +23,7 @@ from sklearn.cluster import DBSCAN
 class SCANCluster:
     def __init__(self):
 
-        self.scan_sub = rospy.Subscriber("/velodyne_points", PointCloud2, self.callback)
+        self.scan_sub = rospy.Subscriber("/lidar3D", PointCloud2, self.callback)
 
         self.cluster_pub = rospy.Publisher("clusters", PoseArray, queue_size=10)
 
@@ -32,12 +33,13 @@ class SCANCluster:
         '''
         # DBSCAN의 Parameter를 결정하는 영역입니다.
         # sklearn.cluster의 DBSCAN에 대해 조사하여 적절한 Parameter를 입력하기 바랍니다.
-
-        self.dbscan = DBSCAN( , , ...)
         '''
+        self.dbscan = DBSCAN(eps = 0.5, min_samples=3)
+
     
     def callback(self, msg):    
         self.pc_np = self.pointcloud2_to_xyz(msg)
+
         if len(self.pc_np) == 0:
 
             cluster_msg = PoseArray()
@@ -46,6 +48,8 @@ class SCANCluster:
             pc_xy = self.pc_np[:, :2]
 
             db = self.dbscan.fit_predict(pc_xy)
+
+            print(db)
 
             n_cluster = np.max(db) + 1
 
@@ -62,11 +66,11 @@ class SCANCluster:
                 # 계산된 위치 값을 ROS geometry_msgs/Pose type으로 입력합니다.
                 # Input : cluster
                 # Output : cluster position x,y   
-
-                tmp_pose=Pose()
-                #tmp_pose.position.x = 
-                #tmp_pose.position.y = 
                 '''
+                tmp_pose=Pose()
+                tmp_pose.position.x = pc_xy[cluster][0]
+                tmp_pose.position.y = pc_xy[cluster][1]
+
                 cluster_msg.poses.append(tmp_pose)
                 
         self.cluster_pub.publish(cluster_msg)
@@ -81,10 +85,10 @@ class SCANCluster:
             # LiDAR의 PointCloud Data로부터 Distance와 Angle 값을 계산하는 영역입니다.
             # 각 Point의 XYZ 값을 활용하여 Distance와 Yaw Angle을 계산합니다.
             # Input : point (X, Y, Z, Intensity)            
-            
-            dist = 
-            angle = 
             '''
+            dist = (point[0]**2 + point[1]**2 + point[2]**2)**0.5
+            angle = atan2(point[1], point[0])
+            
             
             if point[0] > 0 and 1.50 > point[2] > -1.25 and dist < 50:
                 point_list.append((point[0], point[1], point[2], point[3], dist, angle))
