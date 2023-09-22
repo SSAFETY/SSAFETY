@@ -41,13 +41,13 @@ public class Report {
      * GPS 위도 정보는 촬영 위치의 위도를 나타냅니다.
      */
     @Column(nullable = false)
-    private Double gpsLatitude;
+    private double gpsLatitude;
 
     /**
      * GPS 경도 정보는 촬영 위치의 경도를 나타냅니다.
      */
     @Column(nullable = false)
-    private Double gpsLongitude;
+    private double gpsLongitude;
 
     /**
      * GPS경도를 통해 얻은 주소를 나타냅니다.
@@ -93,4 +93,7 @@ public class Report {
      */
     @Column(nullable = false)
     private String vehicleNumber;
+
+    @Column(nullable = false)
+    private String phoneNum = "01095212415";
 }

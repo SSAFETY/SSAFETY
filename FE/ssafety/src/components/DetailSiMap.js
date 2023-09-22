@@ -62,11 +62,11 @@ const SeoulMap = () => {
 
     const fetchData = () => {
       axios
-        .get('http://localhost:8080/getAll')
+        .get('http://localhost:8080/getData')
         .then((response) => {
           const reportData = response.data;
           const newData = {};
-
+          console.log(reportData)
           reportData.forEach((report) => {
             const depth3 = report.depth3;
             const region = depth3;

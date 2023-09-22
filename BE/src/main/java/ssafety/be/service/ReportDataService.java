@@ -1,6 +1,8 @@
 package ssafety.be.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,25 +34,19 @@ public class ReportDataService {
      * @param reportDto ReportDto 객체
      */
     @Transactional
-    public void saveReport(ReportDto reportDto) throws Exception {
+    public void saveReport(ReportDto reportDto) {
         try {
-            // ReportDto에서 필요한 정보를 추출하여 Report 엔티티를 생성합니다.
-            LocalDateTime creationTime = reportDto.getCreationTime();
-            String videoUrl = reportDto.getVideoUrl();
-            double gpsLatitude = reportDto.getGpsLatitude();
-            double gpsLongitude = reportDto.getGpsLongitude();
-            String aiResult = reportDto.getAiResult();
-            String vehicleNumber = reportDto.getVehicleNumber();
+            // 필수 필드 유효성 검사
+            validateReportDto(reportDto);
 
             // GPS 좌표를 사용하여 주소를 조회합니다.
-            String[] address = kakaoMapService.getAddress(String.valueOf(gpsLatitude), String.valueOf(gpsLongitude));
+            String[] address = kakaoMapService.getAddress(String.valueOf(reportDto.getGpsLatitude()), String.valueOf(reportDto.getGpsLongitude()));
 
             // 주소 정보를 이용하여 Report 엔티티를 생성합니다.
             Report report = new Report();
-            report.setCreationTime(creationTime);
-            report.setVideoUrl(videoUrl);
-            report.setGpsLatitude(gpsLatitude);
-            report.setGpsLongitude(gpsLongitude);
+            report.setVideoUrl(reportDto.getVideoUrl());
+            report.setGpsLatitude(reportDto.getGpsLatitude());
+            report.setGpsLongitude(reportDto.getGpsLongitude());
             report.setGpsLocation(String.join(" ", address)); // 주소 정보 합치기
             if (!address[0].endsWith("울")) {
                 report.setState(address[0]); // 도
@@ -64,16 +60,30 @@ public class ReportDataService {
                 report.setDepth4(address[2]); // 동
                 report.setDetail(address[3]); // detail
             }
-            report.setAiResult(aiResult);
-            report.setVehicleNumber(vehicleNumber);
+            report.setAiResult(reportDto.getAiResult());
+            report.setVehicleNumber(reportDto.getVehicleNumber());
 
             // Report 엔티티를 저장합니다.
             reportRepository.save(report);
         } catch (Exception e) {
+            // 예외 처리
             e.printStackTrace();
-            throw new Exception("신고를 저장하는 중에 오류가 발생했습니다.");
+            throw new IllegalArgumentException("신고를 저장하는 중에 오류가 발생했습니다.", e);
         }
     }
+
+    private void validateReportDto(ReportDto reportDto) throws IllegalArgumentException {
+        if (reportDto.getVideoUrl() == null || reportDto.getVideoUrl().isEmpty()) {
+            throw new IllegalArgumentException("videoUrl은 필수 입력 항목입니다.");
+        }
+        if (reportDto.getAiResult() == null || reportDto.getAiResult().isEmpty()) {
+            throw new IllegalArgumentException("aiResult는 필수 입력 항목입니다.");
+        }
+        if (reportDto.getVehicleNumber() == null || reportDto.getVehicleNumber().isEmpty()) {
+            throw new IllegalArgumentException("vehicleNumber는 필수 입력 항목입니다.");
+        }
+    }
+
 
     /**
      * 지정된 조건에 따라 교통 데이터 보고서를 검색합니다.
@@ -84,7 +94,7 @@ public class ReportDataService {
      * @param dateStr     날짜
      * @return 검색된 보고서 목록
      */
-    public List<Report> findReportsByConditions(String city, String depth3, String aiResult, String dateStr) {
+    public Page<Report> findReportsByConditions(String city, String depth3, String aiResult, String dateStr , Pageable pageable) {
         System.out.println("도시 : " + city + " 구 : " + depth3 + " ai결과 : " + aiResult + " 날짜 : " + dateStr);
         LocalDateTime startTime = null;
         LocalDateTime endTime = null;
@@ -106,8 +116,20 @@ public class ReportDataService {
 
         Specification<Report> spec = reportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
         System.out.println(spec);
-        return reportRepository.findAll(spec);
+        return reportRepository.findAll(spec, pageable);
     }
+
+    public Page<Report> getAll(Pageable pageable) {
+        Page<Report> reportList = reportRepository.getAll(pageable);
+        // 정렬 조건이 추가된 Pageable 객체를 사용하여 데이터를 조회합니다.
+        System.out.println(pageable);
+        return reportList;
+    }
+
+    public List<Report> getData() {
+        return reportRepository.findAll();
+    }
+
 
     /**
      * Date 객체를 LocalDateTime 객체로 변환합니다.
