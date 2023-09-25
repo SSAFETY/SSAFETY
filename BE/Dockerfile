@@ -1,4 +1,4 @@
-FROM gradle:latest as builder
+FROM gradle:8.2.1 as builder
 
 WORKDIR /app
 
