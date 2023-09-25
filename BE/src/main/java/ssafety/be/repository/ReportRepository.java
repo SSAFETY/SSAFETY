@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import ssafety.be.entity.Report;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
@@ -17,4 +18,6 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     Page<Report> findAll(Specification<Report> spec, Pageable pageable);
     @Query(value = "SELECT a FROM Report a ORDER BY a.id DESC")
     Page<Report> getAll(Pageable pageable);
+
+    Optional<Report> findById(Long id);
 }

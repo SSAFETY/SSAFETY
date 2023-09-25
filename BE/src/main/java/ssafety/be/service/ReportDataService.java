@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * ReportDataService는 교통 데이터 보고서 관련 서비스를 제공합니다.
@@ -124,6 +125,10 @@ public class ReportDataService {
         // 정렬 조건이 추가된 Pageable 객체를 사용하여 데이터를 조회합니다.
         System.out.println(pageable);
         return reportList;
+    }
+
+    public Optional<Report> findById(Long id) {
+        return reportRepository.findById(id);
     }
 
     public List<Report> getData() {

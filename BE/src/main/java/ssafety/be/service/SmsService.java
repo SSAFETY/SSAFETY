@@ -54,7 +54,7 @@ public class SmsService {
      * @param request SMS 발송 요청 정보를 담고 있는 SmsRequestDto 객체
      * @return 인증번호 발송 결과를 ApiResponseDto로 포장하여 반환합니다.
      */
-    public String sendSms(SmsRequestDto request) {
+    public String sendSuccess(SmsRequestDto request) {
         // 요청 전화번호
         String phoneNumber = request.getPhoneNumber();
 
@@ -87,7 +87,52 @@ public class SmsService {
         body.put("contentType", "COMM");
         body.put("countryCode", "82");
         body.put("from", config.getPhone());
-        body.put("content", phoneNumber + "님의 신고가 정상적으로 처리되었습니다.");
+        body.put("content", phoneNumber + "번 님의 신고가 정상적으로 처리되었습니다.");
+        body.put("messages", messages);
+
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+
+        // SMS 발송 API 요청
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.postForEntity(SMS_API_URL, entity, String.class, config.getServiceId());
+
+        return "메시지 전송 완료";
+    }
+
+    public String sendFail(SmsRequestDto request) {
+        // 요청 전화번호
+        String phoneNumber = request.getPhoneNumber();
+
+        // 현재시간
+        long currentTime = System.currentTimeMillis();
+
+        // 헤더 세팅
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("x-ncp-apigw-timestamp", String.valueOf(currentTime));
+        headers.set("x-ncp-iam-access-key", config.getAccesskey());
+        try {
+            // 서명 생성
+            headers.set("x-ncp-apigw-signature-v2", getSignature(String.valueOf(currentTime)));
+        } catch (Exception e) {
+            throw new RuntimeException("서명 생성에 실패했습니다: " + e.getMessage());
+        }
+
+        // SMS 메시지 내용 생성
+        Map<String, String> messageContent = new HashMap<>();
+        messageContent.put("to", phoneNumber);
+        messageContent.put("content", phoneNumber + "번 님의 신고가 반려되었습니다.");
+
+        List<Map<String, String>> messages = new ArrayList<>();
+        messages.add(messageContent);
+
+        // SMS 발송 API 요청에 필요한 데이터 구성
+        Map<String, Object> body = new HashMap<>();
+        body.put("type", "SMS");
+        body.put("contentType", "COMM");
+        body.put("countryCode", "82");
+        body.put("from", config.getPhone());
+        body.put("content", phoneNumber + "번 님의 신고가 반려되었습니다.");
         body.put("messages", messages);
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
