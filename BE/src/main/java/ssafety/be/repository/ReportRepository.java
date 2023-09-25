@@ -15,7 +15,9 @@ import java.util.Optional;
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
     List<Report> findAll();
+
     Page<Report> findAll(Specification<Report> spec, Pageable pageable);
+
     @Query(value = "SELECT a FROM Report a ORDER BY a.id DESC")
     Page<Report> getAll(Pageable pageable);
 

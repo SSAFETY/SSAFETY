@@ -1,0 +1,23 @@
+{
+  "saved_utc_time": "2022-07-11 05:22:42.534017",
+  "mgeo_file_hash": "{'crosswalk_set.json': '3af96012ee7c1cd4bc56425ce3d471410ff3ba1dc22d009b5e6d00d136dc788d', 'intersection_controller_data.json': 'b20dbed9a9c445764ef4d89e7bec08236d55f9db21cc0e8ca43b2cfcf34186c2', 'intersection_controller_set.json': '69c33d316b5a3c40afdc7f205510dcfe6ed34d4c1b1128cb6a0d7126100c8939', 'lane_boundary_set.json': 'a206c7c63fd0977288249f12de20a92f2214c7ad47360fe70fe38849d4550004', 'lane_node_set.json': 'f9a79e2ba9801fde8ae2a1f4e29725e9141cd7d929980f2bd4882503a7576024', 'link_set.json': '608420531cb2cde4c0a02431916bb1095624d25446b6cd1cf29a6abe626c0596', 'node_set.json': 'e7150553485a4b961b7b54c648dc78a3ab12fc2f0f286586f2af7d767e417005', 'parking_space_set.json': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'road_polygon_set.json': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'singlecrosswalk_set.json': 'b07fb9ce3ebbbc98a8ef533834537b683b1e4eb4cce361ab3fc4eaad013aac28', 'surface_marking_set.json': '8d06ee3b4e2c897f9644a3a0adfb9af51c87e4f5e7bd68823b6c5fd6a0c07cc5', 'synced_traffic_light_set.json': 'c713883c201c47717535ef5919d60a336aa9e322e212fb4a2eb0f58b68353e23', 'traffic_light_set.json': 'bab2b4feb65be256c6a1550c1321d07c2ec201387ad5f84e0db5f3638c09d91f', 'traffic_sign_set.json': '84939a061531cb4d2d80fc1a42a643353a5634fdf0b55b09ee0df1b4565cbd9c'}",
+  "maj_ver": 2,
+  "min_ver": 9,
+  "global_coordinate_system": "+proj=utm +zone=52 +datum=WGS84 +units=m +no_defs",
+  "local_origin_in_global": [
+    445130.363,
+    3945973.281,
+    47.172
+  ],
+  "workspace_origin": [
+    0,
+    0,
+    0
+  ],
+  "lane_change_link_included": false,
+  "traffic_dir": "",
+  "country": "",
+  "road_type": "",
+  "road_type_def": "",
+  "license": "MORAI Inc."
+}

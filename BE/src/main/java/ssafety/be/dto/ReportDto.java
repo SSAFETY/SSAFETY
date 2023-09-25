@@ -37,4 +37,3 @@ public class ReportDto {
         this.vehicleNumber = vehicleNumber;
     }
 }
-

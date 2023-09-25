@@ -1,0 +1,23 @@
+{
+  "saved_utc_time": "2023-04-11 07:00:45.213613",
+  "mgeo_file_hash": "{'crosswalk_set.json': '827ebee0e42db8be920ff158afe098f0c955079bc20cd4c3f2d0a2ac737a634e', 'intersection_controller_data.json': 'cf147645f6ff82ca012ff9b2e6de338d37418d75009c14f50e54b931e578b839', 'intersection_controller_set.json': '435801737ba2bf54f716c1d777a037b8468cb9b796462cb8a30ef6ad27473c06', 'junction_set.json': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'lane_boundary_set.json': 'd5cd995becd60106b49dc0528b9ec09cc6766c2e6db02ad69b97476debf1a179', 'lane_node_set.json': 'af5e9ccd1c91710454ef8bef591ec76249cbd627b30e88e71776bd77d0a1bbf1', 'link_set.json': 'e40393d3953160cb781268501a6ab752c964711155f98e93a7f42391da0466b0', 'node_set.json': '8befc05d83a4c48b6c22ebb3ba6e23b151c4114c37a2fac6eb99831586437882', 'object_set.json': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'parking_space_set.json': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'road_polygon_set.json': '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945', 'road_set.json': 'ae731cdd106bd26c6c3bd383dedbb2b25c98b70b52cf3b7c79eada90b6aa982f', 'singlecrosswalk_set.json': 'c925592341ea74cdf022177454cf7d303853799a9ebb56a1195f1b83f345b48d', 'surface_marking_set.json': 'e72431138aba5c94a9ed997f3bbfb824f6200df9b8492ac07019d67fab9b939c', 'synced_traffic_light_set.json': '773d5080aa206b1af98acc76f0468e961447edf83e0ca8667ee738406b845c12', 'traffic_light_set.json': 'ec743473f1ab751da3c37ab4e69be5bdc4febb7e9c75769a5377989feb0f78e0', 'traffic_sign_set.json': '07a6431c66315ebb4ee1de0338bae448e130744f92b38102c06b701813cb59be'}",
+  "maj_ver": 2,
+  "min_ver": 9,
+  "global_coordinate_system": "+proj=utm +zone=52 +datum=WGS84 +units=m +no_defs",
+  "local_origin_in_global": [
+    313008.55819800857,
+    4161698.628368007,
+    35.66435583359189
+  ],
+  "workspace_origin": [
+    0,
+    0,
+    0
+  ],
+  "lane_change_link_included": true,
+  "traffic_dir": "",
+  "country": "",
+  "road_type": "",
+  "road_type_def": "",
+  "license": "MORAI Inc."
+}

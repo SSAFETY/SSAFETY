@@ -1,0 +1,2383 @@
+[
+  {
+    "idx": "CW000000",
+    "single_crosswalk_list": [
+      "B3218C100315",
+      "B3218C100316"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100002",
+      "C1218C100001"
+    ]
+  },
+  {
+    "idx": "CW000001",
+    "single_crosswalk_list": [
+      "B319AS319174",
+      "B319AS319175",
+      "B319AS319176"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318451",
+      "C119AS318401"
+    ]
+  },
+  {
+    "idx": "CW000002",
+    "single_crosswalk_list": [
+      "B319AS319159",
+      "B319AS319157",
+      "B319AS319158"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318413",
+      "C119AS318404"
+    ]
+  },
+  {
+    "idx": "CW000003",
+    "single_crosswalk_list": [
+      "B319AS319177"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000004",
+    "single_crosswalk_list": [
+      "B319AS319173"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000005",
+    "single_crosswalk_list": [
+      "B319AS319172"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000006",
+    "single_crosswalk_list": [
+      "B319AS319179",
+      "B319AS319178"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318450",
+      "C119AS318453"
+    ]
+  },
+  {
+    "idx": "CW000007",
+    "single_crosswalk_list": [
+      "B319AS319180"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000008",
+    "single_crosswalk_list": [
+      "B319AS319184"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000009",
+    "single_crosswalk_list": [
+      "B319AS319181",
+      "B319AS319182",
+      "B319AS319183"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000010",
+    "single_crosswalk_list": [
+      "B319AS319185"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000011",
+    "single_crosswalk_list": [
+      "B319AS319188",
+      "B319AS319189"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000012",
+    "single_crosswalk_list": [
+      "B319AS319187",
+      "B319AS319186"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000013",
+    "single_crosswalk_list": [
+      "B319AS319191",
+      "B319AS319190"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000014",
+    "single_crosswalk_list": [
+      "B319AS318949",
+      "B319AS318948"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000015",
+    "single_crosswalk_list": [
+      "B319AS319193",
+      "B319AS319192"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000016",
+    "single_crosswalk_list": [
+      "B319AS318943",
+      "B319AS318945"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000017",
+    "single_crosswalk_list": [
+      "B319AS318941"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000018",
+    "single_crosswalk_list": [
+      "B319AS318932",
+      "B319AS318934"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318194",
+      "C119AS318192"
+    ]
+  },
+  {
+    "idx": "CW000019",
+    "single_crosswalk_list": [
+      "B319AS318968",
+      "B319AS318930"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318182",
+      "C119AS318180"
+    ]
+  },
+  {
+    "idx": "CW000020",
+    "single_crosswalk_list": [
+      "B319AS318938"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000021",
+    "single_crosswalk_list": [
+      "B319AS318936"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000022",
+    "single_crosswalk_list": [
+      "B319AS318863",
+      "B319AS318865"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000023",
+    "single_crosswalk_list": [
+      "B319AS318923",
+      "B319AS318925",
+      "B319AS318927"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000024",
+    "single_crosswalk_list": [
+      "B319AS318824"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000025",
+    "single_crosswalk_list": [
+      "B319AS318823"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000026",
+    "single_crosswalk_list": [
+      "B319AS318819",
+      "B319AS318820"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000027",
+    "single_crosswalk_list": [
+      "B319AS318818",
+      "B319AS318817"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000028",
+    "single_crosswalk_list": [
+      "B319AS318821",
+      "B319AS318822"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000029",
+    "single_crosswalk_list": [
+      "B319AS318845",
+      "B319AS318843"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000030",
+    "single_crosswalk_list": [
+      "B319AS318849",
+      "B319AS318847"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000031",
+    "single_crosswalk_list": [
+      "B319AS318852",
+      "B319AS318854"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000032",
+    "single_crosswalk_list": [
+      "B319AS318919",
+      "B319AS318921"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000033",
+    "single_crosswalk_list": [
+      "B319AS318998",
+      "B319AS318997"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000034",
+    "single_crosswalk_list": [
+      "B319AS318996"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000035",
+    "single_crosswalk_list": [
+      "B319AS318999",
+      "B319AS319000"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000036",
+    "single_crosswalk_list": [
+      "B319AS319033"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318266",
+      "C119AS318267"
+    ]
+  },
+  {
+    "idx": "CW000037",
+    "single_crosswalk_list": [
+      "B319AS319125",
+      "B319AS319034",
+      "B319AS319126"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318265",
+      "C119AS318268"
+    ]
+  },
+  {
+    "idx": "CW000038",
+    "single_crosswalk_list": [
+      "B319AS319031",
+      "B319AS319032"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318264",
+      "C119AS318269"
+    ]
+  },
+  {
+    "idx": "CW000039",
+    "single_crosswalk_list": [
+      "B319AS318841",
+      "B319AS318839",
+      "B319AS319124"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318387",
+      "C119AS318045"
+    ]
+  },
+  {
+    "idx": "CW000040",
+    "single_crosswalk_list": [
+      "B319AS319029",
+      "B319AS319030"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318250",
+      "C119AS318270"
+    ]
+  },
+  {
+    "idx": "CW000041",
+    "single_crosswalk_list": [
+      "B319AS319118",
+      "B319AS319119"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318170",
+      "C119AS318172"
+    ]
+  },
+  {
+    "idx": "CW000042",
+    "single_crosswalk_list": [
+      "B319AS319026",
+      "B319AS319027"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318271",
+      "C119AS318253"
+    ]
+  },
+  {
+    "idx": "CW000043",
+    "single_crosswalk_list": [
+      "B319AS319028"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000044",
+    "single_crosswalk_list": [
+      "B319AS319022",
+      "B319AS319023"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318272",
+      "C119AS318196"
+    ]
+  },
+  {
+    "idx": "CW000045",
+    "single_crosswalk_list": [
+      "B319AS319024",
+      "B319AS319025"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318273",
+      "C119AS318206"
+    ]
+  },
+  {
+    "idx": "CW000046",
+    "single_crosswalk_list": [
+      "B319AS318778",
+      "B319AS318777"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318011",
+      "C119AS318010"
+    ]
+  },
+  {
+    "idx": "CW000047",
+    "single_crosswalk_list": [
+      "B319AS318965",
+      "B319AS318963"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000048",
+    "single_crosswalk_list": [
+      "B319AS318975"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000049",
+    "single_crosswalk_list": [
+      "B319AS318974"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000050",
+    "single_crosswalk_list": [
+      "B319AS318911",
+      "B319AS318913"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318152",
+      "C119AS318150"
+    ]
+  },
+  {
+    "idx": "CW000051",
+    "single_crosswalk_list": [
+      "B319AS318803",
+      "B319AS318804"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318174",
+      "C119AS318086"
+    ]
+  },
+  {
+    "idx": "CW000052",
+    "single_crosswalk_list": [
+      "B319AS318907",
+      "B319AS318909"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318168",
+      "C119AS318160"
+    ]
+  },
+  {
+    "idx": "CW000053",
+    "single_crosswalk_list": [
+      "B319AS318833",
+      "B319AS318837"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318166",
+      "C119AS318154"
+    ]
+  },
+  {
+    "idx": "CW000054",
+    "single_crosswalk_list": [
+      "B319AS318893",
+      "B319AS318895"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318122",
+      "C119AS318142"
+    ]
+  },
+  {
+    "idx": "CW000055",
+    "single_crosswalk_list": [
+      "B319AS318899",
+      "B319AS318897"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318144",
+      "C119AS318132"
+    ]
+  },
+  {
+    "idx": "CW000056",
+    "single_crosswalk_list": [
+      "B319AS318887",
+      "B319AS318885"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318140",
+      "C119AS318138"
+    ]
+  },
+  {
+    "idx": "CW000057",
+    "single_crosswalk_list": [
+      "B319AS318889",
+      "B319AS318891"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318114",
+      "C119AS318116"
+    ]
+  },
+  {
+    "idx": "CW000058",
+    "single_crosswalk_list": [
+      "B319AS318970"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000059",
+    "single_crosswalk_list": [
+      "B319AS318953"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000060",
+    "single_crosswalk_list": [
+      "B319AS318797",
+      "B319AS318779"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000061",
+    "single_crosswalk_list": [
+      "B319AS318871"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000062",
+    "single_crosswalk_list": [
+      "B319AS318801",
+      "B319AS318800",
+      "B319AS318802"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318110",
+      "C119AS318094"
+    ]
+  },
+  {
+    "idx": "CW000063",
+    "single_crosswalk_list": [
+      "B319AS318873",
+      "B319AS318875"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318092",
+      "C119AS318108"
+    ]
+  },
+  {
+    "idx": "CW000064",
+    "single_crosswalk_list": [
+      "B319AS318883",
+      "B319AS318879",
+      "B319AS318881"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318100",
+      "C119AS318106"
+    ]
+  },
+  {
+    "idx": "CW000065",
+    "single_crosswalk_list": [
+      "B319AS318799",
+      "B319AS318798"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318064",
+      "C119AS318066"
+    ]
+  },
+  {
+    "idx": "CW000066",
+    "single_crosswalk_list": [
+      "B319AS318828",
+      "B319AS318829"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318062",
+      "C119AS318060"
+    ]
+  },
+  {
+    "idx": "CW000067",
+    "single_crosswalk_list": [
+      "B319AS318827",
+      "B319AS318826"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318055",
+      "C119AS318061"
+    ]
+  },
+  {
+    "idx": "CW000068",
+    "single_crosswalk_list": [
+      "B319AS318830",
+      "B319AS319121"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318052",
+      "C119AS318080"
+    ]
+  },
+  {
+    "idx": "CW000069",
+    "single_crosswalk_list": [
+      "B319AS318859"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000070",
+    "single_crosswalk_list": [
+      "B319AS318861"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000071",
+    "single_crosswalk_list": [
+      "B319AS318784",
+      "B319AS318785",
+      "B319AS318796"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000072",
+    "single_crosswalk_list": [
+      "B319AS318857",
+      "B319AS318783"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318015",
+      "C119AS318002"
+    ]
+  },
+  {
+    "idx": "CW000073",
+    "single_crosswalk_list": [
+      "B319AS318869",
+      "B319AS318867",
+      "B319AS318782"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318003",
+      "C119AS318006"
+    ]
+  },
+  {
+    "idx": "CW000074",
+    "single_crosswalk_list": [
+      "B319AS318781",
+      "B319AS318780"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318014",
+      "C119AS318007"
+    ]
+  },
+  {
+    "idx": "CW000075",
+    "single_crosswalk_list": [
+      "B319AS318786",
+      "B319AS319140",
+      "B319AS318787"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318016",
+      "C119AS318034"
+    ]
+  },
+  {
+    "idx": "CW000076",
+    "single_crosswalk_list": [
+      "B319AS318795"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000077",
+    "single_crosswalk_list": [
+      "B319AS319139",
+      "B319AS319138",
+      "B319AS319137"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318017",
+      "C119AS318035"
+    ]
+  },
+  {
+    "idx": "CW000078",
+    "single_crosswalk_list": [
+      "B319AS318835"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000079",
+    "single_crosswalk_list": [
+      "B319AS318793",
+      "B319AS318794"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000080",
+    "single_crosswalk_list": [
+      "B319AS319199",
+      "B319AS319200"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000081",
+    "single_crosswalk_list": [
+      "B319AS319165",
+      "B319AS319164",
+      "B319AS319163"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318022",
+      "C119AS318027"
+    ]
+  },
+  {
+    "idx": "CW000082",
+    "single_crosswalk_list": [
+      "B319AS318792",
+      "B319AS318790",
+      "B319AS318791"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318026",
+      "C119AS318033"
+    ]
+  },
+  {
+    "idx": "CW000083",
+    "single_crosswalk_list": [
+      "B319AS318789",
+      "B319AS318855",
+      "B319AS318788"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318021",
+      "C119AS318032"
+    ]
+  },
+  {
+    "idx": "CW000084",
+    "single_crosswalk_list": [
+      "B319AS319141",
+      "B319AS319142",
+      "B319AS319143"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318023"
+    ]
+  },
+  {
+    "idx": "CW000085",
+    "single_crosswalk_list": [
+      "B319AS319160",
+      "B319AS319162",
+      "B319AS319161"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000086",
+    "single_crosswalk_list": [
+      "B319AS319166"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000087",
+    "single_crosswalk_list": [
+      "B319AS319194",
+      "B319AS319195"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000088",
+    "single_crosswalk_list": [
+      "B319AS319167"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000089",
+    "single_crosswalk_list": [
+      "B319AS319168"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000090",
+    "single_crosswalk_list": [
+      "B319AS319169",
+      "B319AS319170",
+      "B319AS319171"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318446",
+      "C119AS318416"
+    ]
+  },
+  {
+    "idx": "CW000091",
+    "single_crosswalk_list": [
+      "B319AS319154",
+      "B319AS319152",
+      "B319AS319153"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318421",
+      "C119AS318426"
+    ]
+  },
+  {
+    "idx": "CW000092",
+    "single_crosswalk_list": [
+      "B319AS319150",
+      "B319AS319151",
+      "B319AS319149"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318415",
+      "C119AS318419"
+    ]
+  },
+  {
+    "idx": "CW000093",
+    "single_crosswalk_list": [
+      "B319AS319198",
+      "B319AS319196"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000094",
+    "single_crosswalk_list": [
+      "B319AS319197"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000095",
+    "single_crosswalk_list": [
+      "B319AS318810",
+      "B319AS318809",
+      "B319AS318808"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318038",
+      "C119AS318049"
+    ]
+  },
+  {
+    "idx": "CW000096",
+    "single_crosswalk_list": [
+      "B319AS318952",
+      "B319AS318877",
+      "B319AS319122"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318050",
+      "C119AS318051"
+    ]
+  },
+  {
+    "idx": "CW000097",
+    "single_crosswalk_list": [
+      "B319AS318815",
+      "B319AS318814",
+      "B319AS318816"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318046",
+      "C119AS318041"
+    ]
+  },
+  {
+    "idx": "CW000098",
+    "single_crosswalk_list": [
+      "B319AS318812",
+      "B319AS318813",
+      "B319AS318811"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318044"
+    ]
+  },
+  {
+    "idx": "CW000099",
+    "single_crosswalk_list": [
+      "B319AS318950",
+      "B319AS318951"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000100",
+    "single_crosswalk_list": [
+      "B319AS318915"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000101",
+    "single_crosswalk_list": [
+      "B319AS318972"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000102",
+    "single_crosswalk_list": [
+      "B319AS318973"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000103",
+    "single_crosswalk_list": [
+      "B319AS318917"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000104",
+    "single_crosswalk_list": [
+      "B319AS318905"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000105",
+    "single_crosswalk_list": [
+      "B319AS318955"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000106",
+    "single_crosswalk_list": [
+      "B319AS318903"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000107",
+    "single_crosswalk_list": [
+      "B319AS318956"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000108",
+    "single_crosswalk_list": [
+      "B319AS318959"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000109",
+    "single_crosswalk_list": [
+      "B319AS318961",
+      "B319AS318962"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000110",
+    "single_crosswalk_list": [
+      "B319AS318954"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000111",
+    "single_crosswalk_list": [
+      "B319AS319020",
+      "B319AS319019"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318212",
+      "C119AS318216"
+    ]
+  },
+  {
+    "idx": "CW000112",
+    "single_crosswalk_list": [
+      "B319AS319021"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000113",
+    "single_crosswalk_list": [
+      "B319AS319016",
+      "B319AS319015"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318219"
+    ]
+  },
+  {
+    "idx": "CW000114",
+    "single_crosswalk_list": [
+      "B319AS319013",
+      "B319AS319014"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318222",
+      "C119AS318296"
+    ]
+  },
+  {
+    "idx": "CW000115",
+    "single_crosswalk_list": [
+      "B319AS319018",
+      "B319AS319017"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318225"
+    ]
+  },
+  {
+    "idx": "CW000116",
+    "single_crosswalk_list": [
+      "B319AS319067",
+      "B319AS319066"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318321",
+      "C119AS318324"
+    ]
+  },
+  {
+    "idx": "CW000117",
+    "single_crosswalk_list": [
+      "B319AS319068",
+      "B319AS319069"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318325",
+      "C119AS318326"
+    ]
+  },
+  {
+    "idx": "CW000118",
+    "single_crosswalk_list": [
+      "B319AS319070"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000119",
+    "single_crosswalk_list": [
+      "B319AS319071",
+      "B319AS319072"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318333",
+      "C119AS318378"
+    ]
+  },
+  {
+    "idx": "CW000120",
+    "single_crosswalk_list": [
+      "B319AS319073"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000121",
+    "single_crosswalk_list": [
+      "B319AS319074"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000122",
+    "single_crosswalk_list": [
+      "B319AS319077",
+      "B319AS319076",
+      "B319AS319075"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318336"
+    ]
+  },
+  {
+    "idx": "CW000123",
+    "single_crosswalk_list": [
+      "B319AS319041",
+      "B319AS319042",
+      "B319AS319043"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318390",
+      "C119AS318293"
+    ]
+  },
+  {
+    "idx": "CW000124",
+    "single_crosswalk_list": [
+      "B319AS318933",
+      "B319AS318931",
+      "B319AS318929"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318199",
+      "C119AS318201"
+    ]
+  },
+  {
+    "idx": "CW000125",
+    "single_crosswalk_list": [
+      "B319AS319078",
+      "B319AS319080",
+      "B319AS319079"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318344",
+      "C119AS318343"
+    ]
+  },
+  {
+    "idx": "CW000126",
+    "single_crosswalk_list": [
+      "B319AS318969"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000127",
+    "single_crosswalk_list": [
+      "B3218C100285",
+      "B3218C100286"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000128",
+    "single_crosswalk_list": [
+      "B3218C100290"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000129",
+    "single_crosswalk_list": [
+      "B319AS318944",
+      "B319AS318947",
+      "B319AS318946"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318193",
+      "C119AS318195"
+    ]
+  },
+  {
+    "idx": "CW000130",
+    "single_crosswalk_list": [
+      "B3218C100284",
+      "B3218C100283"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000131",
+    "single_crosswalk_list": [
+      "B3218C100294",
+      "B3218C100293"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000132",
+    "single_crosswalk_list": [
+      "B3218C100304"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000133",
+    "single_crosswalk_list": [
+      "B3218C100298"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000134",
+    "single_crosswalk_list": [
+      "B3218C100306",
+      "B3218C100305"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000135",
+    "single_crosswalk_list": [
+      "B319AS319005",
+      "B319AS319006",
+      "B319AS319007"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318247",
+      "C119AS318275"
+    ]
+  },
+  {
+    "idx": "CW000136",
+    "single_crosswalk_list": [
+      "B319AS319128",
+      "B319AS319004",
+      "B319AS319003"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318241",
+      "C119AS318238"
+    ]
+  },
+  {
+    "idx": "CW000137",
+    "single_crosswalk_list": [
+      "B319AS319008",
+      "B319AS319009",
+      "B319AS319010"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318276",
+      "C119AS318388"
+    ]
+  },
+  {
+    "idx": "CW000138",
+    "single_crosswalk_list": [
+      "B319AS319002",
+      "B319AS319001",
+      "B319AS319127"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318244",
+      "C119AS318274"
+    ]
+  },
+  {
+    "idx": "CW000139",
+    "single_crosswalk_list": [
+      "B319AS319037",
+      "B319AS319036",
+      "B319AS319035"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000140",
+    "single_crosswalk_list": [
+      "B319AS318983",
+      "B319AS318984",
+      "B319AS318985"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318280",
+      "C119AS318279"
+    ]
+  },
+  {
+    "idx": "CW000141",
+    "single_crosswalk_list": [
+      "B319AS318982",
+      "B319AS318981"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318157",
+      "C119AS318159"
+    ]
+  },
+  {
+    "idx": "CW000142",
+    "single_crosswalk_list": [
+      "B319AS318978",
+      "B319AS318979"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000143",
+    "single_crosswalk_list": [
+      "B319AS318980",
+      "B319AS318977",
+      "B319AS318976"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318283",
+      "C119AS318284"
+    ]
+  },
+  {
+    "idx": "CW000144",
+    "single_crosswalk_list": [
+      "B3218C100272",
+      "B3218C100271"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000145",
+    "single_crosswalk_list": [
+      "B3218C100277",
+      "B3218C100278",
+      "B3218C100279",
+      "B3218C100280"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000146",
+    "single_crosswalk_list": [
+      "B319AS318928",
+      "B319AS318926",
+      "B319AS318924"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318213",
+      "C119AS318185"
+    ]
+  },
+  {
+    "idx": "CW000147",
+    "single_crosswalk_list": [
+      "B319AS318914",
+      "B319AS318912"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318167",
+      "C119AS318165"
+    ]
+  },
+  {
+    "idx": "CW000148",
+    "single_crosswalk_list": [
+      "B319AS318918",
+      "B319AS318916"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318155",
+      "C119AS318153"
+    ]
+  },
+  {
+    "idx": "CW000149",
+    "single_crosswalk_list": [
+      "B319AS318910",
+      "B319AS318908",
+      "B319AS318906"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318139",
+      "C119AS318137"
+    ]
+  },
+  {
+    "idx": "CW000150",
+    "single_crosswalk_list": [
+      "B319AS318942"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000151",
+    "single_crosswalk_list": [
+      "B319AS318904"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000152",
+    "single_crosswalk_list": [
+      "B319AS318886",
+      "B319AS318890",
+      "B319AS318888"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000153",
+    "single_crosswalk_list": [
+      "B319AS318884",
+      "B319AS318882",
+      "B319AS318880"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318129",
+      "C119AS318103"
+    ]
+  },
+  {
+    "idx": "CW000154",
+    "single_crosswalk_list": [
+      "B319AS318892",
+      "B319AS318894",
+      "B319AS318896"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318109",
+      "C119AS318123"
+    ]
+  },
+  {
+    "idx": "CW000155",
+    "single_crosswalk_list": [
+      "B319AS318993",
+      "B319AS318994",
+      "B319AS318995"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000156",
+    "single_crosswalk_list": [
+      "B319AS318991"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000157",
+    "single_crosswalk_list": [
+      "B319AS318992"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000158",
+    "single_crosswalk_list": [
+      "B319AS318989",
+      "B319AS318990"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000159",
+    "single_crosswalk_list": [
+      "B319AS318988",
+      "B319AS318987",
+      "B319AS318986"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000160",
+    "single_crosswalk_list": [
+      "B319AS319012",
+      "B319AS319011"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318237",
+      "C119AS318234"
+    ]
+  },
+  {
+    "idx": "CW000161",
+    "single_crosswalk_list": [
+      "B319AS319155",
+      "B319AS319148",
+      "B319AS319156"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318400",
+      "C119AS318408"
+    ]
+  },
+  {
+    "idx": "CW000162",
+    "single_crosswalk_list": [
+      "B319AS318898",
+      "B319AS318900",
+      "B319AS318902"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318111",
+      "C119AS318121"
+    ]
+  },
+  {
+    "idx": "CW000163",
+    "single_crosswalk_list": [
+      "B319AS319145",
+      "B319AS319038",
+      "B319AS319039"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318289",
+      "C119AS318290"
+    ]
+  },
+  {
+    "idx": "CW000164",
+    "single_crosswalk_list": [
+      "B319AS319147",
+      "B319AS319146",
+      "B319AS319144"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318115",
+      "C119AS318407"
+    ]
+  },
+  {
+    "idx": "CW000165",
+    "single_crosswalk_list": [
+      "B319AS319082",
+      "B319AS319081"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318350",
+      "C119AS318349"
+    ]
+  },
+  {
+    "idx": "CW000166",
+    "single_crosswalk_list": [
+      "B319AS318940",
+      "B319AS318939"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318183",
+      "C119AS318181"
+    ]
+  },
+  {
+    "idx": "CW000167",
+    "single_crosswalk_list": [
+      "B319AS319083",
+      "B319AS319084"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318358",
+      "C119AS318357"
+    ]
+  },
+  {
+    "idx": "CW000168",
+    "single_crosswalk_list": [
+      "B319AS319123"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000169",
+    "single_crosswalk_list": [
+      "B319AS319085",
+      "B319AS319087",
+      "B319AS319086"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000170",
+    "single_crosswalk_list": [
+      "B319AS319107",
+      "B319AS319106"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000171",
+    "single_crosswalk_list": [
+      "B319AS319104",
+      "B319AS319105"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000172",
+    "single_crosswalk_list": [
+      "B319AS319094",
+      "B319AS319095"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000173",
+    "single_crosswalk_list": [
+      "B319AS319093",
+      "B319AS319092"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000174",
+    "single_crosswalk_list": [
+      "B319AS319091",
+      "B319AS319090"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000175",
+    "single_crosswalk_list": [
+      "B319AS319047",
+      "B319AS319048"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000176",
+    "single_crosswalk_list": [
+      "B319AS319102",
+      "B319AS319103"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000177",
+    "single_crosswalk_list": [
+      "B319AS319100",
+      "B319AS319101"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000178",
+    "single_crosswalk_list": [
+      "B319AS319098",
+      "B319AS319099"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000179",
+    "single_crosswalk_list": [
+      "B319AS319096",
+      "B319AS319097"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000180",
+    "single_crosswalk_list": [
+      "B319AS319108",
+      "B319AS319109"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000181",
+    "single_crosswalk_list": [
+      "B319AS319112",
+      "B319AS319113"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000182",
+    "single_crosswalk_list": [
+      "B319AS319111",
+      "B319AS319110"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000183",
+    "single_crosswalk_list": [
+      "B319AS319057",
+      "B319AS319056",
+      "B319AS319058"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000184",
+    "single_crosswalk_list": [
+      "B319AS319059",
+      "B319AS319060"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318313",
+      "C119AS318314"
+    ]
+  },
+  {
+    "idx": "CW000185",
+    "single_crosswalk_list": [
+      "B319AS319063",
+      "B319AS319061",
+      "B319AS319062"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318373",
+      "C119AS318374"
+    ]
+  },
+  {
+    "idx": "CW000186",
+    "single_crosswalk_list": [
+      "B319AS319064",
+      "B319AS319065"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318315",
+      "C119AS318316"
+    ]
+  },
+  {
+    "idx": "CW000187",
+    "single_crosswalk_list": [
+      "B319AS319135",
+      "B319AS319136"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318393",
+      "C119AS318299"
+    ]
+  },
+  {
+    "idx": "CW000188",
+    "single_crosswalk_list": [
+      "B319AS319046",
+      "B319AS319045"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318384",
+      "C119AS318300"
+    ]
+  },
+  {
+    "idx": "CW000189",
+    "single_crosswalk_list": [
+      "B319AS319116",
+      "B319AS319044",
+      "B319AS319117"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318370",
+      "C119AS318369"
+    ]
+  },
+  {
+    "idx": "CW000190",
+    "single_crosswalk_list": [
+      "B319AS319132",
+      "B319AS319133",
+      "B319AS319134"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318396",
+      "C119AS318383"
+    ]
+  },
+  {
+    "idx": "CW000191",
+    "single_crosswalk_list": [
+      "B319AS318966",
+      "B319AS318964",
+      "B319AS318967"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318067",
+      "C119AS318069"
+    ]
+  },
+  {
+    "idx": "CW000192",
+    "single_crosswalk_list": [
+      "B319AS319115",
+      "B319AS319114",
+      "B319AS319089"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318361",
+      "C119AS318362"
+    ]
+  },
+  {
+    "idx": "CW000193",
+    "single_crosswalk_list": [
+      "B319AS319131",
+      "B319AS319130",
+      "B319AS319129"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000194",
+    "single_crosswalk_list": [
+      "B319AS319203",
+      "B319AS319202",
+      "B319AS319201"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000195",
+    "single_crosswalk_list": [
+      "B319AS319120",
+      "B319AS319088"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000196",
+    "single_crosswalk_list": [
+      "B319AS318836"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000197",
+    "single_crosswalk_list": [
+      "B319AS318960",
+      "B319AS318958",
+      "B319AS318957"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318079",
+      "C119AS318081"
+    ]
+  },
+  {
+    "idx": "CW000198",
+    "single_crosswalk_list": [
+      "B319AS318971"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000199",
+    "single_crosswalk_list": [
+      "B319AS318853",
+      "B319AS318851",
+      "B319AS318850"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000200",
+    "single_crosswalk_list": [
+      "B319AS318842",
+      "B319AS318840",
+      "B319AS318838"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000201",
+    "single_crosswalk_list": [
+      "B319AS318864",
+      "B319AS318866",
+      "B319AS318862"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000202",
+    "single_crosswalk_list": [
+      "B319AS318831",
+      "B319AS318832",
+      "B319AS318834"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000203",
+    "single_crosswalk_list": [
+      "B319AS318874",
+      "B319AS318876",
+      "B319AS318878"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318099",
+      "C119AS318101"
+    ]
+  },
+  {
+    "idx": "CW000204",
+    "single_crosswalk_list": [
+      "B319AS318870",
+      "B319AS318868",
+      "B319AS318872"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318083",
+      "C119AS318093"
+    ]
+  },
+  {
+    "idx": "CW000205",
+    "single_crosswalk_list": [
+      "B319AS318848",
+      "B319AS318846",
+      "B319AS318844"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318211",
+      "C119AS318207"
+    ]
+  },
+  {
+    "idx": "CW000206",
+    "single_crosswalk_list": [
+      "B319AS318860",
+      "B319AS318858",
+      "B319AS318856"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318135",
+      "C119AS318209"
+    ]
+  },
+  {
+    "idx": "CW000207",
+    "single_crosswalk_list": [
+      "B3218C100095"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000208",
+    "single_crosswalk_list": [
+      "B3218C100140"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000209",
+    "single_crosswalk_list": [
+      "B3218C100090"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000210",
+    "single_crosswalk_list": [
+      "B3218C100163"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000211",
+    "single_crosswalk_list": [
+      "B3218C100089"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000212",
+    "single_crosswalk_list": [
+      "B3218C100164"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000213",
+    "single_crosswalk_list": [
+      "B3218C100092",
+      "B3218C100093"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000214",
+    "single_crosswalk_list": [
+      "B3218C100072",
+      "B3218C100071"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000215",
+    "single_crosswalk_list": [
+      "B3218C100016",
+      "B3218C100015"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000216",
+    "single_crosswalk_list": [
+      "B3218C100009"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000217",
+    "single_crosswalk_list": [
+      "B3218C100008"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000218",
+    "single_crosswalk_list": [
+      "B3218C100003",
+      "B3218C100004"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000219",
+    "single_crosswalk_list": [
+      "B3218C100099"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000220",
+    "single_crosswalk_list": [
+      "B3218C100100"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000221",
+    "single_crosswalk_list": [
+      "B3218C100101"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000222",
+    "single_crosswalk_list": [
+      "B3218C100117"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000223",
+    "single_crosswalk_list": [
+      "B3218C100118"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000224",
+    "single_crosswalk_list": [
+      "B3218C100165"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000225",
+    "single_crosswalk_list": [
+      "B3218C100253",
+      "B3218C100254"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000226",
+    "single_crosswalk_list": [
+      "B3218C100267"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000227",
+    "single_crosswalk_list": [
+      "B3218C100270"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000228",
+    "single_crosswalk_list": [
+      "B3218C100159",
+      "B3218C100332",
+      "B3218C100158"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100027",
+      "C1218C100026"
+    ]
+  },
+  {
+    "idx": "CW000229",
+    "single_crosswalk_list": [
+      "B3218C100157",
+      "B3218C100156",
+      "B3218C100155"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100023",
+      "C1218C100020"
+    ]
+  },
+  {
+    "idx": "CW000230",
+    "single_crosswalk_list": [
+      "B3218C100234",
+      "B3218C100235"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000231",
+    "single_crosswalk_list": [
+      "B3218C100175"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000232",
+    "single_crosswalk_list": [
+      "B3218C100323"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000233",
+    "single_crosswalk_list": [
+      "B3218C100186",
+      "B3218C100187",
+      "B3218C100188"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100029",
+      "C1218C100030"
+    ]
+  },
+  {
+    "idx": "CW000234",
+    "single_crosswalk_list": [
+      "B3218C100191",
+      "B3218C100189",
+      "B3218C100190"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000235",
+    "single_crosswalk_list": [
+      "B3218C100195",
+      "B3218C100196",
+      "B3218C100197"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000236",
+    "single_crosswalk_list": [
+      "B3218C100194",
+      "B3218C100192",
+      "B3218C100193"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100037",
+      "C1218C100033"
+    ]
+  },
+  {
+    "idx": "CW000237",
+    "single_crosswalk_list": [
+      "B3218C100324"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000238",
+    "single_crosswalk_list": [
+      "B3218C100325"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000239",
+    "single_crosswalk_list": [
+      "B3218C100327",
+      "B3218C100328",
+      "B3218C100326"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100060"
+    ]
+  },
+  {
+    "idx": "CW000240",
+    "single_crosswalk_list": [
+      "B3218C100225",
+      "B3218C100227",
+      "B3218C100226"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100038",
+      "C1218C100041"
+    ]
+  },
+  {
+    "idx": "CW000241",
+    "single_crosswalk_list": [
+      "B3218C100331",
+      "B3218C100329",
+      "B3218C100330"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000242",
+    "single_crosswalk_list": [
+      "B3218C100237"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100044",
+      "C1218C100047"
+    ]
+  },
+  {
+    "idx": "CW000243",
+    "single_crosswalk_list": [
+      "B3218C100240",
+      "B3218C100241"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000244",
+    "single_crosswalk_list": [
+      "B3218C100239"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100053",
+      "C1218C100052"
+    ]
+  },
+  {
+    "idx": "CW000245",
+    "single_crosswalk_list": [
+      "B3218C100242"
+    ],
+    "ref_traffic_light_list": [
+      "C1218C100048",
+      "C1218C100051"
+    ]
+  },
+  {
+    "idx": "CW000246",
+    "single_crosswalk_list": [
+      "B3218C100244",
+      "B3218C100245"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000247",
+    "single_crosswalk_list": [
+      "B3218C100246"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000248",
+    "single_crosswalk_list": [
+      "B3218C100249"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000249",
+    "single_crosswalk_list": [
+      "B3218C100251"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000250",
+    "single_crosswalk_list": [
+      "B3218C100248"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000251",
+    "single_crosswalk_list": [
+      "B319AS318825"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000252",
+    "single_crosswalk_list": [
+      "B319AS318805",
+      "B319AS318806",
+      "B319AS318807"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000253",
+    "single_crosswalk_list": [
+      "B319AS319055",
+      "B319AS319054"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318307",
+      "C119AS318308"
+    ]
+  },
+  {
+    "idx": "CW000254",
+    "single_crosswalk_list": [
+      "B319AS319051",
+      "B319AS319052"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318309",
+      "C119AS318310"
+    ]
+  },
+  {
+    "idx": "CW000255",
+    "single_crosswalk_list": [
+      "B319AS319053"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000256",
+    "single_crosswalk_list": [
+      "B3218C100322",
+      "B3218C100320",
+      "B3218C100321"
+    ],
+    "ref_traffic_light_list": []
+  },
+  {
+    "idx": "CW000257",
+    "single_crosswalk_list": [
+      "B319AS319049",
+      "B319AS319050"
+    ],
+    "ref_traffic_light_list": [
+      "C119AS318376",
+      "C119AS318304"
+    ]
+  },
+  {
+    "idx": "CW000258",
+    "single_crosswalk_list": [
+      "B319AS318937",
+      "B319AS318935"
+    ],
+    "ref_traffic_light_list": []
+  }
+]
