@@ -1,10 +1,8 @@
-FROM node:18-alpine as builder
+FROM node:18.17.1 as builder
 
 WORKDIR /app
 
 COPY . /app
-
-RUN apt-get update
 
 RUN npm install
 RUN npm run build
