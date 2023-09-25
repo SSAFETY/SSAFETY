@@ -1,0 +1,47 @@
+.container {
+  display: flex; /* Flexbox 사용 */
+  align-items: center; /* 수평 가운데 정렬 */
+  height: 95vh; /* 화면 높이만큼 컨테이너를 확장합니다. */
+  }
+  
+  .gumap {
+    flex: 1; /* gumap이 남은 공간을 모두 차지하도록 설정 */
+  }
+  
+  /* input-container 요소의 스타일 */
+  .input-container {
+    flex: 1; /* input-container가 남은 공간을 모두 차지하도록 설정 */
+    display: flex; /* 내부 요소들을 수평 가운데 정렬하기 위해 다시 Flexbox 사용 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center;
+    gap: 10px; 
+  }
+
+  /* Style for select elements */
+select {
+    padding: 5px; /* Add some padding for better spacing */
+    font-size: 16px; /* Adjust the font size */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #fff; /* Background color */
+    color: #333; /* Text color */
+    cursor: pointer; /* Change cursor on hover */
+  }
+  
+  /* Style for the "추가" button */
+  button {
+    padding: 10px 20px; /* Adjust padding for button size */
+    font-size: 16px; /* Adjust font size */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+  }
+  
+  /* Add hover effect for the button */
+  button:hover {
+    background-color: #0056b3; /* Change background color on hover */
+  }
+  
+  

@@ -18,6 +18,7 @@ import ssafety.be.service.ReportDataService;
 import ssafety.be.service.SmsService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -58,6 +59,12 @@ public class ReportController {
         return reportDataService.getData();
     }
 
+    @GetMapping("/detailData")
+    public Optional<Report> detailData(@RequestParam Long id) {
+        return reportDataService.findById(id);
+    }
+
+
 
     @PostMapping("/searchReports")
     public Page<Report> searchReports(@RequestBody SearchDto request,@PageableDefault(size = 15) Pageable pageable) {
@@ -69,8 +76,13 @@ public class ReportController {
         return kakaoMapService.getAddress(latitude, longitude);
     }
 
-    @PostMapping("/send")
-    public String sendSms(@RequestBody SmsRequestDto request) {
-        return smsService.sendSms(request);
+    @PostMapping("/success")
+    public String sendSuccess(@RequestBody SmsRequestDto request) {
+        return smsService.sendSuccess(request);
+    }
+
+    @PostMapping("/fail")
+    public String sendFail(@RequestBody SmsRequestDto request) {
+        return smsService.sendFail(request);
     }
 }
