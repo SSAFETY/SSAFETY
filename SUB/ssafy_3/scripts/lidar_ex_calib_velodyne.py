@@ -38,22 +38,22 @@ from numpy.linalg import inv
 # Camera는 추가로 Width, Height, Horizontal FOV 값을 입력합니다.
 '''
 parameters_cam = {
-    "WIDTH": 640, # image width
-    "HEIGHT": 480, # image height
-    "FOV": 90, # Field of view
-    "X": 3.31, # meter
+    "WIDTH": 640,   # image width
+    "HEIGHT": 480,  # image height
+    "FOV": 90,      # Field of view
+    "X": 3.31,      # meter
     "Y": 0.08,
     "Z": 0.6,
-    "YAW": 0, # radian    
+    "YAW": 0,       # radian    
     "PITCH": 0,
     "ROLL": 0,
 }
 
 parameters_lidar = {
-    "X": 0.43, # meter
+    "X": 0.43,      # meter
     "Y": 0.0,
     "Z": 1.57,
-    "YAW": 0.0, # radian
+    "YAW": 0.0,     # radian
     "PITCH": 0.0,
     "ROLL": 0,
 }
@@ -69,9 +69,9 @@ def getRotMat(RPY):
         # rotMat : 3x3 Rotation Matrix of sensor w.r.t vehicle.
     # Tip : math, numpy
     '''   
-    cosR = math.cos(RPY[0]) # roll,  x축
-    cosP = math.cos(RPY[1]) # pitch, y축 
-    cosY = math.cos(RPY[2]) # yaw    z축
+    cosR = math.cos(RPY[0])     # roll,  x축
+    cosP = math.cos(RPY[1])     # pitch, y축 
+    cosY = math.cos(RPY[2])     # yaw    z축
     sinR = math.sin(RPY[0])
     sinP = math.sin(RPY[1])
     sinY = math.sin(RPY[2])
@@ -104,8 +104,8 @@ def getSensorToVehicleMat(sensorRPY, sensorPosition):
     # numpy array로
     sensorTranslationMat = np.array([sensorPosition])
 
-    Tr_sensor_to_vehicle = np.concatenate((sensorRotationMat,sensorTranslationMat.T),axis = 1)
-    Tr_sensor_to_vehicle = np.insert(Tr_sensor_to_vehicle, 3, values=[0,0,0,1],axis = 0)
+    Tr_sensor_to_vehicle = np.concatenate((sensorRotationMat,sensorTranslationMat.T), axis=1)
+    Tr_sensor_to_vehicle = np.insert(Tr_sensor_to_vehicle, 3, values=[0,0,0,1], axis=0)
     
     return Tr_sensor_to_vehicle
 
