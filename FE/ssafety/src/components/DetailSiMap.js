@@ -62,7 +62,8 @@ const SeoulMap = () => {
 
     const fetchData = () => {
       axios
-        .get('http://localhost:8080/getData')
+        // .get('http://localhost:8080/getData')
+        .get('https://j9a102.p.ssafy.io:8080/getData')
         .then((response) => {
           const reportData = response.data;
           const newData = {};

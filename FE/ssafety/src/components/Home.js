@@ -121,7 +121,8 @@ const KoreaMap = () => {
     // 데이터 요청 함수
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/getAll?page=${page}`);
+        // const response = await axios.get(`http://localhost:8080/getAll?page=${page}`);
+        const response = await axios.get(`https://j9a102.p.ssafy.io:8080/getAll?page=${page}`);
         console.log(response.data);
         const responseData = response.data;
         const totalPages = Math.ceil(responseData.totalElements / limit);
