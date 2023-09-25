@@ -9,6 +9,8 @@ RUN npm run build
 
 FROM nginx:latest
 
+CMD ["PWD"]
+
 COPY --from=builder /app/build /usr/share/nginx/html
 
 EXPOSE 80
