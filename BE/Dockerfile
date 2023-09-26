@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . /app
 RUN ./gradlew --version
 RUN ./gradlew build --no-daemon
-RUN cp -r ./build/libs/`ls ./build/libs | grep SNAPSHOT.jar` /app/app.jar
+RUN cp ./build/libs/`ls ./build/libs | grep SNAPSHOT.jar` /app/app.jar
 
 FROM openjdk:17-jdk-slim
 
