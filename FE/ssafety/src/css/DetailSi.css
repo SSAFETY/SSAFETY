@@ -14,6 +14,7 @@
 .rightbox {
   display: flex;
   align-items: center; /* 버튼을 수직 가운데 정렬 */
+  gap:10px;
 }
 
 /* 드롭다운 스타일 */
@@ -30,11 +31,7 @@ option {
   font-size: 16px;
 }
 
-.button-container {
-  text-align: center;
-}
-
-.button-container button {
+.rightbox button {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -45,6 +42,6 @@ option {
   transition: background-color 0.3s;
 }
 
-.button-container button:hover {
+.rightbox button:hover {
   background-color: #0056b3;
 }

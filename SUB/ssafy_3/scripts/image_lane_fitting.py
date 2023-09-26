@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
 import rospy
@@ -13,13 +13,14 @@ import tf
 from cv_bridge import CvBridgeError
 from sklearn import linear_model
 
-from nav_msgs.msg import Odometry, Path
+from nav_msgs.msg import Odometry,Path
 from sensor_msgs.msg import CompressedImage
-from geometry_msgs.msg import PoseStamped, Point
+from geometry_msgs.msg import PoseStamped,Point
 from morai_msgs.msg import CtrlCmd, EgoVehicleStatus
 
-# image_lane_fitting - 이제 차선 정보를 인지해보자
-# 차선 위치 pixel 좌표 계산해서 좌우 차선 각각 RANSAC 을 활용한 3차 곡선 근사 수행
+# image_lane_fitting 은 Camera Image를 활용하여 차선 정보를 인지하는 예제입니다.
+# Camera Image로 부터 차선의 위치에 해당하는 Pixel 좌표를 계산한 뒤,
+# 좌우 차선 각각 RANSAC을 활용한 3차 곡선 근사를 수행합니다.
 
 # 노드 실행 순서
 # 1. CURVEFIT Parameter 입력
@@ -28,9 +29,9 @@ from morai_msgs.msg import CtrlCmd, EgoVehicleStatus
 class IMGParser:
     def __init__(self, pkg_name = 'ssafy_3'):
 
-        self.image_sub = rospy.Subscriber("/image_jpeg/compressed", CompressedImage, self.image_callback)
+        self.image_sub = rospy.Subscriber("/image_jpeg/compressed", CompressedImage, self.callback)
 
-        rospy.Subscriber("/odom", Odometry, self.odom_callback)
+        rospy.Subscriber("odom", Odometry, self.odom_callback)
 
         self.path_pub = rospy.Publisher('/lane_path', Path, queue_size=30)
 
@@ -39,14 +40,13 @@ class IMGParser:
         self.edges = None 
         self.is_status = False
 
-        # white, yellow 색상 영역 검출하기 위해 범위를 지정
-        self.lower_wlane = np.array([0, 0, 205])
-        self.upper_wlane = np.array([30, 60, 255])
+        self.lower_wlane = np.array([0,0,205])
+        self.upper_wlane = np.array([30,60,255])
 
-        self.lower_ylane = np.array([0, 70, 120])         # ([0,60,100])
-        self.upper_ylane = np.array([40, 195, 230])       # ([40,175,255])
+        self.lower_ylane = np.array([0,70,120])# ([0,60,100])
+        self.upper_ylane = np.array([40,195,230])# ([40,175,255])
 
-        self.crop_pts = np.array([[[0,480], [0,350], [280,200], [360,200], [640,350], [640,480]]])
+        self.crop_pts = np.array([[[0,480],[0,350],[280,200],[360,200],[640,350],[640,480]]])
 
         rospack = rospkg.RosPack()
         currentPath = rospack.get_path(pkg_name)
@@ -57,27 +57,28 @@ class IMGParser:
         params_cam = sensor_params["params_cam"]
 
         bev_op = BEVTransform(params_cam=params_cam)
-
         #TODO: (1) CURVEFit Parameter 입력
-        #========================================================#
-        # (slef, 다항식 차수- 3차, lasso 상수, 차선 폭, 파라 T- 중심축과의 y축 마진(보통 2~3alpha), 차선 추정 x좌표 범위, x좌표 간격, RANSAC 알고리즘에 필요한 최소 포인트 수)
-        curve_learner = CURVEFit(order=3, lane_width=3.5, y_margin=1, x_range=5, min_pts=50)
+        '''
+        CURVEFit Class의 Parameter를 결정하는 영역입니다.
+        하단의 CURVEFit Class에 대한 정보를 바탕으로 적절한 Parameter를 입력하기 바랍니다.
+
+        curve_learner = CURVEFit(order=, lane_width= ,y_margin=, x_range=, min_pts=)
+        '''
         #END
         rate = rospy.Rate(10)
 
         while not rospy.is_shutdown():
 
             if self.img_bgr is not None and self.is_status == True:
-                # 이미지 잘라서 항공뷰 -> 이진화 -> 역 왜곡(실제 차선 반영)
-                # 마스킹(masking) - 차량 앞 이미지 자르기
+
                 img_crop = self.mask_roi(self.img_bgr)
-                # 항공 뷰 - bev 반영 이미지
+                
                 img_warp = bev_op.warp_bev_img(img_crop)
-                # 차선 이진화 - white & yellow
+
                 img_lane = self.binarize(img_warp)
-                # BEV 에서 왜곡 줄여서 다시 실제 차선 반영
+
                 img_f = bev_op.warp_inv_img(img_lane)
-                #======================================================#
+
                 lane_pts = bev_op.recon_lane_pts(img_f)
 
                 x_pred, y_pred_l, y_pred_r = curve_learner.fit_curve(lane_pts)
@@ -105,41 +106,45 @@ class IMGParser:
 
                 rate.sleep()
 
-    def odom_callback(self, msg):       ## Vehicl Status Subscriber 
-        self.status_msg = msg    
+    def odom_callback(self,msg): ## Vehicl Status Subscriber 
+        self.status_msg=msg    
         self.is_status = True
 
-    def image_callback(self, msg):
+    def callback(self, msg):
         try:
-            np_arr = np.frombuffer(msg.data, np.uint8)
+            np_arr = np.fromstring(msg.data, np.uint8)
             self.img_bgr = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
-        except CvBridgeError as err:
-            print(err)
+        except CvBridgeError as e:
+            print(e)
 
     def binarize(self, img):
         img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-        # 이진화된 white / yellow 색상 범위 설정, 
         img_wlane = cv2.inRange(img_hsv, self.lower_wlane, self.upper_wlane)
         img_ylane = cv2.inRange(img_hsv, self.lower_ylane, self.upper_ylane)
-        # 비트 연산을 통해 두 이미지 합치기
+
         self.img_lane = cv2.bitwise_or(img_wlane, img_ylane)
 
         return self.img_lane
 
     def mask_roi(self, img):
+
         h = img.shape[0]
         w = img.shape[1]
         
-        if len(img.shape) == 3:
-            # shpae 는 [h, w, c], c는 3-채널 RGB 값
+        if len(img.shape)==3:
+
+            # num of channel = 3
+
             c = img.shape[2]
             mask = np.zeros((h, w, c), dtype=np.uint8)
 
             mask_value = (255, 255, 255)
 
         else:
-            # 2-채널 grayscale, 다른 영역 검정으로
+    
+            # grayscale
+
             c = img.shape[2]
             mask = np.zeros((h, w, c), dtype=np.uint8)
 
@@ -163,18 +168,14 @@ class IMGParser:
 
         #Left Lane
         for ctr in zip(leftx, lefty):
-            point_np = cv2.circle(point_np, ctr, 2, (255,0,0), -1)
+            point_np = cv2.circle(point_np, ctr, 2, (255,0,0),-1)
 
         #Right Lane
         for ctr in zip(rightx, righty):
-            point_np = cv2.circle(point_np, ctr, 2, (0,0,255), -1)
+            point_np = cv2.circle(point_np, ctr, 2, (0,0,255),-1)
 
         return point_np
 
-#========================================================#
-# 이 부분 모르겠음 - 일단 Keep
-# 아마 항공뷰 연산해주는 파트인거 같음
-#========================================================#
 class BEVTransform:
     def __init__(self, params_cam, xb=10.0, zb=10.0):
         self.xb = xb
@@ -239,13 +240,12 @@ class BEVTransform:
         self.perspective_inv_tf = cv2.getPerspectiveTransform(dst_pts, src_pts)
 
 
-    # warping - 원근 맵에 대한 왜곡 변환
     def warp_bev_img(self, img):
         img_warp = cv2.warpPerspective(img, self.perspective_tf, (self.width, self.height), flags=cv2.INTER_LINEAR)
         
         return img_warp
 
-    # 반영된 차선에 대한 역 왜곡 변환
+    
     def warp_inv_img(self, img_warp):    
         img_f = cv2.warpPerspective(img_warp, self.perspective_inv_tf, (self.width, self.height), flags=cv2.INTER_LINEAR)
         
@@ -369,12 +369,10 @@ class BEVTransform:
         R = np.matmul(R_x, np.matmul(R_y, R_z))
     
         return R
-#========================================================#
 
 
-class CURVEFit:
-            #   (slef, 다항식 차수- 3차, lasso 상수-1, 차선 폭, 파라 T- 중심축과의 y축 마진(보통 2~3alpha), 차선 추정 x좌표 범위, x좌표 간격, RANSAC 알고리즘에 필요한 최소 포인트 수)
-    def __init__(self, order=3, alpha=10, lane_width=3.5, y_margin=0.5, x_range=5, dx=0.5, min_pts=50):
+class CURVEFit:    
+    def __init__(self, order, alpha, lane_width, y_margin, x_range, dx, min_pts):
 
         self.order = order
         self.lane_width = lane_width
@@ -385,29 +383,25 @@ class CURVEFit:
 
         self.lane_path = Path()
         
-        #TODO: (2) RANSAC Parameter 결정
+        #TODO: (2) RANSAC Parameter 입력
+        '''
+        # RANSAC Parameter를 결정하는 영역입니다.
         # RANSAC의 개념 및 아래 링크를 참고하여 적절한 Parameter를 입력하기 바랍니다.
-        # linear_model - RANSACRegressor
         # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RANSACRegressor.html
-        # linear_model - lasso
-        # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html#sklearn.linear_model.Lasso
+        
+        self.ransac_left = linear_model.RANSACRegressor(base_estimator=linear_model.Lasso(alpha=alpha),
+                                                        max_trials=입력,
+                                                        loss='absolute_loss',
+                                                        min_samples=self.min_pts,
+                                                        residual_threshold=self.y_margin)
 
-        # sklearn.linear_model.Lasso()
-        # The optimization objective for Lasso is: (1 / (2 * n_samples)) * ||y - Xw||^2_2 + alpha * ||w||_1
-        # alpha(float, default=1.0): controlling regularization strength
-        self.ransac_left = linear_model.RANSACRegressor(estimator=linear_model.Lasso(alpha=alpha),
-                                                        max_trials=10,                              # 무작위 샘플 선택을 위한 최대 반복 횟수
-                                                        loss='absolute_error',                      # 'absolute_error(default value)' or 'squared_error'
-                                                        min_samples=self.min_pts,                   # 무작위로 골라지는 최소 샘플 수: int (>= 1) or float ([0, 1]), default=None
-                                                        residual_threshold=self.y_margin)           # 중앙 편차(파라미터 T): float, default=None
-
-        self.ransac_right = linear_model.RANSACRegressor(estimator=linear_model.Lasso(alpha=alpha),     # object, default=None
-                                                        max_trials=10,                              # 무작위 샘플 선택을 위한 최대 반복 횟수
-                                                        loss='absolute_error',                      # 'absolute_error(default value)' or 'squared_error'
-                                                        min_samples=self.min_pts,                   # 무작위로 골라지는 최소 샘플 수: int (>= 1) or float ([0, 1]), default=None
-                                                        residual_threshold=self.y_margin)           # 중앙 편차(파라미터 T): float, default=None
-
-
+        self.ransac_right = linear_model.RANSACRegressor(base_estimator=linear_model.Lasso(alpha=alpha),
+                                                        max_trials=입력,
+                                                        loss='absolute_loss',
+                                                        min_samples=self.min_pts,
+                                                        residual_threshold=self.y_margin)
+        '''
+        
         self._init_model()
 
     def _init_model(self):        
@@ -435,14 +429,16 @@ class CURVEFit:
         
         # 이전 Frame의 Fitting 정보를 활용하여 현재 Line에 대한 Point를 분류
         X_g = np.stack([x_g**i for i in reversed(range(1, self.order+1))]).T
-
+                
         y_ransac_collect_r = self.ransac_right.predict(X_g)
-        y_right = y_g[np.logical_and(y_g >= y_ransac_collect_r-self.y_margin, y_g < y_ransac_collect_r+self.y_margin)]
-        x_right = x_g[np.logical_and(y_g >= y_ransac_collect_r-self.y_margin, y_g < y_ransac_collect_r+self.y_margin)]
+
+        y_right = y_g[np.logical_and(y_g>=y_ransac_collect_r-self.y_margin, y_g<y_ransac_collect_r+self.y_margin)]
+        x_right = x_g[np.logical_and(y_g>=y_ransac_collect_r-self.y_margin, y_g<y_ransac_collect_r+self.y_margin)]
 
         y_ransac_collect_l = self.ransac_left.predict(X_g)
-        y_left = y_g[np.logical_and(y_g >= y_ransac_collect_l-self.y_margin, y_g < y_ransac_collect_l+self.y_margin)]
-        x_left = x_g[np.logical_and(y_g >= y_ransac_collect_l-self.y_margin, y_g < y_ransac_collect_l+self.y_margin)]
+
+        y_left = y_g[np.logical_and(y_g>=y_ransac_collect_l-self.y_margin, y_g<y_ransac_collect_l+self.y_margin)]
+        x_left = x_g[np.logical_and(y_g>=y_ransac_collect_l-self.y_margin, y_g<y_ransac_collect_l+self.y_margin)]
         
         #1. Sampling 된 Point들의 X좌표를 활용하여 Prediction Input 생성
         #2. RANSAC을 활용하여 Prediction 수행
@@ -454,7 +450,7 @@ class CURVEFit:
         # 기존 Curve를 바탕으로 Point 분류
         x_left, y_left, x_right, y_right = self.preprocess_pts(lane_pts)
         
-        if len(y_left) == 0 or len(y_right) == 0:
+        if len(y_left)==0 or len(y_right)==0:
 
             self._init_model()
 
@@ -469,27 +465,30 @@ class CURVEFit:
         X_left = np.stack([x_left**i for i in reversed(range(1, self.order+1))]).T
         X_right = np.stack([x_right**i for i in reversed(range(1, self.order+1))]).T
 
-        if y_left.shape[0] >= self.ransac_left.min_samples:
+        if y_left.shape[0]>=self.ransac_left.min_samples:
             self.ransac_left.fit(X_left, y_left)
         
-        if y_right.shape[0] >= self.ransac_right.min_samples:
+        if y_right.shape[0]>=self.ransac_right.min_samples:
             self.ransac_right.fit(X_right, y_right)
-
+            
         x_pred = np.arange(0, self.x_range, self.dx).astype(np.float32)
         X_pred = np.stack([x_pred**i for i in reversed(range(1, self.order+1))]).T
-
+        
         y_pred_l = self.ransac_left.predict(X_pred)
         y_pred_r = self.ransac_right.predict(X_pred)
 
         #END
 
-        if y_left.shape[0] >= self.ransac_left.min_samples and y_right.shape[0] >= self.ransac_right.min_samples:
+        if y_left.shape[0]>=self.ransac_left.min_samples and y_right.shape[0]>=self.ransac_right.min_samples:
+
             self.update_lane_width(y_pred_l, y_pred_r)
 
         if y_left.shape[0]<self.ransac_left.min_samples:
+            
             y_pred_l = y_pred_r + self.lane_width
 
         if y_right.shape[0]<self.ransac_right.min_samples:
+
             y_pred_r = y_pred_l - self.lane_width
         
         # overlap the lane
@@ -498,37 +497,43 @@ class CURVEFit:
 
             if np.mean(y_pred_l + y_pred_r):
 
-                if y_pred_r[x_pred==3.0] > 0:
+                if y_pred_r[x_pred==3.0]>0:
+                    
                     y_pred_r = y_pred_l - self.lane_width
 
-                elif y_pred_l[x_pred==3.0] < 0:
+                elif y_pred_l[x_pred==3.0]<0:
+                    
                     y_pred_l = y_pred_r + self.lane_width
 
             else:
+
                 pass
         
         else:
+
             pass
 
         return x_pred, y_pred_l, y_pred_r
 
     def update_lane_width(self, y_pred_l, y_pred_r):
-        self.lane_width = np.clip(np.max(y_pred_l - y_pred_r), 3.5, 5)
-
-    def write_path_msg(self, x_pred, y_pred_l, y_pred_r, frame_id='/map'):
+        self.lane_width = np.clip(np.max(y_pred_l-y_pred_r), 3.5, 5)
+    
+    def write_path_msg(self, x_pred, y_pred_l, y_pred_r,frame_id='/map'):
         self.lane_path = Path()
 
-        trans_matrix = np.array([   [math.cos(self.vehicle_yaw), -math.sin(self.vehicle_yaw),self.vehicle_pos_x],
-                                    [math.sin(self.vehicle_yaw),  math.cos(self.vehicle_yaw),self.vehicle_pos_y],
-                                    [                        0 ,                          0 ,                1 ]    ])
+        trans_matrix = np.array([
+                                [math.cos(self.vehicle_yaw), -math.sin(self.vehicle_yaw),self.vehicle_pos_x],
+                                [math.sin(self.vehicle_yaw),  math.cos(self.vehicle_yaw),self.vehicle_pos_y],
+                                [0,0,1]])
 
-        self.lane_path.header.frame_id = frame_id
+        self.lane_path.header.frame_id=frame_id
 
-        for i in range(len(x_pred)):
-            local_result = np.array([[x_pred[i]], [(0.5)*(y_pred_l[i] + y_pred_r[i])], [1]])
-            global_result = trans_matrix.dot(local_result)
+        for i in range(len(x_pred)) :
 
-            tmp_pose = PoseStamped()
+            local_result=np.array([[x_pred[i]],[(0.5)*(y_pred_l[i] + y_pred_r[i])],[1]])
+            global_result=trans_matrix.dot(local_result)
+
+            tmp_pose=PoseStamped()
             tmp_pose.pose.position.x = global_result[0][0]
             tmp_pose.pose.position.y = global_result[1][0]
             tmp_pose.pose.position.z = 0
@@ -541,9 +546,10 @@ class CURVEFit:
         return self.lane_path
 
     def set_vehicle_status(self, vehicle_status):
-        odom_quaternion = (vehicle_status.pose.pose.orientation.x, vehicle_status.pose.pose.orientation.y, vehicle_status.pose.pose.orientation.z, vehicle_status.pose.pose.orientation.w)
 
-        _,_,vehicle_yaw = tf.transformations.euler_from_quaternion(odom_quaternion)
+        odom_quaternion=(vehicle_status.pose.pose.orientation.x,vehicle_status.pose.pose.orientation.y,vehicle_status.pose.pose.orientation.z,vehicle_status.pose.pose.orientation.w)
+
+        _,_,vehicle_yaw=tf.transformations.euler_from_quaternion(odom_quaternion)
         self.vehicle_yaw = vehicle_yaw
         self.vehicle_pos_x = vehicle_status.pose.pose.position.x
         self.vehicle_pos_y = vehicle_status.pose.pose.position.y
