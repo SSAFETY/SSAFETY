@@ -54,3 +54,5 @@ bootJar {
     archiveFileName = 'SSAFETY.jar'
     archiveVersion = "1.0.0"
 }
+
+jar.enabled=false
