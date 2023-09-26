@@ -130,13 +130,7 @@ const openModal = async (data) => {
     const fetchData = async () => {
       setIsLoading(true); // 데이터 로딩 시작
       try {
-<<<<<<< HEAD
         const response = await axios.get(`http://localhost:8080/getAll?page=${page}`);
-=======
-        // const response = await axios.get(`http://localhost:8080/getAll?page=${page}`);
-        const response = await axios.get(`https://j9a102.p.ssafy.io:8080/getAll?page=${page}`);
-        console.log(response.data);
->>>>>>> ba8bbbbd1aaef03164c82bbda2601a1abade294f
         const responseData = response.data;
         const totalPages = Math.ceil(responseData.totalElements / limit);
         setTotalPages(totalPages);

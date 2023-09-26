@@ -54,7 +54,7 @@ const SeoulMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 6 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x + 800, height / 2 - scale * y + 2100];
+    const translate = [width / 2 - scale * x + 880, height / 2 - scale * y + 2150];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
