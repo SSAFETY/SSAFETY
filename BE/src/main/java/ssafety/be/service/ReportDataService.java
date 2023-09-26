@@ -144,5 +144,4 @@ public class ReportDataService {
      */
     private LocalDateTime convertToLocalDateTime(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-    }
-}
+    }}

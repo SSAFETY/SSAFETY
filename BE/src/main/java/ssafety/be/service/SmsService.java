@@ -172,4 +172,3 @@ public class SmsService {
         return Base64.encodeBase64String(rawHmac);
     }
 }
-

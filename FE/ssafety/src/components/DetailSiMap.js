@@ -54,7 +54,7 @@ const SeoulMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 6 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x + 800, height / 2 - scale * y + 1950];
+    const translate = [width / 2 - scale * x + 800, height / 2 - scale * y + 2100];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
@@ -62,12 +62,11 @@ const SeoulMap = () => {
 
     const fetchData = () => {
       axios
-        // .get('http://localhost:8080/getData')
-        .get('https://j9a102.p.ssafy.io:8080/getData')
+        // .get('http://localhost:8080/api/getData')
+        .get('https://j9a102.p.ssafy.io:8080/api/getData')
         .then((response) => {
           const reportData = response.data;
           const newData = {};
-          console.log(reportData)
           reportData.forEach((report) => {
             const depth3 = report.depth3;
             const region = depth3;
@@ -158,15 +157,12 @@ const SeoulMap = () => {
     <div className='seoulmap-container'>
   <div className='seoulmap' ref={chart}></div>
   <div className='rightbox'>
-    {/* 지역 드롭다운 */}
     <select
       value={selectedRegion}
       onChange={handleRegionChange}
     >
       <option value="서울시">서울시</option>
-      {/* 다른 지역 추가 가능 */}
     </select>
-    {/* 구 드롭다운 */}
     <select
       value={selectedDistrict}
       onChange={handleDistrictChange}
@@ -178,7 +174,6 @@ const SeoulMap = () => {
         </option>
       ))}
     </select>
-    {/* 동 드롭다운 */}
     <select
       value={selectedDong}
       onChange={handleDongChange}
@@ -190,9 +185,6 @@ const SeoulMap = () => {
         </option>
       ))}
     </select>
-  </div>
-  {/* 버튼 컨테이너를 다른 줄로 내립니다 */}
-  <div className="button-container">
     <button onClick={handleButton}>선택</button>
   </div>
 </div>

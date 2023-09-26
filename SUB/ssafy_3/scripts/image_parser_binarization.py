@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
  
 import rospy
@@ -9,8 +9,8 @@ import os, rospkg
 from sensor_msgs.msg import CompressedImage
 from cv_bridge import CvBridgeError
 
-# image parser binarization Node - HSV 영역의 특정 색상(white & yellow) 범위만 출력
-# white & yellow 색상 범위 - 합친 코드
+# image parser binarization Node 는 시뮬레이터에서 송신하는 Camera 센서 정보를 받아 실시간으로 출력하는 예제입니다.
+# 출력시 hsv 특정 영역의 색상 범위를 지정하여 원하는 색상의 영역만 특정하여 출력합니다.
 
 # 노드 실행 순서 
 # 1. HSV 색상 영역 지정
@@ -20,46 +20,69 @@ from cv_bridge import CvBridgeError
 
 class IMGParser:
     def __init__(self):
+
         self.image_sub = rospy.Subscriber("/image_jpeg/compressed", CompressedImage, self.callback)
 
     def callback(self, msg):
         try:
-            # 카메라 데이터 받아서 데이터 변환 - Byte 단위 이미지 -> np.array
-            # np.fromstring 함수를 이용하여 데이터를 uint8 형태로 변환
-            np_arr = np.frombuffer(msg.data, dtype='uint8')
-            # 1차원 배열 형태 np_arr를 3차원 배열의 bgr 형태로 변환
-            img_bgr = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+            '''
+            np_arr = np.fromstring(             )
+            img_bgr = cv2.imdecode(             )
 
+            '''
         except CvBridgeError as e:
             print(e)
+        '''
+        img_hsv = cv2.cvtColor(                 )
 
-        # cv2.cvtColor() - bgr 이미지 -> HSV 이미지 
-        img_hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
+        '''
+        #TODO: (1)
+        '''
+        # 특정 색상 영역을 검출하기 위해 범위를 지정합니다.
+        # 하한 값 행렬과 상한 값 행렬을 정해 그 사이의 값 만을 출력 하도록 합니다.
+        # 앞선 예제에서 사용한 노란색 범위와 흰색 범위를 모두 사용합니다.
 
-        # white, yellow 색상 영역 검출하기 위해 범위를 지정
-        lower_wlane = np.array([0,0,205])
-        upper_wlane = np.array([30,60,255])
+        lower_wlane = np.array([    ,       ,       ])
+        upper_wlane = np.array([    ,       ,       ])
 
-        lower_ylane = np.array([0,70,120])# ([0,60,100])
-        upper_ylane = np.array([40,195,230])# ([40,175,255])
+        lower_ylane = np.array([    ,       ,       ])
+        upper_ylane = np.array([    ,       ,       ])
 
-        # cv2.inRange("이미지 정보", 하한 값, 상한 값) - 특정 색상 영역을 추출, 범위 지정
-        img_wlane = cv2.inRange(img_hsv, lower_wlane, upper_wlane)
-        img_wlane = cv2.cvtColor(img_wlane, cv2.COLOR_GRAY2BGR)
+        '''
+        
+        #TODO: (2)
+        '''
+        # cv2.inRange 함수는 특정 색상 영역을 추출할 수 있습니다. 
+        # cv2.inRange 함수를 이용하여 HSV 이미지에서 색상 범위를 지정합니다.
+        # 함수의 첫번째 변수에는 이미지 정보를 두번째는 하한 값 세번째는 상한 값 행렬식을 넣습니다.
 
-        img_ylane = cv2.inRange(img_hsv, lower_ylane, upper_ylane)
-        img_ylane = cv2.cvtColor(img_ylane, cv2.COLOR_GRAY2BGR)
+        img_wlane = cv2.inRange(                    )
+        img_ylane = cv2.inRange(                    )
 
+        img_wlane = cv2.cvtColor(                   )
+        img_ylane = cv2.cvtColor(                   )
 
-        # 비트 연산을 통해 두 이미지 합치기
-        img_lane = cv2.bitwise_or(img_wlane, img_ylane)
-        # np.concatenate() - 서로 다른 두 배열 합치는 함수
-        img_concat = np.concatenate((img_bgr, img_lane), axis=1)
+        '''
 
+        #TODO: (3)
+        '''
+        # 비트 연산을 통해 두 이미지를 합칩니다,
+        # or 연산을 통해 흰색과 노란색으로 검출된 모든 영역을 출력합니다.
 
-        # 출력
-        cv2.imshow("Ego-0 Bin Cam", img_concat)
-        cv2.waitKey(1)      # 단위: ms
+        img_lane = cv2.bitwise_or(                  )
+        
+        img_concat = np.concatenate(                )
+
+        '''
+
+        #TODO: (4)
+        '''
+        # 이미지를 출력 합니다.
+
+        cv2.imshow(         )
+        cv2.waitKey(        ) 
+
+        '''
 
 
 if __name__ == '__main__':
