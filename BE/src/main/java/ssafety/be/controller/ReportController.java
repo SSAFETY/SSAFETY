@@ -22,6 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class ReportController {
     private final KakaoMapService kakaoMapService;
     private final ReportDataService reportDataService;
