@@ -58,7 +58,7 @@ const Violation = () => {
     try {
       const dateValue = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
       // const response = await fetch('http://localhost:8080/api/searchReports', {
-      const response = await fetch('https://j9a102.p.ssafy.io:8080/api/searchReports', {
+      const response = await fetch('https://j9a102.p.ssafy.io/api/searchReports', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

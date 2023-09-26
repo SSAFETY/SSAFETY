@@ -29,7 +29,7 @@ const openModal = async (data) => {
   try {
     // 여기서 필요한 데이터를 가져와서 selectedData에 포함시킴
     // const response = await axios.get(`http://localhost:8080/api/detailData?id=${data.id}`);
-    const response = await axios.get(`https://j9a102.p.ssafy.io:8080/api/detailData?id=${data.id}`);
+    const response = await axios.get(`https://j9a102.p.ssafy.io/api/detailData?id=${data.id}`);
     const modalData = response.data;
     setSelectedData({ ...data, ...modalData }); // 기존 데이터와 모달 데이터를 합침
     setIsModalOpen(true);
@@ -132,7 +132,7 @@ const openModal = async (data) => {
       setIsLoading(true); // 데이터 로딩 시작
       try {
         // const response = await axios.get(`http://localhost:8080/api/getAll?page=${page}`);
-        const response = await axios.get(`https://j9a102.p.ssafy.io:8080/api/getAll?page=${page}`);
+        const response = await axios.get(`https://j9a102.p.ssafy.io/api/getAll?page=${page}`);
         console.log(response.data);
         const responseData = response.data;
         const totalPages = Math.ceil(responseData.totalElements / limit);
