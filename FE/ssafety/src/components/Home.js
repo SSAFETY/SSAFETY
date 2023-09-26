@@ -28,7 +28,8 @@ const openModal = async (data) => {
   // 모달을 열 때 데이터를 미리 로드
   try {
     // 여기서 필요한 데이터를 가져와서 selectedData에 포함시킴
-    const response = await axios.get(`http://localhost:8080/detailData?id=${data.id}`);
+    // const response = await axios.get(`http://localhost:8080/detailData?id=${data.id}`);
+    const response = await axios.get(`https://j9a102.p.ssafy.io:8080/detailData?id=${data.id}`);
     const modalData = response.data;
     setSelectedData({ ...data, ...modalData }); // 기존 데이터와 모달 데이터를 합침
     setIsModalOpen(true);
@@ -158,7 +159,8 @@ const openModal = async (data) => {
       const phoneNumber = selectedData.phoneNum; // 선택된 데이터의 전화번호 추출
       try {
         // 전화번호를 서버로 보내는 POST 요청
-        const response = await axios.post('http://localhost:8080/success', { phoneNumber });
+        // const response = await axios.post('http://localhost:8080/success', { phoneNumber });
+        const response = await axios.post('https://j9a102.p.ssafy.io:8080/success', { phoneNumber });
         // 요청이 성공하면 서버 응답을 처리하거나 다른 작업을 수행할 수 있습니다.
       } catch (error) {
         // 요청이 실패하면 에러를 처리하거나 오류 메시지를 표시할 수 있습니다.
@@ -173,7 +175,8 @@ const openModal = async (data) => {
       const phoneNumber = selectedData.phoneNum; // 선택된 데이터의 전화번호 추출
       try {
         // 전화번호를 서버로 보내는 POST 요청
-        const response = await axios.post('http://localhost:8080/fail', { phoneNumber });
+        // const response = await axios.post('http://localhost:8080/fail', { phoneNumber });
+        const response = await axios.post('https://j9a102.p.ssafy.io:8080/fail', { phoneNumber });
         // 요청이 성공하면 서버 응답을 처리하거나 다른 작업을 수행할 수 있습니다.
       } catch (error) {
         // 요청이 실패하면 에러를 처리하거나 오류 메시지를 표시할 수 있습니다.

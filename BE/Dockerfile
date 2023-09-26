@@ -1,11 +1,11 @@
-FROM gradle:8.2.1 as builder
+FROM gradle:latest as builder
 
 WORKDIR /app
 
 COPY . /app
 RUN ./gradlew --version
 RUN ./gradlew build --no-daemon
-RUN cp ./build/libs/`ls build/libs | grep SNAPSHOT.jar` /app/app.jar
+RUN cp -r ./build/libs/`ls ./build/libs | grep SNAPSHOT.jar` /app/app.jar
 
 FROM openjdk:17-jdk-slim
 
