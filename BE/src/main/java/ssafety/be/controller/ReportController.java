@@ -49,8 +49,6 @@ public class ReportController {
         // 새로운 Pageable 객체 생성 (페이지 번호만 변경)
         Pageable newPageable = PageRequest.of(pageNumber, pageable.getPageSize(), Sort.by(Sort.Order.desc("id")));
 
-        System.out.println(reportDataService.getAll(newPageable));
-
         // 데이터를 조회할 때 새로운 Pageable 객체 사용
         return reportDataService.getAll(newPageable);
     }
@@ -64,8 +62,6 @@ public class ReportController {
     public Optional<Report> detailData(@RequestParam Long id) {
         return reportDataService.findById(id);
     }
-
-
 
     @PostMapping("/searchReports")
     public Page<Report> searchReports(@RequestBody SearchDto request,@PageableDefault(size = 15) Pageable pageable) {

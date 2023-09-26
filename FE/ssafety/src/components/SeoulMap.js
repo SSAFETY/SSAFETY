@@ -4,7 +4,6 @@ import { feature } from 'topojson-client';
 import axios from 'axios';
 import korea from '../mapData/skorea-municipalities-2018-topo.json';
 import jsonData from '../mapData/SeoulDong.json';
-import '../css/DetailSi.css';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -44,8 +43,8 @@ const SeoulMap = () => {
   }
 
   useEffect(() => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = window.innerWidth / 3;
+    const height = window.innerHeight / 1.5;
     const projection = d3.geoMercator().scale(1).translate([0, 0]);
     const path = d3.geoPath().projection(projection);
     const bounds = path.bounds(featureData);
@@ -53,8 +52,8 @@ const SeoulMap = () => {
     const dy = bounds[1][1] - bounds[0][1];
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
-    const scale = 6 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x + 880, height / 2 - scale * y + 2150];
+    const scale = 4 / Math.max(dx / width, dy / height);
+    const translate = [width / 4 - scale * x + 700, height / 4 - scale * y + 900];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
@@ -62,7 +61,8 @@ const SeoulMap = () => {
 
     const fetchData = () => {
       axios
-        .get('https://j9a102.p.ssafy.io:8080/api/getData')
+        .get('http://localhost:8080/api/getData')
+        // .get('https://j9a102.p.ssafy.io:8080/api/getData')
         .then((response) => {
           const reportData = response.data;
           const newData = {};
@@ -187,7 +187,6 @@ const SeoulMap = () => {
     <button onClick={handleButton}>선택</button>
   </div>
 </div>
-
   );
 };
 

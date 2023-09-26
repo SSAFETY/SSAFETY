@@ -19,6 +19,7 @@
     "react-modal": "^3.16.1",
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.15.0",
+    "source-map-loader": "^4.0.1",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.7.28",
     "topojson-client": "^3.1.0",
