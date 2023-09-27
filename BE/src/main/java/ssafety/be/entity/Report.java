@@ -34,25 +34,21 @@ public class Report {
     /**
      * 촬영 영상의 URL은 보고서에 연결된 영상 파일의 경로를 나타냅니다.
      */
-    @Column(nullable = false)
     private String videoUrl;
 
     /**
      * GPS 위도 정보는 촬영 위치의 위도를 나타냅니다.
      */
-    @Column(nullable = false)
     private double gpsLatitude;
 
     /**
      * GPS 경도 정보는 촬영 위치의 경도를 나타냅니다.
      */
-    @Column(nullable = false)
     private double gpsLongitude;
 
     /**
      * GPS경도를 통해 얻은 주소를 나타냅니다.
      */
-    @Column(nullable = false)
     private String gpsLocation;
 
     @Column
@@ -73,13 +69,11 @@ public class Report {
     /**
      * 동 정보를 나타냅니다.
      */
-    @Column(nullable = false)
     private String depth4;
 
     /**
      * 상세 주소 정보를 나타냅니다.
      */
-    @Column(nullable = false)
     private String detail;
 
     /**
@@ -91,7 +85,6 @@ public class Report {
     /**
      * 위반 차량 번호는 보고서에 기록된 차량의 번호판을 나타냅니다.
      */
-    @Column(nullable = false)
     private String vehicleNumber;
 
     @Column(nullable = false)
