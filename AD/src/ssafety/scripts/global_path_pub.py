@@ -18,7 +18,7 @@ from nav_msgs.msg import Odometry,Path
 
 
 class global_path_pub :
-    def __init__(self, pkg_name = 'ssafety', path_name = 'sangam_path'):
+    def __init__(self, pkg_name = 'ssafety', path_name = 'kcity'):
         rospy.init_node('global_path_pub', anonymous = True)
 
         #TODO: (1) Global Path publisher 선언 및 Global Path 변수 생성 
@@ -35,7 +35,8 @@ class global_path_pub :
         # pkg_name 과 path_name 은 21 번 줄 참고한다.
         rospack = rospkg.RosPack()
         pkg_path = rospack.get_path("ssafety")
-        full_path = pkg_path + "/path/" + path_name + ".txt"
+        # full_path = pkg_path + "/path/sangam_path_test.txt"
+        full_path = pkg_path + '/path/' + path_name +'.txt'
         # print(full_path)
         self.f = open(full_path, 'r')
         lines = self.f.readlines()

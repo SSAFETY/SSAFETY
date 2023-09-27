@@ -4,6 +4,7 @@
     <node pkg="ssafety" type="global_path_pub.py" name="global_path_pub"  />
     <node pkg="ssafety" type="local_path_pub.py" name="local_path_pub" />
     <node pkg="ssafety" type="tf_pub.py" name="tf"  />
+
     <node pkg="ssafety" type="lattice_planner.py" name="lattice_planner" output="screen" args="/Object_topic"/>
     <node pkg="ssafety" type="advanced_purepursuit.py" name="advanced_purepursuit"  args="/lattice_path"/>
 

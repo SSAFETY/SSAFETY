@@ -1,0 +1,12 @@
+<launch>
+    <node pkg="ssafety" type="mgeo_pub.py" name="mgeo_pub"  />
+    <node pkg="ssafety" type="gpsimu_parser.py" name="gpsimu_parser" />
+    <node pkg="ssafety" type="global_path_pub.py" name="global_path_pub"  />
+    <node pkg="ssafety" type="local_path_pub.py" name="local_path_pub" />
+    <!-- 여기에 advanced_purpursuit + acc 합친 코드 -->
+    <node pkg="ssafety" type="acc.py" name="ACC"  />
+    <!-- 추가로 다른 topic으로 들어온 데이터 확인할 수도. -->
+    <node pkg="ssafety" type="tf_pub.py" name="tf"  />
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ssafety)/rviz/kcity_rviz.rviz" />
+</launch>

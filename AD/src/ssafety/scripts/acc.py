@@ -44,7 +44,7 @@ class pure_pursuit :
         rospy.Subscriber("/Ego_topic" ,EgoVehicleStatus,self.status_callback)
         rospy.Subscriber("/Object_topic", ObjectStatusList,self.object_info_callback)
         # rospy.Subscriber("/GetTrafficLightStatus", GetTrafficLightStatus, self.get_traffic_callback)  # 교통 상황 - 신호등
-        self.ctrl_cmd_pub = rospy.Publisher('ctrl_cmd',CtrlCmd, queue_size=1)
+        self.ctrl_cmd_pub = rospy.Publisher('/ctrl_cmd',CtrlCmd, queue_size=1)
 
 
         self.ctrl_cmd_msg = CtrlCmd()
