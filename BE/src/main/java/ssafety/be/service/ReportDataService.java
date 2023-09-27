@@ -101,7 +101,6 @@ public class ReportDataService {
         LocalDateTime endTime = null;
 
         if (dateStr != null && !dateStr.isEmpty()) {
-            // "2023-09-18" 형식의 문자열을 LocalDate로 변환
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateStr, formatter);
 
@@ -110,13 +109,9 @@ public class ReportDataService {
 
             // 종료 시간 설정 (23:59:59)
             endTime = date.atTime(23, 59, 59);
-
-            System.out.println("시작 시간: " + startTime);
-            System.out.println("종료 시간: " + endTime);
         }
 
         Specification<Report> spec = reportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
-        System.out.println(spec);
         return reportRepository.findAll(spec, pageable);
     }
 

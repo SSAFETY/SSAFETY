@@ -3,9 +3,10 @@ import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import axios from 'axios';
 import korea from '../mapData/skorea-municipalities-2018-topo.json';
+import jsonData from '../mapData/SeoulDong.json';
+import '../css/DetailSi.css';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import '../css/SeoulMap.css'
 
 const SeoulMap = () => {
   const chart = useRef(null);
@@ -13,6 +14,26 @@ const SeoulMap = () => {
   const [data, setData] = useState({});
   const [selectedData, setSelectedData] = useState(null);
   const navigate = useNavigate();
+  const [selectedRegion, setSelectedRegion] = useState("서울시");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [selectedDong, setSelectedDong] = useState(""); // 추가된 부분
+  const districtsInSelectedRegion = jsonData[selectedRegion][selectedDistrict] || [];
+
+  const handleRegionChange = (e) => {
+    const selectedRegion = e.target.value;
+    setSelectedRegion(selectedRegion);
+  };
+
+  const handleDistrictChange = (e) => {
+    const selectedDistrict = e.target.value;
+    setSelectedDistrict(selectedDistrict);
+    setSelectedDong(""); // 구를 바꿀 때 동을 초기화
+  };
+
+  const handleDongChange = (e) => { // 추가된 부분
+    const selectedDong = e.target.value;
+    setSelectedDong(selectedDong);
+  };
 
   const handleButton = () => {
     if(selectedRegion === "서울시" && selectedDistrict === "마포구" && selectedDong === "상암동") {
@@ -32,8 +53,8 @@ const SeoulMap = () => {
     const dy = bounds[1][1] - bounds[0][1];
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
-    const scale = 7 / Math.max(dx / width, dy / height);
-    const translate = [width / 1 - scale * x + 250, height / 1 - scale * y + 1900];
+    const scale = 6 / Math.max(dx / width, dy / height);
+    const translate = [width / 2 - scale * x + 880, height / 2 - scale * y + 2150];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
@@ -41,7 +62,6 @@ const SeoulMap = () => {
 
     const fetchData = () => {
       axios
-        // .get('http://localhost:8080/api/getData')
         .get('https://j9a102.p.ssafy.io/api/getData')
         .then((response) => {
           const reportData = response.data;
@@ -133,7 +153,41 @@ const SeoulMap = () => {
   }, []);
 
   return (
-    <div className='seoulmap' ref={chart}></div>
+    <div className='seoulmap-container'>
+  <div className='seoulmap' ref={chart}></div>
+  <div className='rightbox'>
+    <select
+      value={selectedRegion}
+      onChange={handleRegionChange}
+    >
+      <option value="서울시">서울시</option>
+    </select>
+    <select
+      value={selectedDistrict}
+      onChange={handleDistrictChange}
+    >
+      <option value="">구 선택</option>
+      {Object.keys(jsonData[selectedRegion]).map((district) => (
+        <option key={district} value={district}>
+          {district}
+        </option>
+      ))}
+    </select>
+    <select
+      value={selectedDong}
+      onChange={handleDongChange}
+    >
+      <option value="">동 선택</option>
+      {districtsInSelectedRegion.map((dong) => (
+        <option key={dong} value={dong}>
+          {dong}
+        </option>
+      ))}
+    </select>
+    <button onClick={handleButton}>선택</button>
+  </div>
+</div>
+
   );
 };
 

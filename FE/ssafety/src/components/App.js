@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
-import Home from './Home';
 import Statistics from './Statistics';
 import Violation from './Violation';
-// import DetailGuMap from './DetailGuMap'
+import DetailGuMap from './DetailGuMap'
+import MainPage from './MainPage';
+import SeoulMap from './SeoulMap';
+import Seoul from './Seoul';
 
 function App() {
   return (
@@ -12,11 +14,11 @@ function App() {
       <div>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/violation" element={<Violation />} />
           <Route path="/statistics" element={<Statistics />} />
-          {/* <Route path="/detailsi" element={<DetailSiMap />} /> */}
-          {/* <Route path="/detailsi/detailgu" element={<DetailGuMap />} /> */}
+          <Route path="/Seoul" element={<Seoul />} />
+          <Route path="/detailsi/detailgu" element={<DetailGuMap />} />
         </Routes>
       </div>
     </Router>

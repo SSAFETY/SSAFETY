@@ -1,0 +1,47 @@
+.seoulmap-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 90vh;
+}
+
+.seoulmap {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.rightbox {
+  display: flex;
+  align-items: center; /* 버튼을 수직 가운데 정렬 */
+  gap:10px;
+}
+
+/* 드롭다운 스타일 */
+select {
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+/* 선택 옵션 스타일 */
+option {
+  font-size: 16px;
+}
+
+.rightbox button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.rightbox button:hover {
+  background-color: #0056b3;
+}

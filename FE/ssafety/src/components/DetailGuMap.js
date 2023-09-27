@@ -6,7 +6,7 @@ import '../css/DetailGu.css';
 import Swal from 'sweetalert2';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, doc, setDoc, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore'; // Firebase Cloud Firestore 함수만 임포트합니다.
 
 const firebaseConfig = {
   apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
@@ -28,14 +28,15 @@ const GuMap = () => {
   const [selectedVehicle, setSelectedVehicle] = useState('car1');
   const [selectedRoute, setSelectedRoute] = useState('1');
   const [location, setLocation] = useState('sangam');
+  const [pins, setPins] = useState({}); // 핀 정보를 저장하는 상태 추가
   const projection = d3.geoMercator().scale(1).translate([0, 0]);
   const svgRef = useRef(null);
   const [carData, setCarData] = useState({});
-  const carImageURL = 'https://a102.s3.ap-northeast-2.amazonaws.com/png-transparent-car-top-view-blue-convertible-coupe-illustration-compact-car-blue-plan-thumbnail.png'; // 자동차 이미지 URL
 
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
+    const projection = d3.geoMercator().scale(1).translate([0, 0]);
     const path = d3.geoPath().projection(projection);
     const bounds = path.bounds(featureData);
     const dx = bounds[1][0] - bounds[0][0];
@@ -56,56 +57,52 @@ const GuMap = () => {
       .append('path')
       .filter((d) => d.properties.temp === '마포구 상암동')
       .attr('d', path)
-      .style('fill', 'skyblue')
       .style('transition', 'transform 0.2s');
 
-    svg.append('g').attr('class', 'pin-group');
-    svgRef.current = svg;
-  }, [featureData]);
+      svg.append('g').attr('class', 'pin-group');
+      svgRef.current = svg;
+  }, [featureData, projection]);
 
   useEffect(() => {
-    const fetchDataAndUpdatePins = async () => {
-      try {
-        const firestore = getFirestore(app);
-        const carsCollection = collection(firestore, 'car');
-        const queryDocs = await getDocs(carsCollection);
+    const firestore = getFirestore(app);
+    const carsCollection = collection(firestore, 'car');
+
+    const unsubscribe = onSnapshot(carsCollection, (querySnapshot) => {
+      const newData = {};
+      querySnapshot.forEach((doc) => {
+        newData[doc.id] = doc.data();
+      });
+      setCarData(newData);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const updatePins = () => {
+      const pinGroup = svgRef.current.select('.pin-group');
   
-        const newData = {};
-        queryDocs.forEach((doc) => {
-          newData[doc.id] = doc.data();
-        });
+      pinGroup.selectAll('.pin').remove();
   
-        setCarData(newData);
+      Object.keys(carData).forEach((vehicle) => {
+        const { gps_x, gps_y } = carData[vehicle];
+        console.log(`Vehicle: ${vehicle}, GPS_X: ${gps_x}, GPS_Y: ${gps_y}`);
+        const [x, y] = projection([gps_x, gps_y]);
   
-        // 핀 업데이트 처리
-        const pinGroup = svgRef.current.select('.pin-group');
-        pinGroup.selectAll('.pin').remove();
-  
-        Object.keys(newData).forEach((vehicle) => {
-          const { gps_x, gps_y } = newData[vehicle];
-          const [x, y] = projection([parseFloat(gps_x), parseFloat(gps_y)]);
-  
-          // 자동차 이미지 핀을 추가합니다.
-          pinGroup
-            .append('image')
-            .attr('x', x - 20) // 이미지의 중심을 핀의 위치로 조절
-            .attr('y', y - 20) // 이미지의 중심을 핀의 위치로 조절
-            .attr('width', 30) // 이미지 너비
-            .attr('height', 30) // 이미지 높이
-            .attr('xlink:href', carImageURL) // 이미지 URL
-            .style('background', skyblue);
-        });
-      } catch (error) {
-        console.error('데이터 가져오기 또는 핀 업데이트 오류:', error);
-      }
+        pinGroup
+          .append('circle')
+          .attr('class', 'pin')
+          .attr('cx', x)
+          .attr('cy', y)
+          .attr('r', 5)
+          .style('fill', 'red'); // 여기에서 원하는 색상을 설정하세요.
+      });
     };
+    
+    const interval = setInterval(updatePins, 100);
   
-    // 0.1초(100ms)마다 데이터를 가져오고 핀 업데이트 처리를 함께 수행
-    const interval = setInterval(fetchDataAndUpdatePins, 100);
-  
-    // 컴포넌트가 언마운트될 때 인터벌을 클리어합니다.
     return () => clearInterval(interval);
-  }, [projection]);
+  }, [carData, projection]);
 
   const handleSendData = () => {
     if (selectedVehicle.trim() !== '' && selectedRoute.trim() !== '') {
@@ -113,22 +110,29 @@ const GuMap = () => {
         path: selectedRoute,
         location: location
       };
-
+  
+      // Firestore에 데이터 추가 또는 업데이트
       const firestore = getFirestore(app);
-      const docRef = doc(firestore, 'car', selectedVehicle);
-
-      setDoc(docRef, vehicleData, { merge: true })
+      const docRef = doc(firestore, 'car', selectedVehicle); // 선택한 차량에 대한 문서 참조
+  
+      // 데이터를 업데이트하거나 이미 있는 문서에 데이터를 보냅니다.
+      setDoc(docRef, vehicleData, { merge: true }) // { merge: true } 옵션은 데이터를 병합합니다.
         .then(() => {
-          Swal.fire('차량 경로가 설정되었습니다.');
+          Swal.fire('차량 경로가 설정되었습니다.')
         })
         .catch((error) => {
           console.error('데이터 전송 중 오류 발생:', error);
         });
-
-      setSelectedRoute('path1');
+  
+      // 입력값 초기화
+      setSelectedRoute('path1'); // 초기값을 'path1'로 설정
       setLocation('sangam');
+    } else {
+      Swal.fire('차량 번호와 경로를 선택해주세요.');
     }
   };
+  
+  
 
   return (
     <div className="vehicle-board">
