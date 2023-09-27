@@ -33,8 +33,8 @@ class Cluster_viz:
         rospy.Subscriber("/clusters", PoseArray, self.callback)
         rospy.Subscriber("/odom", Odometry, self.odom_callback)
 
-        self.object_pointcloud_pub = rospy.Publisher('object_pointcloud_data',PointCloud, queue_size=1)
-        self.object_data_pub = rospy.Publisher('Object_topic_to_lidar',ObjectStatusList, queue_size=1)
+        self.object_pointcloud_pub = rospy.Publisher('/object_pointcloud_data',PointCloud, queue_size=1)
+        self.object_data_pub = rospy.Publisher('/Object_topic_to_lidar',ObjectStatusList, queue_size=1)
 
         self.is_odom = False
         self.cluster_status = False
