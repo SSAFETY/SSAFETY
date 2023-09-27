@@ -112,6 +112,12 @@ class pure_pursuit :
                 local_ped_info = result[3]
                 global_obs_info = result[4]
                 local_obs_info = result[5]
+
+                # KMJ, traffic light 정보, 신호등 정보
+                # traffic_result = self.calc_valid_traffic([self.current_postion.x, self.current_postion.y, self.current_postion.vehicle_yaw], temp)
+
+                # global_traffic_info = 
+                # global_traffic_info = 
                 
                 self.current_waypoint = self.get_current_waypoint([self.current_postion.x, self.current_postion.y], self.global_path)
                 self.target_velocity = self.velocity_list[self.current_waypoint] * 3.6
@@ -173,30 +179,35 @@ class pure_pursuit :
     # 교통 상황 - 신호등 데이터
     def get_traffic_callback(self, msg):
         # KMj, 
-        # self.traffic_data = msg
-        status = msg.trafficLightStatus
-        self.traffic_data = status
-        print(self.traffic_data)
         self.is_get_traffic = True
+        self.traffic_data = msg
+
+        # status = msg.trafficLightStatus
+        # self.traffic_data = status
+        print('-------------------------------------')
+        print('traffic data list :')
+        print(msg.trafficLightStatus)
+        print('-------------------------------------')
+        # self.is_get_traffic = True
         # self.yellow_status = self.traffic_data
         # rospy.loginfo('-------------------- Traffic Light Vehicle --------------------')
         # rospy.loginfo("Traffic Light Idx    : {}".format(msg.trafficLightIndex))
         # rospy.loginfo("Traffic Light Status : {}".format(msg.trafficLightStatus))
         # rospy.loginfo("Traffic Light Type   : {}".format(msg.trafficLightType))
         # KMj, 신호등 상태 체크
-        if status == 1:         # red
+        if self.traffic_data == 1:         # red
             self.possible_link_direction = []
-        elif status == 4:       # yellow
+        elif self.traffic_data == 4:       # yellow
             self.possible_link_direction = []
-        elif status == 5:       # red, yellow
+        elif self.traffic_data == 5:       # red, yellow
             self.possible_link_direction = []
-        elif status == 16:       # green
+        elif self.traffic_data == 16:       # green
             self.possible_link_direction = ['straight', 'right_unprotected']
-        elif status == 20:       # green, yellow
+        elif self.traffic_data == 20:       # green, yellow
             self.possible_link_direction = ['straight']
-        elif status == 31:       # green, left
+        elif self.traffic_data == 31:       # green, left
             self.possible_link_direction = ['straight', 'left', 'right_unprotected']
-        elif status == 33:       # left
+        elif self.traffic_data == 33:       # left
             self.possible_link_direction = ['left_unprotected', 'right_unprotected']
 
     #========================================================#
@@ -298,7 +309,7 @@ class pure_pursuit :
         return global_traffic_info, local_traffic_info
 
 
-    def calc_pure_pursuit(self,):
+    def calc_pure_pursuit(self, ):
 
         #TODO: (2) 속도 비례 Look Ahead Distance 값 설정
         '''
@@ -308,9 +319,9 @@ class pure_pursuit :
         # 최소 최대 전방주시거리(Look Forward Distance) 값과 속도에 비례한 lfd_gain 값을 직접 변경해 볼 수 있습니다.
         # 초기 정의한 변수 들의 값을 변경하며 속도에 비례해서 전방주시거리 가 변하는 advanced_purepursuit 예제를 완성하세요.
         '''
-        self.lfd = (self.status_msg.velocity.x) * self.lfd_gain
+        self.lfd = self.lfd_gain * min(self.max_lfd, max(self.min_lfd, self.status_msg.velocity.x))
 
-        rospy.loginfo(self.lfd)
+        # rospy.loginfo(self.lfd)
 
         vehicle_position=self.current_postion
         self.is_look_forward_point= False
@@ -333,15 +344,15 @@ class pure_pursuit :
 
         det_trans_matrix = np.linalg.inv(trans_matrix)
 
-        for num,i in enumerate(self.path.poses) :
+        for num,i in enumerate(self.path.poses):
             path_point = i.pose.position
 
-            global_path_point = [path_point.x,path_point.y,1]
-            local_path_point = det_trans_matrix.dot(global_path_point)    
+            global_path_point = [path_point.x,path_point.y, 1]
+            local_path_point = det_trans_matrix.dot(global_path_point)
 
-            if local_path_point[0]>0 :
-                dis = sqrt(pow(local_path_point[0],2)+pow(local_path_point[1],2))
-                if dis >= self.lfd :
+            if local_path_point[0] > 0:
+                dis = sqrt(pow(local_path_point[0], 2) + pow(local_path_point[1], 2))
+                if dis >= self.lfd:
                     self.forward_point = path_point
                     self.is_look_forward_point = True
                     break
@@ -528,7 +539,7 @@ class AdaptiveCruiseControl:
 
 
     # 여기서 인자 순서 달라 traffic을 제일 뒤로
-    def get_target_velocity(self, local_npc_info, local_ped_info, local_obs_info, ego_vel, target_vel): 
+    def get_target_velocity(self, local_npc_info, local_ped_info, local_obs_info, local_traffic_info, ego_vel, target_vel): 
         #TODO: (9) 장애물과의 속도와 거리 차이를 이용하여 ACC 를 진행 목표 속도를 설정
         out_vel =  target_vel               # 출력 속도
         default_space = 8
