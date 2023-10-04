@@ -23,11 +23,12 @@ const Cctv = () => {
 
   // 첫 번째 CCTV 데이터 가져오기
   const firstCctv = cctvData.length > 0 ? cctvData[0] : null;
+  console.log(firstCctv)
 
   return (
     <div>
       <h1>CCTV Data</h1>
-      {loading ? (
+      {/* {loading ? (
         <p>Loading...</p>
       ) : firstCctv ? (
         <div>
@@ -38,7 +39,7 @@ const Cctv = () => {
         </div>
       ) : (
         <p>No CCTV data available.</p>
-      )}
+      )} */}
     </div>
   );
 };
