@@ -43,10 +43,8 @@ const Violation = () => {
       const timezoneOffsetMinutes = date.getTimezoneOffset();
       const adjustedDate = new Date(date.getTime() - timezoneOffsetMinutes * 60000);
       setSelectedDate(adjustedDate);
-      console.log('선택한 날짜:', adjustedDate); // 추가한 부분
     } else {
       setSelectedDate(null);
-      console.log('선택한 날짜: null'); // 추가한 부분
     }
   };
   
@@ -61,7 +59,6 @@ const Violation = () => {
   const filterData = async () => {
     try {
       const dateValue = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
-      console.log(dateValue)
       const response = await fetch('https://j9a102.p.ssafy.io/api/searchReports', {
         method: 'POST',
         headers: {
@@ -76,7 +73,6 @@ const Violation = () => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data)
         setFilteredData(data);
       } else {
         console.error('서버에서 오류 응답을 받았습니다.');

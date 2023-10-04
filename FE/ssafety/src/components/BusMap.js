@@ -46,7 +46,7 @@ const GuMap = () => {
     const translate = [width / 2 - scale * x, height / 2 - scale * y + 220];
     projection.scale(scale).translate(translate);
 
-    const svg = d3.select(chart.current).selectAll('svg').remove(); // 기존의 SVG 제거
+    const svg = d3.select(chart.current).selectAll('svg').remove();
     const newSvg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
     const mapLayer = newSvg.append('g');
 
