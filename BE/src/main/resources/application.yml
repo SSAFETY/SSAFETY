@@ -40,3 +40,6 @@ naver-cloud-sms:
   secretkey: EAjKgQXNMKtmnNQiJYFWRXxxpEshX7MzcNZMOmBA
   serviceId: ncp:sms:kr:310688378438:subpjt
   phone: 01049489610
+
+cctv:
+  apiKey=0db19b82b4d84ef3846c147df0b0028d

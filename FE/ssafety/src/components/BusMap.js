@@ -85,7 +85,6 @@ const GuMap = () => {
 
       Object.keys(carData).forEach((vehicle) => {
         const { gps_x, gps_y } = carData[vehicle];
-        console.log(`Vehicle: ${vehicle}, GPS_X: ${gps_x}, GPS_Y: ${gps_y}`);
         const [x, y] = projection([gps_x, gps_y]);
 
         mapLayer

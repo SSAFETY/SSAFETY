@@ -41,10 +41,8 @@ const MainList = () => {
     const fetchData = async () => {
       setIsLoading(true); // 데이터 로딩 시작
       try {
-        // const response = await axios.get(`http://localhost:8080/api/getAll?page=${page}`);
         const response = await axios.get(`https://j9a102.p.ssafy.io/getAll?page=${page}`);
         const responseData = response.data;
-        console.log(responseData)
         const totalPages = Math.ceil(responseData.totalElements / limit);
         setTotalPages(totalPages);
         setData(responseData.content);
