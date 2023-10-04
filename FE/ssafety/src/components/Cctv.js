@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Cctv = () => {
-  const [cctvData, setCCTVData] = useState([]);
+  const [cctvData, setCCTVData] = useState([]); // cctvData 변수를 함수 내부에서 선언
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
