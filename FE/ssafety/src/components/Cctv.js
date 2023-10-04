@@ -6,12 +6,12 @@ const Cctv = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('데이터 송신을 요청했습니다.');
     axios
       .get('https://j9a102.p.ssafy.io/api/cctv/data')
-      console.log('데이터 송신을 요청했습니다.')
       .then((response) => {
         setCCTVData(response.data);
-        console.log(response.data)
+        console.log(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -19,6 +19,7 @@ const Cctv = () => {
         setLoading(false);
       });
   }, []);
+  
 
   return (
     <div>
