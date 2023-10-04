@@ -7,9 +7,10 @@ const Cctv = () => {
 
   useEffect(() => {
     axios
-      .get('/cctv/data') // 이 URL은 Spring Boot 애플리케이션의 엔드포인트와 맞춰야 합니다.
+      .get('https://j9a102.p.ssafy.io:8080/api/cctv/data')
       .then((response) => {
         setCCTVData(response.data);
+        console.log(response.data)
         setLoading(false);
       })
       .catch((error) => {

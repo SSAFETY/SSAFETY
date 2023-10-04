@@ -8,7 +8,7 @@ spring:
 #    password: a102
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
   jackson:
     serialization:

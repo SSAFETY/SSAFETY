@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import mapogu from '../mapData/mapo.json';
-import '../css/DetailGu.css'; // 여기서 CSS 파일을 불러옵니다.
+import '../css/BusMap.css'; // 여기서 CSS 파일을 불러옵니다.
 import Swal from 'sweetalert2';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore'; 
+import { FormControl, InputLabel, MenuItem, Select, Button } from '@mui/material';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
@@ -22,7 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const GuMap = () => {
+const BusMap = () => {
   const chart = useRef(null);
   const featureData = feature(mapogu, mapogu.objects['mapo']);
   const [selectedVehicle, setSelectedVehicle] = useState('car1');
@@ -43,7 +44,7 @@ const GuMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 1.5 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x, height / 2 - scale * y + 220];
+    const translate = [width / 2 - scale * x, height / 2 - scale * y + 240];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).selectAll('svg').remove();
@@ -133,24 +134,53 @@ const GuMap = () => {
         <div className="map-container">
           <div className="gumap" ref={chart}></div>
         </div>
-        <div className="form-container"> {/* 경로 설정 폼 컨테이너 추가 */}
-          <div className="input-container">
-            <select value={selectedVehicle} onChange={(e) => setSelectedVehicle(e.target.value)}>
-              <option value="car1">차량 1</option>
-              <option value="car2">차량 2</option>
-              <option value="car3">차량 3</option>
-            </select>
-            <select value={selectedRoute} onChange={(e) => setSelectedRoute(e.target.value)}>
-              <option value="1">경로 1</option>
-              <option value="2">경로 2</option>
-              <option value="3">경로 3</option>
-            </select>
-            <button onClick={handleSendData}>추가</button>
-          </div>
-        </div>
+        <div className="form-container">
+        <div className="input-container">
+  <div className="form-control" style={{ marginBottom: '20px' }}>
+    <FormControl variant="outlined">
+      <InputLabel htmlFor="vehicle-select">차량</InputLabel>
+      <Select
+        value={selectedVehicle}
+        onChange={(e) => setSelectedVehicle(e.target.value)}
+        label="차량"
+        inputProps={{
+          name: 'vehicle',
+          id: 'vehicle-select',
+        }}
+      >
+        <MenuItem value="car1">차량 1</MenuItem>
+        <MenuItem value="car2">차량 2</MenuItem>
+        <MenuItem value="car3">차량 3</MenuItem>
+      </Select>
+    </FormControl>
+  </div>
+  <div className="form-control" style={{ marginBottom: '20px' }}>
+    <FormControl variant="outlined">
+      <InputLabel htmlFor="route-select">경로</InputLabel>
+      <Select
+        value={selectedRoute}
+        onChange={(e) => setSelectedRoute(e.target.value)}
+        label="경로"
+        inputProps={{
+          name: 'route',
+          id: 'route-select',
+        }}
+      >
+        <MenuItem value="1">경로 1</MenuItem>
+        <MenuItem value="2">경로 2</MenuItem>
+        <MenuItem value="3">경로 3</MenuItem>
+      </Select>
+    </FormControl>
+  </div>
+  <Button variant="contained" onClick={handleSendData}>
+    추가
+  </Button>
+</div>
+
+</div>
       </div>
     </div>
   );
 };
 
-export default GuMap;
+export default BusMap;
