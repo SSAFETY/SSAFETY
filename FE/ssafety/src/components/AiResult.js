@@ -9,17 +9,21 @@ const AiResult = ({ data }) => {
       value: data.filter(item => item.aiResult === '차선 침범').length,
     },
     {
-      id: '신호 위반',
-      value: data.filter(item => item.aiResult === '신호 위반').length,
-    },
-    {
       id: '과속',
       value: data.filter(item => item.aiResult === '과속').length,
+    },
+    {
+      id: '주정차 위반',
+      value: data.filter(item => item.aiResult === '주정차 위반').length,
+    },
+    {
+      id: '버스전용차로 위반',
+      value: data.filter(item => item.aiResult === '버스전용차로 위반').length,
     },
   ];
 
   return (
-    <div style={{ height: '400px' }}>
+    <div style={{ height: '260px' }}>
       <ResponsivePie
         data={aiResultCounts} // 변환된 데이터를 전달
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}

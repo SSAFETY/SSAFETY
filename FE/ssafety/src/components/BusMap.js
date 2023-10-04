@@ -28,7 +28,7 @@ const GuMap = () => {
   const [selectedVehicle, setSelectedVehicle] = useState('car1');
   const [selectedRoute, setSelectedRoute] = useState('1');
   const [location, setLocation] = useState('sangam');
-  const [pins, setPins] = useState({}); // 핀 정보를 저장하는 상태 추가
+  const [pins, setPins] = useState({});
   const projection = d3.geoMercator().scale(1).translate([0, 0]);
   const svgRef = useRef(null);
   const [carData, setCarData] = useState({});
@@ -36,7 +36,6 @@ const GuMap = () => {
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const projection = d3.geoMercator().scale(1).translate([0, 0]);
     const path = d3.geoPath().projection(projection);
     const bounds = path.bounds(featureData);
     const dx = bounds[1][0] - bounds[0][0];
@@ -44,7 +43,7 @@ const GuMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 1.5 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x + 80, height / 2 - scale * y + 235];
+    const translate = [width / 2 - scale * x, height / 2 - scale * y + 250];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
@@ -59,8 +58,8 @@ const GuMap = () => {
       .attr('d', path)
       .style('transition', 'transform 0.2s');
 
-      svg.append('g').attr('class', 'pin-group');
-      svgRef.current = svg;
+    svg.append('g').attr('class', 'pin-group');
+    svgRef.current = svg;
   }, [featureData, projection]);
 
   useEffect(() => {
@@ -81,14 +80,14 @@ const GuMap = () => {
   useEffect(() => {
     const updatePins = () => {
       const pinGroup = svgRef.current.select('.pin-group');
-  
+
       pinGroup.selectAll('.pin').remove();
-  
+
       Object.keys(carData).forEach((vehicle) => {
         const { gps_x, gps_y } = carData[vehicle];
         console.log(`Vehicle: ${vehicle}, GPS_X: ${gps_x}, GPS_Y: ${gps_y}`);
         const [x, y] = projection([gps_x, gps_y]);
-  
+
         pinGroup
           .append('circle')
           .attr('class', 'pin')
@@ -98,9 +97,9 @@ const GuMap = () => {
           .style('fill', 'red'); // 여기에서 원하는 색상을 설정하세요.
       });
     };
-    
+
     const interval = setInterval(updatePins, 100);
-  
+
     return () => clearInterval(interval);
   }, [carData, projection]);
 
@@ -110,29 +109,25 @@ const GuMap = () => {
         path: selectedRoute,
         location: location
       };
-  
+
       // Firestore에 데이터 추가 또는 업데이트
       const firestore = getFirestore(app);
       const docRef = doc(firestore, 'car', selectedVehicle); // 선택한 차량에 대한 문서 참조
-  
-      // 데이터를 업데이트하거나 이미 있는 문서에 데이터를 보냅니다.
-      setDoc(docRef, vehicleData, { merge: true }) // { merge: true } 옵션은 데이터를 병합합니다.
+
+      setDoc(docRef, vehicleData, { merge: true })
         .then(() => {
           Swal.fire('차량 경로가 설정되었습니다.')
         })
         .catch((error) => {
           console.error('데이터 전송 중 오류 발생:', error);
         });
-  
-      // 입력값 초기화
-      setSelectedRoute('path1'); // 초기값을 'path1'로 설정
+
+      setSelectedRoute('path1');
       setLocation('sangam');
     } else {
       Swal.fire('차량 번호와 경로를 선택해주세요.');
     }
   };
-  
-  
 
   return (
     <div className="vehicle-board">

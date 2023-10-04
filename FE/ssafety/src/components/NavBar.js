@@ -9,7 +9,7 @@ const NavBar = () => {
       <div className='navbar'>
           <Link className='navbarMenu' to={'/'}>홈</Link>
           <Link className='navbarMenu' to={'/violation'}>위반 목록</Link>
-          <Link className='navbarMenu' to={'/statistics'}>통계</Link>
+          <Link className='navbarMenu' to={'/bus'}>버스</Link>
         </div>
     </div>
   );

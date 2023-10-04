@@ -123,13 +123,6 @@ const SeoulMap = () => {
         d3.select(this).style('fill', originalColor).attr('transform', 'translate(0, 0)');
         popupGroup.style('display', 'none');
       })
-      .on('click', function (event, d) {
-        if (d.properties.name === '마포구') {
-          navigate('detailgu');
-        } else {
-          Swal.fire('아직 지원하지 않는 구역입니다!');
-        }
-      });
   }, []);
 
   return (

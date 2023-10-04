@@ -1,4 +1,26 @@
-.seoulmap {
-    height: 95vh;
+body, html {
     overflow: hidden;
-}
+    height: 100%;
+  }
+
+.seoul {
+    display: flex;
+    flex-direction: row; /* 가로로 나열하도록 설정 */
+  }
+  
+  .seoul-map-container {
+    flex: 0.9; /* 왼쪽 컨테이너가 남은 공간을 모두 차지하도록 설정 */
+    overflow: hidden; /* 내용이 넘치는 경우를 방지 */
+  }
+  
+  .seoul-data-container {
+    flex: 1.1; /* 오른쪽 컨테이너도 남은 공간을 모두 차지하도록 설정 */
+    overflow: hidden;
+  }
+
+  .horizontal-graphs {
+    flex-direction: row; /* 가로로 나열 */
+    justify-content: center; /* 가로로 가운데 정렬 */
+  }
+  
+  

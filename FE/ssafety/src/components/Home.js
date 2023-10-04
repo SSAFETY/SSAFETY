@@ -156,7 +156,7 @@ const openModal = async (data) => {
     if (selectedData) {
       const phoneNumber = selectedData.phoneNum; // 선택된 데이터의 전화번호 추출
       try {
-        const response = await axios.post('https://j9a102.p.ssafy.io:8080/api/success', { phoneNumber });
+        const response = await axios.post('https://j9a102.p.ssafy.io/api/success', { phoneNumber });
       } catch (error) {
         console.error('Error:', error);
       }
@@ -168,7 +168,7 @@ const openModal = async (data) => {
     if (selectedData) {
       const phoneNumber = selectedData.phoneNum; // 선택된 데이터의 전화번호 추출
       try {
-        const response = await axios.post('https://j9a102.p.ssafy.io:8080/api/fail', { phoneNumber });
+        const response = await axios.post('https://j9a102.p.ssafy.io/api/fail', { phoneNumber });
         // 요청이 성공하면 서버 응답을 처리하거나 다른 작업을 수행할 수 있습니다.
       } catch (error) {
         // 요청이 실패하면 에러를 처리하거나 오류 메시지를 표시할 수 있습니다.

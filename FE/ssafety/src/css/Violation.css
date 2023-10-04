@@ -1,6 +1,3 @@
-/* Violation.css */
-
-/* Container for the entire form */
 .violation-container {
     display: flex;
     flex-direction: column; /* 세로로 요소를 나열합니다. */
@@ -16,13 +13,13 @@
 
 /* Dropdown styles */
 .violation-dropdown {
-    margin-bottom: 10px; /* 아래에 간격 추가 */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
     background-color: #fff;
-    width: 100%; /* 너비 조정 */
+    width: 25%; /* 너비 조정 */
     font-size: 14px; /* 폰트 크기 조정 */
+    margin: 10px;
 }
 
 /* Additional styles for labels and date picker */
@@ -49,7 +46,7 @@
     background-color: #fff;
     width: 100%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    overflow-x: auto; /* 가로 스크롤바 처리 */
+    max-height: 400px; /* 최대 높이를 설정 */
 }
 
 /* 변경: 결과 테이블 스타일 수정 */
@@ -57,17 +54,32 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px; /* 폰트 크기 조정 */
+    table-layout: fixed;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center; /* 가운데 정렬 */
-}
+thead {
+    background-color: #f2f2f2; /* 헤더 배경색 설정 */
+  }
 
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  padding: 8px; /* 셀 안에 여백을 설정 */
+  text-align: center; /* 가운데 정렬 */
+  border: 1px solid #ddd; /* 테두리 설정 */
+  white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
+  overflow: hidden; /* 셀 내용이 넘칠 때 숨김 처리 */
+  text-overflow: ellipsis; /* 셀 내용이 넘칠 때 ...으로 표시 */
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+td {
+  padding: 8px; /* 셀 안에 여백을 설정 */
+  text-align: center; /* 가운데 정렬 */
+  border: 1px solid #ddd; /* 테두리 설정 */
+  white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
+  overflow: hidden; /* 셀 내용이 넘칠 때 숨김 처리 */
+  text-overflow: ellipsis; /* 셀 내용이 넘칠 때 ...으로 표시 */
+  background-color: white;
 }
 
 .date-picker {
