@@ -98,6 +98,7 @@ public class ReportDataService {
     public List<Report> findReportsByConditions(String city, String depth3, String aiResult, String dateStr) {
         LocalDateTime startTime = null;
         LocalDateTime endTime = null;
+        System.out.println(dateStr);
 
         if (dateStr != null && !dateStr.isEmpty()) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

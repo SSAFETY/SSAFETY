@@ -3,22 +3,24 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/Violation.css';
 
-// JSON 파일 경로
 import districtsData from '../mapData/listdata.json';
 
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+
 const Violation = () => {
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
-  const [resultsPerPage] = useState(10); // 한 페이지에 표시할 결과 개수
+  const [currentPage, setCurrentPage] = useState(0);
+  const [resultsPerPage] = useState(10);
   const [selectedProvince, setSelectedProvince] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [cityDistricts, setCityDistricts] = useState([]);
   const [selectedViolation, setSelectedViolation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(null);
 
   useEffect(() => {
     filterData();
-  }, [selectedProvince, selectedCity, selectedViolation, selectedDate]);
+  }, [selectedProvince, selectedCity, selectedViolation, selectedDate, currentPage]);
 
   const handleProvinceChange = (e) => {
     const selectedProvinceValue = e.target.value;
@@ -37,24 +39,29 @@ const Violation = () => {
   };
 
   const handleDateChange = (date) => {
-    const timezoneOffsetMinutes = date.getTimezoneOffset();
-    const adjustedDate = new Date(date.getTime() - timezoneOffsetMinutes * 60000);
-    setSelectedDate(adjustedDate);
+    if (date) {
+      const timezoneOffsetMinutes = date.getTimezoneOffset();
+      const adjustedDate = new Date(date.getTime() - timezoneOffsetMinutes * 60000);
+      setSelectedDate(adjustedDate);
+      console.log('선택한 날짜:', adjustedDate); // 추가한 부분
+    } else {
+      setSelectedDate(null);
+      console.log('선택한 날짜: null'); // 추가한 부분
+    }
   };
+  
 
   const formatCreationTime = (creationTimeArray) => {
     const [year, month, day, hour, minute] = creationTimeArray;
-    
     const date = new Date(year, month - 1, day, hour, minute);
-  
     const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
     return formattedTime;
   };
-  
 
   const filterData = async () => {
     try {
       const dateValue = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
+      console.log(dateValue)
       const response = await fetch('https://j9a102.p.ssafy.io/api/searchReports', {
         method: 'POST',
         headers: {
@@ -70,7 +77,7 @@ const Violation = () => {
       if (response.ok) {
         const data = await response.json();
         console.log(data)
-        setFilteredData(data.content);
+        setFilteredData(data);
       } else {
         console.error('서버에서 오류 응답을 받았습니다.');
         setFilteredData([]);
@@ -81,45 +88,81 @@ const Violation = () => {
     }
   };
 
-  const totalPages = Math.ceil(filteredData.length / resultsPerPage);
-  const indexOfLastResult = currentPage * resultsPerPage;
+  const totalPages = filteredData ? Math.ceil(filteredData.length / resultsPerPage) : 0;
+  const indexOfLastResult = (currentPage + 1) * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
-  const currentResults = filteredData.slice(indexOfFirstResult, indexOfLastResult);
+  const currentResults = filteredData
+    ? filteredData.slice(indexOfFirstResult, indexOfLastResult)
+    : [];
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
   };
 
   return (
     <div className="violation-container">
       <div className="violation-form">
-        <select value={selectedProvince} onChange={handleProvinceChange} className="violation-dropdown">
-          <option value="">도 (시) 선택</option>
-          {Object.keys(districtsData).map((province) => (
-            <option key={province} value={province}>
-              {province}
-            </option>
-          ))}
-        </select>
+      <div className="form-control-horizontal">
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="province-select">도 (시) 선택</InputLabel>
+          <Select
+            value={selectedProvince}
+            onChange={handleProvinceChange}
+            label="도 (시) 선택"
+            id="province-select"
+          >
+            <MenuItem value="">
+              <em>도 (시) 선택</em>
+            </MenuItem>
+            {Object.keys(districtsData).map((province) => (
+              <MenuItem key={province} value={province}>
+                {province}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-        <select value={selectedCity} onChange={handleCityChange} className="violation-dropdown">
-          <option value="">구 선택</option>
-          {cityDistricts.map((city) => (
-            <option key={city} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="city-select">구 선택</InputLabel>
+          <Select
+            value={selectedCity}
+            onChange={handleCityChange}
+            label="구 선택"
+            id="city-select"
+          >
+            <MenuItem value="">
+              <em>구 선택</em>
+            </MenuItem>
+            {cityDistricts.map((city) => (
+              <MenuItem key={city} value={city}>
+                {city}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-        <select value={selectedViolation} onChange={handleViolationChange} className="violation-dropdown">
-          <option value="">위반 종류 선택</option>
-          <option value="차선 침범">차선 침범</option>
-          <option value="과속">과속</option>
-          <option value="주정차 위반">주정차 위반</option>
-          <option value="버스전용차로 위반">버스전용차로 위반</option>
-        </select>
+        <FormControl variant="outlined">
+          <InputLabel htmlFor="violation-select">위반 종류 선택</InputLabel>
+          <Select
+            value={selectedViolation}
+            onChange={handleViolationChange}
+            label="위반 종류 선택"
+            id="violation-select"
+          >
+            <MenuItem value="">
+              <em>위반 종류 선택</em>
+            </MenuItem>
+            <MenuItem value="차선 침범">차선 침범</MenuItem>
+            <MenuItem value="과속">과속</MenuItem>
+            <MenuItem value="주정차 위반">주정차 위반</MenuItem>
+            <MenuItem value="버스전용차로 위반">버스전용차로 위반</MenuItem>
+          </Select>
+        </FormControl>
+        </div>
 
-        <DatePicker
+        <div className="date-picker-container">
+  <div className="date-picker-input">
+    <DatePicker
           selected={selectedDate}
           onChange={handleDateChange}
           dateFormat="yyyy-MM-dd"
@@ -128,45 +171,50 @@ const Violation = () => {
           calendarIcon={<i className="fa fa-calendar" />}
           placeholderText="날짜를 선택해주세요"
         />
+
+  </div>
+</div>
+
+
+
       </div>
 
       <div className="violation-result">
-  {currentResults.length === 0 ? (
-    <p>해당 조건에 맞는 데이터가 없습니다.</p>
-  ) : (
-    <table>
-      <thead>
-        <tr>
-          <th>도 (시)</th>
-          <th>구</th>
-          <th>위반 종류</th>
-          <th>일자</th>
-        </tr>
-      </thead>
-      <tbody>
-        {currentResults.map((item) => (
-          <tr key={item.id}>
-            <td>{item.city}</td>
-            <td>{item.depth3}</td>
-            <td>{item.aiResult}</td>
-            <td>{formatCreationTime(item.creationTime)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )}
-</div>
+        {filteredData === null ? (
+          <p>데이터를 불러오는 중입니다...</p>
+        ) : filteredData.length === 0 ? (
+          <p>해당 조건에 맞는 데이터가 없습니다.</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>도 (시)</th>
+                <th>구</th>
+                <th>위반 종류</th>
+                <th>일자</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentResults.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.city}</td>
+                  <td>{item.depth3}</td>
+                  <td>{item.aiResult}</td>
+                  <td>{formatCreationTime(item.creationTime)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
 
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={currentPage === index + 1 ? 'active' : ''}
-          >
-            {index + 1}
-          </button>
-        ))}
+        <Pagination
+          count={totalPages}
+          page={currentPage + 1}
+          onChange={(event, page) => handlePageClick({ selected: page - 1 })}
+          color="primary"
+        />
       </div>
     </div>
   );

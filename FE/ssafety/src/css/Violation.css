@@ -1,92 +1,172 @@
+/* CSS 파일 (예: Violation.css) */
+
+/* Container styles */
 .violation-container {
-    display: flex;
-    flex-direction: column; /* 세로로 요소를 나열합니다. */
-    align-items: center;
-    justify-content: flex-start; /* 상단 정렬 */
-    margin-top: 5vh;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5vh;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Dropdown styles */
-.violation-dropdown {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    background-color: #fff;
-    width: 25%; /* 너비 조정 */
-    font-size: 14px; /* 폰트 크기 조정 */
-    margin: 10px;
-}
-
-/* Additional styles for labels and date picker */
 .violation-label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .date-picker-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .date-label {
-    font-weight: bold;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-/* 변경: violation-result 스타일 수정 */
+/* Result styles */
 .violation-result {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    background-color: #fff;
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-height: 400px; /* 최대 높이를 설정 */
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-height: 400px;
+  overflow: auto;
 }
 
-/* 변경: 결과 테이블 스타일 수정 */
+/* Table styles */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px; /* 폰트 크기 조정 */
-    table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed;
 }
 
 thead {
-    background-color: #f2f2f2; /* 헤더 배경색 설정 */
-  }
+  background-color: #f2f2f2;
+}
 
 th {
-  padding: 8px; /* 셀 안에 여백을 설정 */
-  text-align: center; /* 가운데 정렬 */
-  border: 1px solid #ddd; /* 테두리 설정 */
-  white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
-  overflow: hidden; /* 셀 내용이 넘칠 때 숨김 처리 */
-  text-overflow: ellipsis; /* 셀 내용이 넘칠 때 ...으로 표시 */
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background-color: #f2f2f2;
   font-weight: bold;
 }
 
 td {
-  padding: 8px; /* 셀 안에 여백을 설정 */
-  text-align: center; /* 가운데 정렬 */
-  border: 1px solid #ddd; /* 테두리 설정 */
-  white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈 방지 */
-  overflow: hidden; /* 셀 내용이 넘칠 때 숨김 처리 */
-  text-overflow: ellipsis; /* 셀 내용이 넘칠 때 ...으로 표시 */
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background-color: white;
 }
 
-.date-picker {
-  content: '\e99c';
-  display: inline-block;
-  top: 7px;
-  left: 7px;
-  font-size: 1rem;
-  color: #333;
+/* DatePicker styles */
+.react-datepicker-wrapper {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.react-datepicker {
+  font-size: 14px;
+  width: 100%;
+  max-width: 250px; /* Adjust the width as needed */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* FormControl styles */
+.MuiFormControl-root {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Arrange FormControls in a horizontal row */
+.form-control-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style each individual FormControl */
+.MuiFormControl-root {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Add this CSS to your existing CSS file */
+.form-control-horizontal {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Style each individual FormControl */
+.form-control-horizontal .MuiFormControl-root {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.violation-form {
+  width: 50%; /* You can adjust the width as needed */
+  margin-top: 20px; /* Increase the top margin as needed */
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Customize the calendar container */
+.react-datepicker-popper {
+  z-index: 9999; /* Ensure it appears above other elements */
+}
+
+.react-datepicker__day--selected {
+  background-color: #007bff; /* Change to your desired color */
+  color: #fff;
+}
+
+/* Customize the today's date highlight */
+.react-datepicker__day--today {
+  font-weight: bold;
+}
+
+.date-picker-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px; /* Adjust the left position as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px; /* Adjust the font size as needed */
+  color: #007bff; /* Change to your desired color */
+}
+
+
+/* Customize the calendar icon on hover */
+.date-picker-icon:hover {
+  color: #0056b3; /* Change to a different color on hover */
 }
