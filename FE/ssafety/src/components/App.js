@@ -6,6 +6,7 @@ import MainPage from './MainPage';
 import Seoul from './Seoul';
 import BusMap from './BusMap';
 import Live from './Cctv';
+import Test from './TfVideoPresentation';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/seoul" element={<Seoul />} />
           <Route path="/bus" element={<BusMap />} />
           <Route path="/cctv" element={<Live/>} />
+          <Route path="/test" element={<Test/>}/>
         </Routes>
       </div>
     </Router>

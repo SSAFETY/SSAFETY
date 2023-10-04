@@ -16,7 +16,7 @@ const TfVideoPresentation = () => {
             console.error('Video Fetch Error', error)
         });
     }, []);
-//{videoUrl && <TfVideoPlayer videoUrl={videoUrl}/>}
+        {videoUrl && <TfVideoPlayer videoUrl={videoUrl}/>}
     return (
         <div>
             <h1>Video Show</h1>

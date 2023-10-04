@@ -11,6 +11,7 @@ const NavBar = () => {
           <Link className='navbarMenu' to={'/violation'}>위반 목록</Link>
           <Link className='navbarMenu' to={'/bus'}>버스</Link>
           <Link className='navbarMenu' to={'/cctv'}>cctv</Link>
+          <Link className='navbarMenu' to={'/test'}>test</Link>
         </div>
     </div>
   );
