@@ -63,9 +63,10 @@ public class ReportController {
         return reportDataService.findById(id);
     }
 
+    // 컨트롤러 메서드에서 Pageable 매개변수 제거
     @PostMapping("/searchReports")
-    public Page<Report> searchReports(@RequestBody SearchDto request,@PageableDefault(size = 15) Pageable pageable) {
-        return reportDataService.findReportsByConditions(request.getCity(), request.getDepth3(), request.getAiResult(), request.getDate(), pageable);
+    public List<Report> searchReports(@RequestBody SearchDto request) {
+        return reportDataService.findReportsByConditions(request.getCity(), request.getDepth3(), request.getAiResult(), request.getDate());
     }
 
     @GetMapping("/getAddress")

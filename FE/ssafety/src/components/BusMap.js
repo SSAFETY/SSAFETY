@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import mapogu from '../mapData/mapo.json';
-import '../css/DetailGu.css';
+import '../css/DetailGu.css'; // 여기서 CSS 파일을 불러옵니다.
 import Swal from 'sweetalert2';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore'; // Firebase Cloud Firestore 함수만 임포트합니다.
+import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore'; 
 
 const firebaseConfig = {
   apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
@@ -43,11 +43,12 @@ const GuMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 1.5 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x, height / 2 - scale * y + 250];
+    const translate = [width / 2 - scale * x, height / 2 - scale * y + 220];
     projection.scale(scale).translate(translate);
 
-    const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
-    const mapLayer = svg.append('g');
+    const svg = d3.select(chart.current).selectAll('svg').remove(); // 기존의 SVG 제거
+    const newSvg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
+    const mapLayer = newSvg.append('g');
 
     mapLayer
       .selectAll('path')
@@ -58,8 +59,7 @@ const GuMap = () => {
       .attr('d', path)
       .style('transition', 'transform 0.2s');
 
-    svg.append('g').attr('class', 'pin-group');
-    svgRef.current = svg;
+    svgRef.current = newSvg; // 새로운 SVG를 참조합니다.
   }, [featureData, projection]);
 
   useEffect(() => {
@@ -79,22 +79,22 @@ const GuMap = () => {
 
   useEffect(() => {
     const updatePins = () => {
-      const pinGroup = svgRef.current.select('.pin-group');
+      const mapLayer = svgRef.current.select('g'); // 지도 레이어 선택
 
-      pinGroup.selectAll('.pin').remove();
+      mapLayer.selectAll('.pin').remove();
 
       Object.keys(carData).forEach((vehicle) => {
         const { gps_x, gps_y } = carData[vehicle];
         console.log(`Vehicle: ${vehicle}, GPS_X: ${gps_x}, GPS_Y: ${gps_y}`);
         const [x, y] = projection([gps_x, gps_y]);
 
-        pinGroup
+        mapLayer
           .append('circle')
           .attr('class', 'pin')
           .attr('cx', x)
           .attr('cy', y)
           .attr('r', 5)
-          .style('fill', 'red'); // 여기에서 원하는 색상을 설정하세요.
+          .style('fill', 'red'); // 원하는 색상 설정
       });
     };
 
@@ -110,9 +110,8 @@ const GuMap = () => {
         location: location
       };
 
-      // Firestore에 데이터 추가 또는 업데이트
       const firestore = getFirestore(app);
-      const docRef = doc(firestore, 'car', selectedVehicle); // 선택한 차량에 대한 문서 참조
+      const docRef = doc(firestore, 'car', selectedVehicle);
 
       setDoc(docRef, vehicleData, { merge: true })
         .then(() => {
@@ -132,19 +131,23 @@ const GuMap = () => {
   return (
     <div className="vehicle-board">
       <div className="container">
-        <div className="gumap" ref={chart}></div>
-        <div className="input-container">
-          <select value={selectedVehicle} onChange={(e) => setSelectedVehicle(e.target.value)}>
-            <option value="car1">차량 1</option>
-            <option value="car2">차량 2</option>
-            <option value="car3">차량 3</option>
-          </select>
-          <select value={selectedRoute} onChange={(e) => setSelectedRoute(e.target.value)}>
-            <option value="1">경로 1</option>
-            <option value="2">경로 2</option>
-            <option value="3">경로 3</option>
-          </select>
-          <button onClick={handleSendData}>추가</button>
+        <div className="map-container">
+          <div className="gumap" ref={chart}></div>
+        </div>
+        <div className="form-container"> {/* 경로 설정 폼 컨테이너 추가 */}
+          <div className="input-container">
+            <select value={selectedVehicle} onChange={(e) => setSelectedVehicle(e.target.value)}>
+              <option value="car1">차량 1</option>
+              <option value="car2">차량 2</option>
+              <option value="car3">차량 3</option>
+            </select>
+            <select value={selectedRoute} onChange={(e) => setSelectedRoute(e.target.value)}>
+              <option value="1">경로 1</option>
+              <option value="2">경로 2</option>
+              <option value="3">경로 3</option>
+            </select>
+            <button onClick={handleSendData}>추가</button>
+          </div>
         </div>
       </div>
     </div>
