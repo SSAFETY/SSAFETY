@@ -7,7 +7,8 @@ const Cctv = () => {
 
   useEffect(() => {
     axios
-      .get('https://j9a102.p.ssafy.io:8080/api/cctv/data')
+      .get('https://j9a102.p.ssafy.io/api/cctv/data')
+      console.log('데이터 송신을 요청했습니다.')
       .then((response) => {
         setCCTVData(response.data);
         console.log(response.data)
