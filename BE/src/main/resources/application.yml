@@ -42,4 +42,4 @@ naver-cloud-sms:
   phone: 01049489610
 
 cctv:
-  apiKey=0db19b82b4d84ef3846c147df0b0028d
+  apiKey: 0db19b82b4d84ef3846c147df0b0028d

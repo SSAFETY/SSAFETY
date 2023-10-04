@@ -23,7 +23,6 @@ public class CctvService {
                     "&maxY=39.100000" +
                     "&getType=json";
 
-            // RestTemplate을 사용하여 API 호출
             RestTemplate restTemplate = new RestTemplate();
             return restTemplate.getForObject(apiUrl, String.class);
         } catch (Exception e) {
