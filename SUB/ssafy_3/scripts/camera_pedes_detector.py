@@ -91,7 +91,7 @@ class PEDESDetector:
 
         try:
             #TODO: (4)  이미지 불러오기
-            np_arr = np.fromstring(msg.data, np.uint8)
+            np_arr = np.frombuffer(msg.data, np.uint8)
             img_bgr = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
         except CvBridgeError as e:
             print(e)

@@ -25,7 +25,7 @@ class SCANCluster:
 
         self.scan_sub = rospy.Subscriber("/lidar3D", PointCloud2, self.callback)
 
-        self.cluster_pub = rospy.Publisher("clusters", PoseArray, queue_size=10)
+        self.cluster_pub = rospy.Publisher("/clusters", PoseArray, queue_size=10)
 
         self.pc_np = None
 

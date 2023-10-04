@@ -96,10 +96,12 @@ class IMGParser:
 
                 self.path_pub.publish(lane_path)
 
-                cv2.imshow("birdview", img_lane_fit)
-                cv2.imshow("img_warp", img_warp)
-                cv2.imshow("origin_img", self.img_bgr)
+                # cv2.imshow("birdview", img_lane_fit)
+                # cv2.imshow("img_warp", img_warp)
+                # cv2.imshow("origin_img", self.img_bgr)
+                img_concat = np.concatenate((self.img_bgr, img_warp, img_lane_fit), axis=1)
 
+                cv2.imshow("Ego-0 Lane_Fitting Cam", img_concat)
                 cv2.waitKey(1)
 
                 rate.sleep()

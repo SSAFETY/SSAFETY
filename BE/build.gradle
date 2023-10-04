@@ -49,8 +49,10 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-bootJar {
-    archivesBaseName = 'SSAFETY'
-    archiveFileName = 'SSAFETY.jar'
-    archiveVersion = "1.0.0"
-}
+//bootJar {
+//    archivesBaseName = 'SSAFETY'
+//    archiveFileName = 'SSAFETY.jar'
+//    archiveVersion = "1.0.0"
+//}
+
+jar.enabled=false
