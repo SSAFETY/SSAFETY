@@ -11,8 +11,8 @@ const Cctv = () => {
       .get('https://j9a102.p.ssafy.io/api/cctv/data')
       .then((response) => {
         // response.data.data를 사용하여 cctvData 배열 설정
-        setCCTVData(response.data.data);
-        console.log(response.data.data);
+        setCCTVData(response.data);
+        console.log(response.data);
         setLoading(false);
       })
       .catch((error) => {
