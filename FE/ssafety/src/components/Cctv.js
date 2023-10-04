@@ -30,7 +30,7 @@ const Cctv = () => {
       ) : cctvData.length > 0 ? (
         <div>
           <video controls width="640" height="360">
-            <source src={cctvData[0]} type="application/x-mpegURL" />
+            <source src={'http://cctvsec.ktict.co.kr/6/9HxtCvRB12u+NMBJD2dAshoqrFv73rhdeBUuGvlWul2eve26ZKz20Ht77ZlKx3yAjuSq8yZ+1jTICSSjbh2q1A=='} type="application/x-mpegURL" />
             Your browser does not support the video tag.
           </video>
         </div>
