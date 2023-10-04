@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Cctv = () => {
-  const [cctvData, setCCTVData] = useState('');
+  const [cctvData, setCCTVData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +19,9 @@ const Cctv = () => {
         setLoading(false);
       });
   }, []);
-  
+
+  // 첫 번째 CCTV 데이터 가져오기
+  const firstCctv = cctvData[0];
 
   return (
     <div>
@@ -27,7 +29,12 @@ const Cctv = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <pre>{JSON.stringify(cctvData, null, 2)}</pre>
+        <div>
+          <video controls width="640" height="360">
+            <source src={firstCctv.cctvurl} type="application/x-mpegURL" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
       )}
     </div>
   );
