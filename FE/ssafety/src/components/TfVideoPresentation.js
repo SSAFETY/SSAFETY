@@ -9,7 +9,7 @@ const TfVideoPresentation = () => {
         axios.get('https://openapi.its.go.kr:9443/cctvInfo?apiKey=0db19b82b4d84ef3846c147df0b0028d&type=ex&cctvType=1&minX=127.100000&maxX=128.890000&minY=34.100000&maxY=39.100000&getType=json')
         .then((data) =>{
             console.log(data);
-            //(res.data.videoUrl);
+            setVideoUrl(data.data[0].cctvurl)
         })
         .catch((error) =>
         {
