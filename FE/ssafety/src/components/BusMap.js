@@ -33,7 +33,6 @@ const BusMap = () => {
   const projection = d3.geoMercator().scale(1).translate([0, 0]);
   const svgRef = useRef(null);
   const [carData, setCarData] = useState({});
-  const [car, setCar] = useState();
 
   const getAddress = async (gps_x, gps_y) => {
     try {
@@ -104,42 +103,40 @@ const BusMap = () => {
   useEffect(() => {
     const updatePins = async () => {
       const mapLayer = svgRef.current.select('g');
-  
+      
+      // 이전 핀을 모두 지우기
       mapLayer.selectAll('.pin').remove();
+      
+      const updatedCarData = {};
   
       for (const vehicle of Object.keys(carData)) {
         const { gps_x, gps_y } = carData[vehicle];
-  
         const addressData = await getAddress(gps_x, gps_y);
-        carData[vehicle].address = addressData;
+  
+        updatedCarData[vehicle] = {
+          ...carData[vehicle],
+          address: addressData || '주소를 찾을 수 없음',
+        };
+        
+        const [x, y] = projection([gps_x, gps_y]);
+  
+        mapLayer
+          .append('circle')
+          .attr('class', 'pin')
+          .attr('cx', x)
+          .attr('cy', y)
+          .attr('r', 5)
+          .style('fill', 'red')
+          .append('title');
       }
   
-      // 주소 정보를 모두 업데이트한 후에 리스트를 렌더링
-      mapLayer
-        .selectAll('circle')
-        .data(Object.keys(carData))
-        .enter()
-        .append('circle')
-        .attr('class', 'pin')
-        .attr('r', 5)
-        .style('fill', 'red')
-        .attr('cx', (vehicle) => {
-          const { gps_x, gps_y } = carData[vehicle];
-          return projection([gps_x, gps_y])[0];
-        })
-        .attr('cy', (vehicle) => {
-          const { gps_x, gps_y } = carData[vehicle];
-          return projection([gps_x, gps_y])[1];
-        });
+      setCarData(updatedCarData);
     };
   
-    updatePins();
-  
-    const interval = setInterval(updatePins, 5000);
+    const interval = setInterval(updatePins, 1000);
   
     return () => clearInterval(interval);
-  }, [projection]);
-  
+  }, [projection, carData]);
   
 
   const handleSendData = () => {

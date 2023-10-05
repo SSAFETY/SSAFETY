@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/Violation.css';
-import Modal from './Modal'; // Modal 컴포넌트를 불러옵니다.
-import '../css/Modal.css';
+import Modal from './Modal';
+import '../css/Modal.css'
 
 import districtsData from '../mapData/listdata.json';
 
@@ -19,8 +19,8 @@ const Violation = () => {
   const [selectedViolation, setSelectedViolation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태
-  const [selectedData, setSelectedData] = useState(null); // 선택된 데이터
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
 
   useEffect(() => {
     filterData();
@@ -98,16 +98,13 @@ const Violation = () => {
     setCurrentPage(data.selected);
   };
 
-  // 데이터 요소를 클릭할 때 모달을 엽니다.
   const handleDataClick = (data) => {
-    console.log('모달오픈')
     setSelectedData(data);
     setIsModalOpen(true);
   };
 
   // 모달을 닫습니다.
   const closeModal = () => {
-    console.log('모달클로즈')
     setIsModalOpen(false);
   };
 
@@ -224,7 +221,6 @@ const Violation = () => {
           color="primary"
         />
       </div>
-
       <Modal isOpen={isModalOpen} closeModal={closeModal} data={selectedData} />
     </div>
   );
