@@ -53,6 +53,7 @@ table {
 
 thead {
   background-color: skyblue;
+  height: 15px;
 }
 
 th {
@@ -64,6 +65,7 @@ th {
   text-overflow: ellipsis;
   background-color: skyblue;
   font-weight: bold;
+  height: 15px;
 }
 
 td {
@@ -74,6 +76,7 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   background-color: white;
+  height: 15px;
 }
 
 /* DatePicker styles */
