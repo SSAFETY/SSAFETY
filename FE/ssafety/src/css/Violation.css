@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 5vh;
+  margin-top: 3vh;
   padding: 30px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -52,7 +52,7 @@ table {
 }
 
 thead {
-  background-color: #f2f2f2;
+  background-color: skyblue;
 }
 
 th {
@@ -62,7 +62,7 @@ th {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background-color: #f2f2f2;
+  background-color: skyblue;
   font-weight: bold;
 }
 
@@ -169,4 +169,12 @@ td {
 /* Customize the calendar icon on hover */
 .date-picker-icon:hover {
   color: #0056b3; /* Change to a different color on hover */
+}
+
+.pagination {
+  margin-top: 10px;
+}
+
+tr:hover {
+  cursor: pointer;
 }

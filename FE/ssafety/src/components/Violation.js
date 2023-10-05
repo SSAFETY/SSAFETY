@@ -7,8 +7,31 @@ import '../css/Modal.css'
 
 import districtsData from '../mapData/listdata.json';
 
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, ThemeProvider, createTheme } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
+
+const theme = createTheme({
+  components: {
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'skyblue', // outline의 색상을 하늘색으로 설정
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&.MuiDatePicker-root .react-datepicker-wrapper': {
+            border: '1px solid skyblue', // DatePicker input 요소의 border 색상을 하늘색으로 설정
+          },
+        },
+      },
+    },
+  },
+});
 
 const Violation = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -109,19 +132,20 @@ const Violation = () => {
   };
 
   return (
+    <ThemeProvider theme={theme}>
     <div className="violation-container">
       <div className="violation-form">
         <div className="form-control-horizontal">
           <FormControl variant="outlined">
-            <InputLabel htmlFor="province-select">도 (시) 선택</InputLabel>
+            <InputLabel htmlFor="province-select">시 (도) 선택</InputLabel>
             <Select
               value={selectedProvince}
               onChange={handleProvinceChange}
-              label="도 (시) 선택"
+              label="시 (도) 선택"
               id="province-select"
             >
               <MenuItem value="">
-                <em>도 (시) 선택</em>
+                <em>시 (도) 선택</em>
               </MenuItem>
               {Object.keys(districtsData).map((province) => (
                 <MenuItem key={province} value={province}>
@@ -193,7 +217,7 @@ const Violation = () => {
           <table>
             <thead>
               <tr>
-                <th>도 (시)</th>
+                <th>시 (도)</th>
                 <th>구</th>
                 <th>위반 종류</th>
                 <th>일자</th>
@@ -223,6 +247,7 @@ const Violation = () => {
       </div>
       <Modal isOpen={isModalOpen} closeModal={closeModal} data={selectedData} />
     </div>
+    </ThemeProvider>
   );
 };
 

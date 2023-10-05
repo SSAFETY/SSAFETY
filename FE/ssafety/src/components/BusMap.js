@@ -22,7 +22,10 @@ import {
   List,
   ListItem,
   ListItemText,
+  Typography,
+  ListItemIcon,
 } from '@mui/material';
+import SpeedIcon from '@mui/icons-material/Speed';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
@@ -48,6 +51,7 @@ const BusMap = () => {
   const projection = d3.geoMercator().scale(1).translate([0, 0]);
   const svgRef = useRef(null);
   const [carData, setCarData] = useState({});
+  const pinImage = 'https://a102.s3.ap-northeast-2.amazonaws.com/car.png'
 
   const getAddress = async (gps_x, gps_y) => {
     try {
@@ -91,7 +95,8 @@ const BusMap = () => {
       .append('path')
       .filter((d) => d.properties.temp === '마포구 상암동')
       .attr('d', path)
-      .style('transition', 'transform 0.2s');
+      .style('transition', 'transform 0.2s')
+      .style('fill', 'skyblue')
 
     svgRef.current = newSvg;
   }, [featureData]);
@@ -126,17 +131,23 @@ const BusMap = () => {
       mapLayer.selectAll('.pin').remove();
 
       for (const vehicle of Object.keys(carData)) {
-        const { gps_x, gps_y } = carData[vehicle];
-        const [x, y] = projection([gps_x, gps_y]);
-
         mapLayer
-          .append('circle')
-          .attr('class', 'pin')
-          .attr('cx', x)
-          .attr('cy', y)
-          .attr('r', 5)
-          .style('fill', 'red')
-          .append('title');
+        .selectAll('.pin')
+        .data(Object.keys(carData))
+        .enter()
+        .append('image') // 이미지 요소 추가
+        .attr('class', 'pin')
+        .attr('x', (d) => {
+          const { gps_x } = carData[d];
+          return projection([gps_x, 0])[0]; // 경도만 사용하여 X 좌표 계산
+        })
+        .attr('y', (d) => {
+          const { gps_y } = carData[d];
+          return projection([0, gps_y])[1]; // 위도만 사용하여 Y 좌표 계산
+        })
+        .attr('xlink:href', pinImage) // 이미지 핀 URL 설정
+        .attr('width', 30) // 핀 이미지의 가로 크기 조정
+        .attr('height', 30) // 핀 이미지의 세로 크기 조정
       }
     };
 
@@ -223,10 +234,21 @@ const BusMap = () => {
           <div className="form-control" style={{ marginBottom: '20px' }}>
             <List>
               {Object.keys(carData).map((vehicle) => (
-                <ListItem key={vehicle}>
+                <ListItem
+                  key={vehicle}
+                  sx={{
+                    border: '1px solid #ccc',
+                    borderRadius: '8px',
+                    marginBottom: '10px',
+                    backgroundColor: '#f5f5f5',
+                  }}
+                >
+                  <ListItemIcon>
+                    <SpeedIcon />
+                  </ListItemIcon>
                   <ListItemText
-                    primary={`차량: ${vehicle}`}
-                    secondary={`주소: ${carData[vehicle].address}, 속도: ${carData[vehicle].velocity} km / h`}
+                    primary={<Typography variant="h6">{`차량: ${vehicle}`}</Typography>}
+                    secondary={<Typography variant="subtitle1">{`주소: ${carData[vehicle].address}, 속도: ${carData[vehicle].velocity} km / h`}</Typography>}
                   />
                 </ListItem>
               ))}
