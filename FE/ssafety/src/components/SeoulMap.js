@@ -33,7 +33,7 @@ const SeoulMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 7 / Math.max(dx / width, dy / height);
-    const translate = [width / 1 - scale * x + 250, height / 1 - scale * y + 1900];
+    const translate = [width / 1 - scale * x + 700, height / 1 - scale * y + 2850];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
@@ -123,13 +123,6 @@ const SeoulMap = () => {
         d3.select(this).style('fill', originalColor).attr('transform', 'translate(0, 0)');
         popupGroup.style('display', 'none');
       })
-      .on('click', function (event, d) {
-        if (d.properties.name === '마포구') {
-          navigate('detailgu');
-        } else {
-          Swal.fire('아직 지원하지 않는 구역입니다!');
-        }
-      });
   }, []);
 
   return (

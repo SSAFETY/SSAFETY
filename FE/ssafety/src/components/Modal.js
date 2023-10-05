@@ -1,43 +1,93 @@
 import React from 'react';
+import { Modal, Box, Button, Typography } from '@mui/material';
 
-export const formatCreationTime = (creationTime) => {
-  // creationTime을 문자열로 변환하여 앞에 0을 붙입니다.
-  const timeString = String(creationTime).padStart(14, '0');
-  const time = timeString.split(',');
-  // 연도, 월, 일, 시, 분, 초 부분 추출
-  const year = time[0];
-  const month = time[1];
-  const day = time[2];
-  const hour = time[3];
-  const minute = time[4];
+const CustomModal = ({ isOpen, closeModal, data }) => {
+  if (!isOpen) return null;
+  const formatCreationTime = (creationTimeArray) => {
+    const [year, month, day, hour, minute] = creationTimeArray;
+    const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
+    return formattedTime;
+  };
 
-  // 변환된 문자열 생성
-  const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
-
-  return formattedTime;
+  return (
+    <Modal
+      open={isOpen}
+      onClose={closeModal}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.5)', // 블러 처리를 위한 반투명 배경
+          backdropFilter: 'blur(5px)', // 배경을 블러 처리
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            width: 1000,
+            height: 600,
+            bgcolor: 'white',
+            borderRadius: '16px',
+            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '16px',
+          }}
+        >
+          <Button
+            sx={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              borderRadius: '16px 0 0 0',
+            }}
+            onClick={closeModal}
+          >
+            Close
+          </Button>
+          <Typography variant="h6" id="modal-modal-title" sx={{ marginBottom: '24px', color: 'skyblue', fontSize: '24px' }}>
+            상세 정보
+          </Typography>
+          <div className="video-container">
+            <video controls>
+              <source src={data.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div sx={{ marginBottom: '24px', marginTop: '16px' }}>
+            <Typography variant="body2" id="modal-modal-description" sx={{ fontWeight: 'bold', fontSize: '18px' }}>
+              시 (도): {data.city}
+            </Typography>
+          </div>
+          <div sx={{ marginBottom: '24px' }}>
+            <Typography variant="body2" id="modal-modal-description" sx={{ fontWeight: 'bold', fontSize: '18px' }}>
+              구: {data.depth3}
+            </Typography>
+          </div>
+          <div sx={{ marginBottom: '24px' }}>
+            <Typography variant="body2" id="modal-modal-description" sx={{ fontWeight: 'bold', fontSize: '18px' }}>
+              위반 종류: {data.aiResult}
+            </Typography>
+          </div>
+          <div sx={{ marginBottom: '24px' }}>
+            <Typography variant="body2" id="modal-modal-description" sx={{ fontWeight: 'bold', fontSize: '18px' }}>
+              위반 일시: {formatCreationTime(data.creationTime)}
+            </Typography>
+          </div>
+        </Box>
+      </div>
+    </Modal>
+  );
 };
 
-// Modal.js 파일 내부의 모달 컴포넌트 업데이트
-// Modal.js 파일 내부의 모달 컴포넌트 업데이트
-const Modal = ({ isOpen, closeModal, data }) => {
-    if (!isOpen) return null;
-  
-    return (
-      <div className="modal">
-        <div className="modal-content">
-          <button className="close-modal" onClick={closeModal}>
-            Close
-          </button>
-          <h2>상세 정보</h2>
-          <p>위반 장소: {data.city} {data.depth3}</p>
-          <p>위반 종류: {data.aiResult}</p>
-          <p>일시: {formatCreationTime(data.creationTime)}</p>
-          <p>차량 번호: {data.vehicleNumber}</p>
-        </div>
-      </div>
-    );
-  };
-  
-  export default Modal;
-  
-  
+export default CustomModal;
