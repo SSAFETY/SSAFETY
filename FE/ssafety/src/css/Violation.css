@@ -46,7 +46,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 18px;
   table-layout: fixed;
 }
 
@@ -63,7 +63,7 @@ th {
   text-overflow: ellipsis;
   background-color: skyblue;
   font-weight: bold;
-  height: 15px;
+  height: 20px;
 }
 
 td {
@@ -74,7 +74,7 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   background-color: white;
-  height: 35px;
+  height: 40px;
 }
 
 /* DatePicker styles */
