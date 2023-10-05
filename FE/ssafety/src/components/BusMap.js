@@ -6,8 +6,23 @@ import '../css/BusMap.css';
 import Swal from 'sweetalert2';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore';
-import { FormControl, InputLabel, MenuItem, Select, Button, List, ListItem, ListItemText } from '@mui/material';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  onSnapshot,
+  collection,
+} from 'firebase/firestore';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
@@ -38,13 +53,13 @@ const BusMap = () => {
     try {
       const apiUrl = `https://j9a102.p.ssafy.io/api/getAddress?latitude=${gps_y}&longitude=${gps_x}`;
       const response = await fetch(apiUrl);
-      
+
       if (!response.ok) {
         throw new Error('API 요청이 실패했습니다.');
       }
 
       const dataArray = await response.json();
-      const data = dataArray[0] + dataArray[1] + dataArray[2] + dataArray[3];
+      const data = dataArray[0] + ' ' + dataArray[1] + ' ' + dataArray[2] + ' ' + dataArray[3];
       return data;
     } catch (error) {
       console.error('주소 정보를 가져오는 중 오류 발생:', error);
@@ -79,47 +94,41 @@ const BusMap = () => {
       .style('transition', 'transform 0.2s');
 
     svgRef.current = newSvg;
-  }, [featureData, projection]);
+  }, [featureData]);
 
   useEffect(() => {
     const firestore = getFirestore(app);
     const carsCollection = collection(firestore, 'car');
-
-    const unsubscribe = onSnapshot(carsCollection, (querySnapshot) => {
+  
+    const unsubscribe = onSnapshot(carsCollection, async (querySnapshot) => {
       const newData = {};
-      querySnapshot.forEach((doc) => {
+  
+      for (const doc of querySnapshot.docs) {
         const data = doc.data();
+        const addressData = await getAddress(data.gps_x, data.gps_y);
         newData[doc.id] = {
           ...data,
+          address: addressData || '주소를 찾을 수 없음',
           velocity: data.velocity || "0.0"
         };
-      });
+      }
+  
       setCarData(newData);
     });
-
+  
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
     const updatePins = async () => {
       const mapLayer = svgRef.current.select('g');
-      
-      // 이전 핀을 모두 지우기
+
       mapLayer.selectAll('.pin').remove();
-      
-      const updatedCarData = {};
-  
+
       for (const vehicle of Object.keys(carData)) {
         const { gps_x, gps_y } = carData[vehicle];
-        const addressData = await getAddress(gps_x, gps_y);
-  
-        updatedCarData[vehicle] = {
-          ...carData[vehicle],
-          address: addressData || '주소를 찾을 수 없음',
-        };
-        
         const [x, y] = projection([gps_x, gps_y]);
-  
+
         mapLayer
           .append('circle')
           .attr('class', 'pin')
@@ -129,15 +138,14 @@ const BusMap = () => {
           .style('fill', 'red')
           .append('title');
       }
-  
-      setCarData(updatedCarData);
     };
-  
+
+    updatePins();
+
     const interval = setInterval(updatePins, 1000);
-  
+
     return () => clearInterval(interval);
-  }, [projection, carData]);
-  
+  }, [carData]);
 
   const handleSendData = () => {
     if (selectedVehicle.trim() !== '' && selectedRoute.trim() !== '') {
@@ -151,7 +159,7 @@ const BusMap = () => {
 
       setDoc(docRef, vehicleData, { merge: true })
         .then(() => {
-          Swal.fire('차량 경로가 설정되었습니다.')
+          Swal.fire('차량 경로가 설정되었습니다.');
         })
         .catch((error) => {
           console.error('데이터 전송 중 오류 발생:', error);
