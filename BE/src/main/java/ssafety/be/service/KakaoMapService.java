@@ -31,7 +31,7 @@ public class KakaoMapService {
      * @param longi 위도
      * @return 주소 정보를 담은 배열 또는 오류 메시지를 담은 배열
      */
-    public String getAddress(String lati, String longi) {
+    public String[] getAddress(String lati, String longi) {
         try {
             final String API_URL = "https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + longi + "&y=" + lati + "&input_coord=WGS84";
 
@@ -50,7 +50,7 @@ public class KakaoMapService {
 
             if (result.getStatusCode().is4xxClientError()) {
                 String errorMessage = result.getBody();
-                return "error";
+                return new String[]{"error"};
             }
 
             JsonParser jsonParser = new JsonParser();
@@ -58,19 +58,20 @@ public class KakaoMapService {
 
             JsonArray jsonArray = (JsonArray) jsonObject.get("documents");
             if(jsonArray == null) {
-                return "잘못된 좌표입니다.";
+                return new String[]{"잘못된 좌표입니다."};
             }
             else if (jsonArray.size() == 0) {
-                return "해당 좌표에 대한 주소 정보가 없습니다.";
+                return new String[]{"해당 좌표에 대한 주소 정보가 없습니다."};
             }
             JsonObject local = (JsonObject) jsonArray.get(0);
             JsonObject jsonArray1 = (JsonObject) local.get("address");
             String localAddress = jsonArray1.get("address_name").getAsString();
-            return localAddress;
+            String[] address = localAddress.split(" ");
+            return address;
         } catch (HttpClientErrorException e) {
-            return "Kakao API 요청 오류: " + e.getMessage();
+            return new String[]{"Kakao API 요청 오류: " + e.getMessage()};
         } catch (Exception e) {
-            return"오류가 발생했습니다: " + e.getMessage();
+            return new String[]{"오류가 발생했습니다: " + e.getMessage()};
         }
     }
 }

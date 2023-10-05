@@ -36,14 +36,15 @@ const BusMap = () => {
 
   const getAddress = async (gps_x, gps_y) => {
     try {
-      const apiUrl = `https://j9a102.p.ssafy.io/api/getAddress?latitude=${gps_x}&longitude=${gps_y}`;
+      const apiUrl = `https://j9a102.p.ssafy.io/api/getAddress?latitude=${gps_y}&longitude=${gps_x}`;
       const response = await fetch(apiUrl);
       
       if (!response.ok) {
         throw new Error('API 요청이 실패했습니다.');
       }
 
-      const data = await response.json();
+      const dataArray = await response.json();
+      const data = dataArray[0] + dataArray[1] + dataArray[2] + dataArray[3];
       console.log(data)
       return data;
     } catch (error) {
