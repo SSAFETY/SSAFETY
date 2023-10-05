@@ -33,7 +33,7 @@ const SeoulMap = () => {
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
     const scale = 7 / Math.max(dx / width, dy / height);
-    const translate = [width / 1 - scale * x + 700, height / 1 - scale * y + 2400];
+    const translate = [width / 1 - scale * x + 700, height / 1 - scale * y + 2100];
     projection.scale(scale).translate(translate);
 
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);

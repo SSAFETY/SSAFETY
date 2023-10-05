@@ -55,6 +55,12 @@ const CustomModal = ({ isOpen, closeModal, data }) => {
           >
             Close
           </Button>
+          <div className="video-container">
+            <video controls>
+              <source src={data.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
           <Typography variant="h6" id="modal-modal-title" sx={{ marginBottom: '24px', color: 'skyblue', fontSize: '24px' }}>
             상세 정보
           </Typography>
@@ -77,12 +83,6 @@ const CustomModal = ({ isOpen, closeModal, data }) => {
             <Typography variant="body2" id="modal-modal-description" sx={{ fontWeight: 'bold', fontSize: '18px' }}>
               위반 일시: {formatCreationTime(data.creationTime)}
             </Typography>
-          </div>
-          <div className="video-container">
-            <video controls>
-              <source src={data.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
           </div>
         </Box>
       </div>
