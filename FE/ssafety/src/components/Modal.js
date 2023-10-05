@@ -55,15 +55,15 @@ const CustomModal = ({ isOpen, closeModal, data }) => {
           >
             Close
           </Button>
+          <Typography variant="h6" id="modal-modal-title" sx={{ marginBottom: '24px', color: 'skyblue', fontSize: '24px' }}>
+            상세 정보
+          </Typography>
           <div className="video-container">
             <video controls>
               <source src={data.videoUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
-          <Typography variant="h6" id="modal-modal-title" sx={{ marginBottom: '24px', color: 'skyblue', fontSize: '24px' }}>
-            상세 정보
-          </Typography>
           <div sx={{ marginBottom: '24px', marginTop: '16px' }}>
             <Typography variant="body2" id="modal-modal-description" sx={{ fontWeight: 'bold', fontSize: '18px' }}>
               시 (도): {data.city}
