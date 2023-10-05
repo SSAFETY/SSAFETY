@@ -27,7 +27,7 @@ const TimeResult = ({ data }) => {
   );
 
   return (
-    <div className='horizontal-graph' style={{ height: '250px' }}>
+    <div className='horizontal-graph' style={{ height: '300px' }}>
       <ResponsiveLine
         data={[{ id: 'data', data: formattedData }]}
         margin={{ top: 50, right: 60, bottom: 50, left: 60 }}

@@ -23,7 +23,7 @@ const AiResult = ({ data }) => {
   ];
 
   return (
-    <div style={{ height: '260px' }}>
+    <div style={{ height: '300px' }}>
       <ResponsivePie
         data={aiResultCounts} // 변환된 데이터를 전달
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
