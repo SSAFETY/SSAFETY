@@ -6,8 +6,9 @@ import sys
 import rospy
 
 from nav_msgs.msg import Path
-from geometry_msgs.msg import PoseStamped,Point32
+from geometry_msgs.msg import PoseStamped, Point32
 from sensor_msgs.msg import PointCloud
+from ssafety.msg import global_data
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(current_path)
@@ -29,36 +30,23 @@ class get_mgeo :
         self.link_pub = rospy.Publisher('/link', PointCloud, queue_size=1)
         self.node_pub = rospy.Publisher('/node', PointCloud, queue_size=1)
 
+        self.global_data_pub = rospy.Publisher('/global_data', global_data, queue_size=1)
+
         #TODO: (1) Mgeo data 읽어온 후 데이터 확인
-        '''
-        # Json 파일 형식으로 저장된 MGeo 데이터를 읽어오는 예제 입니다.
-        # VScode 의 debug 기능을 이용하여 MGeo 데이터를 확인 할 수 있습니다.
-        # MGeo 데이터는 인접 리스트 방식의 그래프 구조 입니다.
-        # 정밀도로지도의 도로 간의 연결 관계를 표현 합니다.
-        # MGeo 에는 도로의 형상을 나타내는 Node 와 Link 데이터가 있습니다.
-        # Node 와 Link 는 모두 Point 데이터 들의 집합입니다.
-        # Node 는 서로 다른 두개 이상의 Link 간의 연결 여부를 나타냅니다.
-        # Link 는 도로를 표현하며 도로 의 중심 선이 됩니다.
-        # Link 와 Node 정보가 모여 도로의 형상을 표현합니다.
-        # 각각의 Node Link 정보는 이름인 idx 정보를 가집니다 idx 는 중복 될 수 없습니다. 
-        # to_links , from_links , to_node , from_node ... 등 
-        # MGeo에 정의되어 있는 데이터를 활용해 각 Node 와 Link 간 연결 성을 나타낼 수 있습니다.
-        
-        '''
         load_path = os.path.normpath(os.path.join(current_path, 'lib/mgeo_data/R_KR_PG_K-City'))
         mgeo_planner_map = MGeo.create_instance_from_json(load_path)
 
         node_set = mgeo_planner_map.node_set
         link_set = mgeo_planner_map.link_set
 
-        self.nodes=node_set.nodes
-        self.links=link_set.lines
+        self.nodes = node_set.nodes
+        self.links = link_set.lines
 
-        self.link_msg=self.getAllLinks()
-        self.node_msg=self.getAllNode()
+        self.link_msg = self.getAllLinks()
+        self.node_msg = self.getAllNode()
 
-        print('# of nodes: ', len(node_set.nodes))
-        print('# of links: ', len(link_set.lines))
+        # print('# of nodes: ', len(node_set.nodes))
+        # print('# of links: ', len(link_set.lines))
 
         rate = rospy.Rate(1) 
         while not rospy.is_shutdown():
@@ -67,60 +55,48 @@ class get_mgeo :
             # 변환한 Link, Node 정보 를 전송하는 publisher 를 만든다.
             self.link_pub.publish(self.link_msg)
             self.node_pub.publish(self.node_msg)
-                
+
+            global_data_msg = global_data()
+            global_data_msg.nodes_idx = list(self.nodes.keys())
+            global_data_msg.links_idx = list(self.links.keys())
+
+            # Publish global_data_msg
+            self.global_data_pub.publish(global_data_msg)
+
             rate.sleep()
 
 
     def getAllLinks(self):
         # PointCloud 선언 및 초기화
-        all_link=PointCloud()
-        all_link.header.frame_id='map'
+        all_link = PointCloud()
+        all_link.header.frame_id = 'map'
 
         #TODO: (2) Link 정보 Point Cloud 데이터로 변환
-        # Point Cloud 형식으로 Link 의 좌표 정보를 변환합니다.
-        # Link 의 개수 만큼 반복하는 반복 문을 이용해 Link 정보를 Point Cloud 형식 데이터에 넣습니다.
-
-        # https://github.com/morai-developergroup/morai-standard-ad-algorithm/blob/main/mgeo/mgeo_pub.py
-        # 아니.. 변환이라고 하길래 특별한 함수를 찾으라는 줄 알고
-        # src/ssafy_2/scripts/lib/mgeo/class_def/node.py 와 link.py 찾아서 뒤져봐도 변환하는 함수는 없고
-        # 상속받는 BasePoint의 point가 무슨 객체인지가 안나오고
-        # 반대로 Point Cloud는 points.append가 있는것은 알았지만 마찬가지로 변환하는 함수가 없는데 오히려
-        # 그대로 넣어도 되는거였냐구요.. 아이고난..!!
-
-        # 게다가 내부에서는 buff.write(_get_struct_3f().pack(_x.x, _x.y, _x.z)) 라는 코드가 있어서
-        # 그냥 tmp_point[0] = self.nodes[node_idx].point[0] 이런식으로 쓰다가는
-
-        # 게다가 link의 points는 그냥 다 넣는구나.. 고민했는데 시원하게 다 넣어버리네;
-
         all_link.serialize
-        for link_idx in self.links :
+        for link_idx in self.links:
             for link_point in self.links[link_idx].points:
-                tmp_point=Point32()
-                tmp_point.x=link_point[0]
-                tmp_point.y=link_point[1]
-                tmp_point.z=link_point[2]
+                tmp_point = Point32()
+                tmp_point.x = link_point[0]
+                tmp_point.y = link_point[1]
+                tmp_point.z = link_point[2]
                 all_link.points.append(tmp_point)
 
         return all_link
     
     def getAllNode(self):
-        all_node=PointCloud()
-        all_node.header.frame_id='map'
+        all_node = PointCloud()
+        all_node.header.frame_id = 'map'
 
         #TODO: (3) Node 정보 Point Cloud 데이터로 변환
-        # Point Cloud 형식으로 Node 의 좌표 정보를 변환합니다.
-        # Node 의 개수 만큼 반복하는 반복 문을 이용해 Node 정보를 Point Cloud 형식 데이터에 넣습니다.
-
-        for node_idx in self.nodes :
-            tmp_point=Point32()
-            tmp_point.x=self.nodes[node_idx].point[0]
-            tmp_point.y=self.nodes[node_idx].point[1]
-            tmp_point.z=self.nodes[node_idx].point[2]
+        for node_idx in self.nodes:
+            tmp_point = Point32()
+            tmp_point.x = self.nodes[node_idx].point[0]
+            tmp_point.y = self.nodes[node_idx].point[1]
+            tmp_point.z = self.nodes[node_idx].point[2]
             all_node.points.append(tmp_point)
 
         return all_node
 
 
 if __name__ == '__main__':
-    
-    test_track=get_mgeo()
+    test_track = get_mgeo()
