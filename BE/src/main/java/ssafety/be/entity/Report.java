@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -34,16 +35,19 @@ public class Report {
     /**
      * 촬영 영상의 URL은 보고서에 연결된 영상 파일의 경로를 나타냅니다.
      */
+    @ColumnDefault("https://a102.s3.ap-northeast-2.amazonaws.com/%EC%B0%A8%EC%82%AC%EA%B3%A0%EC%98%81%EC%83%81.mp4")
     private String videoUrl;
 
     /**
      * GPS 위도 정보는 촬영 위치의 위도를 나타냅니다.
      */
+    @ColumnDefault("0")
     private double gpsLatitude;
 
     /**
      * GPS 경도 정보는 촬영 위치의 경도를 나타냅니다.
      */
+    @ColumnDefault("0")
     private double gpsLongitude;
 
     /**
@@ -52,6 +56,7 @@ public class Report {
     private String gpsLocation;
 
     @Column
+    @ColumnDefault("미상")
     private String state;
 
     /**
@@ -69,11 +74,13 @@ public class Report {
     /**
      * 동 정보를 나타냅니다.
      */
+    @ColumnDefault("미상")
     private String depth4;
 
     /**
      * 상세 주소 정보를 나타냅니다.
      */
+    @ColumnDefault("미상")
     private String detail;
 
     /**
@@ -88,5 +95,6 @@ public class Report {
     private String vehicleNumber;
 
     @Column(nullable = false)
-    private String phoneNum = "01095212415";
+    @ColumnDefault("01095212415")
+    private String phoneNum;
 }

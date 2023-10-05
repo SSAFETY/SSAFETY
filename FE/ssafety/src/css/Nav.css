@@ -1,29 +1,20 @@
+/* Nav.css */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: gray;
-  z-index: 100;
-  width: 100%;
-  padding: 15px 0px;
-  text-align: right;
-  color: white;
-  text-decoration: none;
-  height: 3vh;
+  background-color: #2196F3; /* 네비게이션 바 배경색 (하늘색) */
+  height: 60px; /* 네비게이션 바의 높이를 조절합니다. 원하는 높이로 변경하세요. */
 }
 
-.navbarMenu {
-  color: white;
-  margin: 8px;
-  text-decoration: none;
-  font-size: 1em; /* 기본 글꼴 크기 설정 */
-  transition: font-size 0.5s, transform 0.5s; /* 글꼴 크기 및 변환에 대한 트랜지션 설정 */
-  transform-origin: center bottom; /* 변환 축을 하단 중앙으로 설정 */
+.logo {
+  display: flex;
+  align-items: center;
 }
 
-.navbarMenu:hover {
-  font-size: 1.2em; /* 글꼴 크기를 1.2배로 확대 */
-  transform: scaleY(1.2); /* Y 축을 기준으로 확대 변환 */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* 빛 번짐 효과 */
+.logo-image {
+  max-height: 50px; /* 로고 이미지 높이 조절 */
+}
+
+.nav-links {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 }

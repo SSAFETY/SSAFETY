@@ -24,8 +24,8 @@ const MainPage = () => {
     const dy = bounds[1][1] - bounds[0][1];
     const x = (bounds[0][0] + bounds[1][0]) / 2;
     const y = (bounds[0][1] + bounds[1][1]) / 2;
-    const scale = 0.9 / Math.max(dx / width, dy / height);
-    const translate = [width / 2 - scale * x, height / 2 - scale * y];
+    const scale = 0.8 / Math.max(dx / width, dy / height);
+    const translate = [width / 2 - scale * x, height / 2 - scale * y + 10];
 
     projection.scale(scale).translate(translate);
 

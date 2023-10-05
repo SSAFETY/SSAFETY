@@ -95,10 +95,10 @@ public class ReportDataService {
      * @param dateStr     날짜
      * @return 검색된 보고서 목록
      */
-    public Page<Report> findReportsByConditions(String city, String depth3, String aiResult, String dateStr , Pageable pageable) {
-        System.out.println("도시 : " + city + " 구 : " + depth3 + " ai결과 : " + aiResult + " 날짜 : " + dateStr);
+    public List<Report> findReportsByConditions(String city, String depth3, String aiResult, String dateStr) {
         LocalDateTime startTime = null;
         LocalDateTime endTime = null;
+        System.out.println(dateStr);
 
         if (dateStr != null && !dateStr.isEmpty()) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -111,8 +111,8 @@ public class ReportDataService {
             endTime = date.atTime(23, 59, 59);
         }
 
-        Specification<Report> spec = reportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
-        return reportRepository.findAll(spec, pageable);
+        Specification<Report> spec = ReportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
+        return reportRepository.findAll(spec);
     }
 
     public Page<Report> getAll(Pageable pageable) {

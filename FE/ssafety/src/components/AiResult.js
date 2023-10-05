@@ -9,12 +9,16 @@ const AiResult = ({ data }) => {
       value: data.filter(item => item.aiResult === '차선 침범').length,
     },
     {
-      id: '신호 위반',
-      value: data.filter(item => item.aiResult === '신호 위반').length,
-    },
-    {
       id: '과속',
       value: data.filter(item => item.aiResult === '과속').length,
+    },
+    {
+      id: '주정차 위반',
+      value: data.filter(item => item.aiResult === '주정차 위반').length,
+    },
+    {
+      id: '버스전용차로 위반',
+      value: data.filter(item => item.aiResult === '버스전용차로 위반').length,
     },
   ];
 

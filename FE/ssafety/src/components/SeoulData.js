@@ -13,7 +13,6 @@ const SeoulData = () => {
       try {
         const response = await axios.get('https://j9a102.p.ssafy.io/api/getData');
         const responseData = response.data;
-
         setData(responseData);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -24,10 +23,18 @@ const SeoulData = () => {
   }, []);
 
   return (
-    <div>
-      <AiResult data={data} />
-      <GuResult data={data} />
-      <TimeResult data={data} />
+    <div className='seoul-data-container'>
+      <div className='horizontal-graphs'>
+        <div className='horizontal-graph'>
+          <GuResult data={data} />
+        </div>
+        <div className='horizontal-graph'>
+          <TimeResult data={data} />
+        </div>
+        <div className='horizontal-graph'>
+          <AiResult data={data} />
+        </div>
+      </div>
     </div>
   );
 };
