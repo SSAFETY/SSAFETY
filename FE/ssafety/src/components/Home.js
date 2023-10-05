@@ -66,6 +66,7 @@ const openModal = async (data) => {
     const svg = d3.select(chart.current).append('svg').attr('width', width).attr('height', height);
 
     const mapLayer = svg.append('g');
+    
 
     mapLayer
       .selectAll('path')
