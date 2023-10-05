@@ -70,7 +70,7 @@ public class ReportController {
     }
 
     @GetMapping("/getAddress")
-    public String[] getAddress(@RequestParam String latitude, @RequestParam String longitude) {
+    public String getAddress(@RequestParam String latitude, @RequestParam String longitude) {
         return kakaoMapService.getAddress(latitude, longitude);
     }
 

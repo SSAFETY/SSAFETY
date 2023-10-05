@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import mapogu from '../mapData/mapo.json';
-import '../css/BusMap.css'; // 여기서 CSS 파일을 불러옵니다.
+import '../css/BusMap.css';
 import Swal from 'sweetalert2';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore'; 
+import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore';
 import { FormControl, InputLabel, MenuItem, Select, Button } from '@mui/material';
 
 const firebaseConfig = {
@@ -34,6 +34,24 @@ const BusMap = () => {
   const svgRef = useRef(null);
   const [carData, setCarData] = useState({});
 
+  const getAddress = async (gps_x, gps_y) => {
+    try {
+      const apiUrl = `https://j9a102.p.ssafy.io/api/getAddress?latitude=${gps_x}&longitude=${gps_y}`;
+      const response = await fetch(apiUrl);
+      
+      if (!response.ok) {
+        throw new Error('API 요청이 실패했습니다.');
+      }
+
+      const data = await response.json();
+      console.log(data)
+      return data;
+    } catch (error) {
+      console.error('주소 정보를 가져오는 중 오류 발생:', error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -60,7 +78,7 @@ const BusMap = () => {
       .attr('d', path)
       .style('transition', 'transform 0.2s');
 
-    svgRef.current = newSvg; // 새로운 SVG를 참조합니다.
+    svgRef.current = newSvg;
   }, [featureData, projection]);
 
   useEffect(() => {
@@ -70,7 +88,11 @@ const BusMap = () => {
     const unsubscribe = onSnapshot(carsCollection, (querySnapshot) => {
       const newData = {};
       querySnapshot.forEach((doc) => {
-        newData[doc.id] = doc.data();
+        const data = doc.data();
+        newData[doc.id] = {
+          ...data,
+          velocity: data.velocity || "운행 중이 아닙니다."
+        };
       });
       setCarData(newData);
     });
@@ -80,13 +102,19 @@ const BusMap = () => {
 
   useEffect(() => {
     const updatePins = () => {
-      const mapLayer = svgRef.current.select('g'); // 지도 레이어 선택
+      const mapLayer = svgRef.current.select('g');
 
       mapLayer.selectAll('.pin').remove();
 
       Object.keys(carData).forEach((vehicle) => {
-        const { gps_x, gps_y } = carData[vehicle];
+        const { gps_x, gps_y} = carData[vehicle];
         const [x, y] = projection([gps_x, gps_y]);
+        console.log(gps_x, gps_y)
+
+        const addressData = getAddress(gps_x, gps_y);
+        if(addressData) {
+          carData[vehicle].address = addressData;
+        }
 
         mapLayer
           .append('circle')
@@ -94,11 +122,11 @@ const BusMap = () => {
           .attr('cx', x)
           .attr('cy', y)
           .attr('r', 5)
-          .style('fill', 'red'); // 원하는 색상 설정
+          .style('fill', 'red');
       });
     };
 
-    const interval = setInterval(updatePins, 100);
+    const interval = setInterval(updatePins, 1000);
 
     return () => clearInterval(interval);
   }, [carData, projection]);
@@ -135,49 +163,48 @@ const BusMap = () => {
           <div className="gumap" ref={chart}></div>
         </div>
         <div className="form-container">
-        <div className="input-container">
-  <div className="form-control" style={{ marginBottom: '20px' }}>
-    <FormControl variant="outlined">
-      <InputLabel htmlFor="vehicle-select">차량</InputLabel>
-      <Select
-        value={selectedVehicle}
-        onChange={(e) => setSelectedVehicle(e.target.value)}
-        label="차량"
-        inputProps={{
-          name: 'vehicle',
-          id: 'vehicle-select',
-        }}
-      >
-        <MenuItem value="car1">차량 1</MenuItem>
-        <MenuItem value="car2">차량 2</MenuItem>
-        <MenuItem value="car3">차량 3</MenuItem>
-      </Select>
-    </FormControl>
-  </div>
-  <div className="form-control" style={{ marginBottom: '20px' }}>
-    <FormControl variant="outlined">
-      <InputLabel htmlFor="route-select">경로</InputLabel>
-      <Select
-        value={selectedRoute}
-        onChange={(e) => setSelectedRoute(e.target.value)}
-        label="경로"
-        inputProps={{
-          name: 'route',
-          id: 'route-select',
-        }}
-      >
-        <MenuItem value="1">경로 1</MenuItem>
-        <MenuItem value="2">경로 2</MenuItem>
-        <MenuItem value="3">경로 3</MenuItem>
-      </Select>
-    </FormControl>
-  </div>
-  <Button variant="contained" onClick={handleSendData}>
-    추가
-  </Button>
-</div>
-
-</div>
+          <div className="input-container">
+            <div className="form-control" style={{ marginBottom: '20px' }}>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="vehicle-select">차량</InputLabel>
+                <Select
+                  value={selectedVehicle}
+                  onChange={(e) => setSelectedVehicle(e.target.value)}
+                  label="차량"
+                  inputProps={{
+                    name: 'vehicle',
+                    id: 'vehicle-select',
+                  }}
+                >
+                  <MenuItem value="car1">차량 1</MenuItem>
+                  <MenuItem value="car2">차량 2</MenuItem>
+                  <MenuItem value="car3">차량 3</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div className="form-control" style={{ marginBottom: '20px' }}>
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="route-select">경로</InputLabel>
+                <Select
+                  value={selectedRoute}
+                  onChange={(e) => setSelectedRoute(e.target.value)}
+                  label="경로"
+                  inputProps={{
+                    name: 'route',
+                    id: 'route-select',
+                  }}
+                >
+                  <MenuItem value="1">경로 1</MenuItem>
+                  <MenuItem value="2">경로 2</MenuItem>
+                  <MenuItem value="3">경로 3</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <Button variant="contained" onClick={handleSendData}>
+              추가
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
