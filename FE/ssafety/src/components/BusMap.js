@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getFirestore, doc, setDoc, onSnapshot, collection } from 'firebase/firestore';
-import { FormControl, InputLabel, MenuItem, Select, Button } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, Button, List, ListItem, ListItemText } from '@mui/material';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCe8s_k1g8-g2qRvgv3i0lJwFuVLRAMJtU",
@@ -33,6 +33,7 @@ const BusMap = () => {
   const projection = d3.geoMercator().scale(1).translate([0, 0]);
   const svgRef = useRef(null);
   const [carData, setCarData] = useState({});
+  const [car, setCar] = useState();
 
   const getAddress = async (gps_x, gps_y) => {
     try {
@@ -45,7 +46,6 @@ const BusMap = () => {
 
       const dataArray = await response.json();
       const data = dataArray[0] + dataArray[1] + dataArray[2] + dataArray[3];
-      console.log(data)
       return data;
     } catch (error) {
       console.error('주소 정보를 가져오는 중 오류 발생:', error);
@@ -92,7 +92,7 @@ const BusMap = () => {
         const data = doc.data();
         newData[doc.id] = {
           ...data,
-          velocity: data.velocity || "운행 중이 아닙니다."
+          velocity: data.velocity || "0.0"
         };
       });
       setCarData(newData);
@@ -102,35 +102,45 @@ const BusMap = () => {
   }, []);
 
   useEffect(() => {
-    const updatePins = () => {
+    const updatePins = async () => {
       const mapLayer = svgRef.current.select('g');
-
+  
       mapLayer.selectAll('.pin').remove();
-
-      Object.keys(carData).forEach((vehicle) => {
-        const { gps_x, gps_y} = carData[vehicle];
-        const [x, y] = projection([gps_x, gps_y]);
-        console.log(gps_x, gps_y)
-
-        const addressData = getAddress(gps_x, gps_y);
-        if(addressData) {
-          carData[vehicle].address = addressData;
-        }
-
-        mapLayer
-          .append('circle')
-          .attr('class', 'pin')
-          .attr('cx', x)
-          .attr('cy', y)
-          .attr('r', 5)
-          .style('fill', 'red');
-      });
+  
+      for (const vehicle of Object.keys(carData)) {
+        const { gps_x, gps_y } = carData[vehicle];
+  
+        const addressData = await getAddress(gps_x, gps_y);
+        carData[vehicle].address = addressData;
+      }
+  
+      // 주소 정보를 모두 업데이트한 후에 리스트를 렌더링
+      mapLayer
+        .selectAll('circle')
+        .data(Object.keys(carData))
+        .enter()
+        .append('circle')
+        .attr('class', 'pin')
+        .attr('r', 5)
+        .style('fill', 'red')
+        .attr('cx', (vehicle) => {
+          const { gps_x, gps_y } = carData[vehicle];
+          return projection([gps_x, gps_y])[0];
+        })
+        .attr('cy', (vehicle) => {
+          const { gps_x, gps_y } = carData[vehicle];
+          return projection([gps_x, gps_y])[1];
+        });
     };
-
-    const interval = setInterval(updatePins, 1000);
-
+  
+    updatePins();
+  
+    const interval = setInterval(updatePins, 5000);
+  
     return () => clearInterval(interval);
-  }, [carData, projection]);
+  }, [projection]);
+  
+  
 
   const handleSendData = () => {
     if (selectedVehicle.trim() !== '' && selectedRoute.trim() !== '') {
@@ -204,6 +214,18 @@ const BusMap = () => {
             <Button variant="contained" onClick={handleSendData}>
               추가
             </Button>
+          </div>
+          <div className="form-control" style={{ marginBottom: '20px' }}>
+            <List>
+              {Object.keys(carData).map((vehicle) => (
+                <ListItem key={vehicle}>
+                  <ListItemText
+                    primary={`차량: ${vehicle}`}
+                    secondary={`주소: ${carData[vehicle].address}, 속도: ${carData[vehicle].velocity} km / h`}
+                  />
+                </ListItem>
+              ))}
+            </List>
           </div>
         </div>
       </div>

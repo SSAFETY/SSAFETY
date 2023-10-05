@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/Violation.css';
+import Modal from './Modal'; // Modal 컴포넌트를 불러옵니다.
+import '../css/Modal.css';
 
 import districtsData from '../mapData/listdata.json';
 
@@ -17,6 +19,8 @@ const Violation = () => {
   const [selectedViolation, setSelectedViolation] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림 상태
+  const [selectedData, setSelectedData] = useState(null); // 선택된 데이터
 
   useEffect(() => {
     filterData();
@@ -47,7 +51,6 @@ const Violation = () => {
       setSelectedDate(null);
     }
   };
-  
 
   const formatCreationTime = (creationTimeArray) => {
     const [year, month, day, hour, minute] = creationTimeArray;
@@ -95,84 +98,93 @@ const Violation = () => {
     setCurrentPage(data.selected);
   };
 
+  // 데이터 요소를 클릭할 때 모달을 엽니다.
+  const handleDataClick = (data) => {
+    console.log('모달오픈')
+    setSelectedData(data);
+    setIsModalOpen(true);
+  };
+
+  // 모달을 닫습니다.
+  const closeModal = () => {
+    console.log('모달클로즈')
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="violation-container">
       <div className="violation-form">
-      <div className="form-control-horizontal">
-        <FormControl variant="outlined">
-          <InputLabel htmlFor="province-select">도 (시) 선택</InputLabel>
-          <Select
-            value={selectedProvince}
-            onChange={handleProvinceChange}
-            label="도 (시) 선택"
-            id="province-select"
-          >
-            <MenuItem value="">
-              <em>도 (시) 선택</em>
-            </MenuItem>
-            {Object.keys(districtsData).map((province) => (
-              <MenuItem key={province} value={province}>
-                {province}
+        <div className="form-control-horizontal">
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="province-select">도 (시) 선택</InputLabel>
+            <Select
+              value={selectedProvince}
+              onChange={handleProvinceChange}
+              label="도 (시) 선택"
+              id="province-select"
+            >
+              <MenuItem value="">
+                <em>도 (시) 선택</em>
               </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+              {Object.keys(districtsData).map((province) => (
+                <MenuItem key={province} value={province}>
+                  {province}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-        <FormControl variant="outlined">
-          <InputLabel htmlFor="city-select">구 선택</InputLabel>
-          <Select
-            value={selectedCity}
-            onChange={handleCityChange}
-            label="구 선택"
-            id="city-select"
-          >
-            <MenuItem value="">
-              <em>구 선택</em>
-            </MenuItem>
-            {cityDistricts.map((city) => (
-              <MenuItem key={city} value={city}>
-                {city}
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="city-select">구 선택</InputLabel>
+            <Select
+              value={selectedCity}
+              onChange={handleCityChange}
+              label="구 선택"
+              id="city-select"
+            >
+              <MenuItem value="">
+                <em>구 선택</em>
               </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+              {cityDistricts.map((city) => (
+                <MenuItem key={city} value={city}>
+                  {city}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-        <FormControl variant="outlined">
-          <InputLabel htmlFor="violation-select">위반 종류 선택</InputLabel>
-          <Select
-            value={selectedViolation}
-            onChange={handleViolationChange}
-            label="위반 종류 선택"
-            id="violation-select"
-          >
-            <MenuItem value="">
-              <em>위반 종류 선택</em>
-            </MenuItem>
-            <MenuItem value="차선 침범">차선 침범</MenuItem>
-            <MenuItem value="과속">과속</MenuItem>
-            <MenuItem value="주정차 위반">주정차 위반</MenuItem>
-            <MenuItem value="버스전용차로 위반">버스전용차로 위반</MenuItem>
-          </Select>
-        </FormControl>
+          <FormControl variant="outlined">
+            <InputLabel htmlFor="violation-select">위반 종류 선택</InputLabel>
+            <Select
+              value={selectedViolation}
+              onChange={handleViolationChange}
+              label="위반 종류 선택"
+              id="violation-select"
+            >
+              <MenuItem value="">
+                <em>위반 종류 선택</em>
+              </MenuItem>
+              <MenuItem value="차선 침범">차선 침범</MenuItem>
+              <MenuItem value="과속">과속</MenuItem>
+              <MenuItem value="주정차 위반">주정차 위반</MenuItem>
+              <MenuItem value="버스전용차로 위반">버스전용차로 위반</MenuItem>
+            </Select>
+          </FormControl>
         </div>
 
         <div className="date-picker-container">
-  <div className="date-picker-input">
-    <DatePicker
-          selected={selectedDate}
-          onChange={handleDateChange}
-          dateFormat="yyyy-MM-dd"
-          isClearable
-          className="date-picker"
-          calendarIcon={<i className="fa fa-calendar" />}
-          placeholderText="날짜를 선택해주세요"
-        />
-
-  </div>
-</div>
-
-
-
+          <div className="date-picker-input">
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="yyyy-MM-dd"
+              isClearable
+              className="date-picker"
+              calendarIcon={<i className="fa fa-calendar" />}
+              placeholderText="날짜를 선택해주세요"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="violation-result">
@@ -192,7 +204,7 @@ const Violation = () => {
             </thead>
             <tbody>
               {currentResults.map((item) => (
-                <tr key={item.id}>
+                <tr key={item.id} onClick={() => handleDataClick(item)}>
                   <td>{item.city}</td>
                   <td>{item.depth3}</td>
                   <td>{item.aiResult}</td>
@@ -212,6 +224,8 @@ const Violation = () => {
           color="primary"
         />
       </div>
+
+      <Modal isOpen={isModalOpen} closeModal={closeModal} data={selectedData} />
     </div>
   );
 };
