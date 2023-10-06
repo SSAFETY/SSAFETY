@@ -95,6 +95,6 @@ public class Report {
     private String vehicleNumber;
 
     @Column(nullable = false)
-    @ColumnDefault("01095212415")
+        @ColumnDefault("01095212415")
     private String phoneNum;
 }

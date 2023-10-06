@@ -115,14 +115,13 @@ public class ReportDataService {
         Specification<Report> spec = ReportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
 
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-
+        
         return reportRepository.findAll(spec, sort);
     }
 
     public Page<Report> getAll(Pageable pageable) {
         Page<Report> reportList = reportRepository.getAll(pageable);
         // 정렬 조건이 추가된 Pageable 객체를 사용하여 데이터를 조회합니다.
-        System.out.println(pageable);
         return reportList;
     }
 

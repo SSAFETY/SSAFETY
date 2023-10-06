@@ -25,7 +25,6 @@ const KoreaMap = () => {
   const [isLoading, setIsLoading] = useState(false); // 데이터 로딩 상태
 
 const openModal = async (data) => {
-  // 모달을 열 때 데이터를 미리 로드
   try {
     const response = await axios.get(`https://j9a102.p.ssafy.io:8080/api/detailData?id=${data.id}`);
     const modalData = response.data;
