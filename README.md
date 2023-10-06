@@ -2,6 +2,8 @@
 ### 교통 법규 위반 감지 자율 주행 버스 프로젝트
 <img src="https://github.com/leehk77789/BEP/assets/96775737/9ef93474-9b36-4b83-807c-14198a10aee6">
 
+![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)![통계]        
+
 <br><br><br><br>
 
 ## 프로젝트 개요
