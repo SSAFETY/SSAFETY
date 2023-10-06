@@ -54,19 +54,19 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 
 ## 개발환경
 
-> BackEnd
+> BackEnd       
 Java : 11.0.19 <br>
 JVM : 18.9 <br>
 SERVER : AWS EC2 Ubuntu 20.04.3 LTS <br>
 
-> Front
+> Front     
 VS Code : 1.80.2 <br>
 Node.js : 18.17.1 <br>
 
-> DB
+> DB        
 MySQL : 8.1 <br>
 StmCubeIDE : 1.13.1 <br>
-ArduinoIDE : 2.1.1 <br>
+Firebase Cloud Firestore <br>
 
 > AD        
 Python : 3.8.10     
