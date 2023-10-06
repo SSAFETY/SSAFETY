@@ -1,8 +1,7 @@
 # SSAFETY
 ### 교통 법규 위반 감지 자율 주행 버스 프로젝트
-<img src="https://github.com/leehk77789/BEP/assets/96775737/9ef93474-9b36-4b83-807c-14198a10aee6">
 
-![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)![통계]        
+![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)!       
 
 <br><br><br><br>
 
@@ -120,6 +119,9 @@ https://j9a102.p.ssafy.io
 
 #### 1-1. 메인 페이지
 <img src="https://github.com/leehk77789/BEP/assets/96775737/080e1c1a-8c79-4401-96b0-4b9e580dab94">
+
+(/uploads/fb39c4b26f22e7f49bcefcc9a9a4e54e/상세보기.png)![메인]
+
 <br><br>
 
 #### 1-2. 교통 위반 통계
