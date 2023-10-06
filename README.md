@@ -68,14 +68,14 @@ MySQL : 8.1 <br>
 StmCubeIDE : 1.13.1 <br>
 ArduinoIDE : 2.1.1 <br>
 
-- AD
+> AD        
 Python : 3.8.10
 Simulation os : Ubuntu 20.04.6 LTS
 ROS : noetic, 1.16.0
 NVDIA Driver : 470.199.02   
 CUDA Version: 11.4 
 
-- AI
+> AI        
 cudatoolkit : 11.0
 cudnn : 8
 colorlog : 6.6.0
