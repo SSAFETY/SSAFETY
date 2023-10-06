@@ -96,12 +96,6 @@ torchaudio : 0.7.0
 torchvision : 0.8.1+cu110
 tqdm : 4.62.3
 
-## 인프라
-<br><br><br><br>
-
-## ERD
-<br><br><br><br>
-
 ## 배포 주소
 https://j9a102.p.ssafy.io
 <br><br><br><br>
