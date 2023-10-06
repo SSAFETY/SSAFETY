@@ -68,6 +68,33 @@ MySQL : 8.1 <br>
 StmCubeIDE : 1.13.1 <br>
 ArduinoIDE : 2.1.1 <br>
 
+- AD
+Python : 3.8.10
+Simulation os : Ubuntu 20.04.6 LTS
+ROS : noetic, 1.16.0
+NVDIA Driver : 470.199.02   
+CUDA Version: 11.4 
+
+- AI
+cudatoolkit : 11.0
+cudnn : 8
+colorlog : 6.6.0
+easydict : 1.9
+future : 0.18.2
+ipywidgets : 7.6.5
+jupyter : 1.0.0
+matplotlib : 3.5.0
+mmcv-full : 1.3.9
+mmdet : 2.18.1
+omegaconf : 2.1.1
+pandas : 1.3.4
+scikit-learn : 1.0.1
+tensorboard : 2.7.0
+torch : 1.7.0+cu110
+torchaudio : 0.7.0
+torchvision : 0.8.1+cu110
+tqdm : 4.62.3
+
 ## 인프라
 <br><br><br><br>
 
