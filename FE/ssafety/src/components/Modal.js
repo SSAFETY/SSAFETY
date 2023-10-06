@@ -5,7 +5,8 @@ const CustomModal = ({ isOpen, closeModal, data }) => {
   if (!isOpen) return null;
   const formatCreationTime = (creationTimeArray) => {
     const [year, month, day, hour, minute] = creationTimeArray;
-    const formattedTime = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
+    let si = (hour+9) % 24;
+    const formattedTime = `${year}년 ${month}월 ${day}일 ${si}시 ${minute}분`;
     return formattedTime;
   };
 

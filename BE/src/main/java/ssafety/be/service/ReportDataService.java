@@ -3,6 +3,7 @@ package ssafety.be.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -112,7 +113,10 @@ public class ReportDataService {
         }
 
         Specification<Report> spec = ReportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
-        return reportRepository.findAll(spec);
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+
+        return reportRepository.findAll(spec, sort);
     }
 
     public Page<Report> getAll(Pageable pageable) {
