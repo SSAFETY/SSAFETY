@@ -5,9 +5,17 @@ import Violation from './Violation';
 import MainPage from './MainPage';
 import Seoul from './Seoul';
 import BusMap from './BusMap';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: "Main"
+  }
+})
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
         <NavBar />
@@ -19,6 +27,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 
