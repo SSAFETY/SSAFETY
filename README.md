@@ -26,8 +26,8 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 ## 팀 소개
 
 ### 팀 아우토반
-- 이충혁(AD):
-- 김민재(AD): 
+- 이충혁(AD): Ubuntu 20.04.3, Morai Simulator
+- 김민재(AD): Ubuntu 20.04.3, Morai Simulator
 - 김현명(AD): Ubuntu 20.04.3, Morai Simulator, Firebase CloudStore
 - 정유준(WEB): Spring, React, Mysql, D3
 - 김용균(AI/INFRA):
