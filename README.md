@@ -1,7 +1,7 @@
 # SSAFETY
 ### 교통 법규 위반 감지 자율 주행 버스 프로젝트
 
-![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)!       
+![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)       
 
 <br><br><br><br>
 
@@ -27,7 +27,7 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 
 ### 팀 아우토반
 - 이충혁(AD):
-- 김민재(AD):
+- 김민재(AD): 
 - 김현명(AD): Ubuntu 20.04.3, Morai Simulator, Firebase CloudStore
 - 정유준(WEB): Spring, React, Mysql, D3
 - 김용균(AI/INFRA):
@@ -73,7 +73,7 @@ ArduinoIDE : 2.1.1 <br>
 Python : 3.8.10
 Simulation os : Ubuntu 20.04.6 LTS
 ROS : noetic, 1.16.0
-NVDIA Driver : 470.199.02   
+NVDIA Driver : 470.199.02
 CUDA Version: 11.4 
 
 > AI        
