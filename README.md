@@ -1,6 +1,6 @@
 # SSAFETY
 ### 교통 법규 위반 감지 자율 주행 버스 프로젝트
-![로고+네임](https://github.com/leehk77789/BEP/assets/96775737/9ef93474-9b36-4b83-807c-14198a10aee6)
+<img src="https://github.com/leehk77789/BEP/assets/96775737/9ef93474-9b36-4b83-807c-14198a10aee6">
 
 <br><br><br><br>
 
@@ -90,22 +90,22 @@ https://j9a102.p.ssafy.io
 ### 1. Web
 
 #### 1-1. 메인 페이지
-![스크린샷, 2023-10-05 23-05-52](https://github.com/leehk77789/BEP/assets/96775737/080e1c1a-8c79-4401-96b0-4b9e580dab94)
+<img src="https://github.com/leehk77789/BEP/assets/96775737/080e1c1a-8c79-4401-96b0-4b9e580dab94">
 <br><br>
 
 #### 1-2. 교통 위반 통계
-![교통 위반 통계](https://github.com/leehk77789/BEP/assets/96775737/f59abff2-d4a8-4420-8e32-bd3f349c6e4a)
+<img src="https://github.com/leehk77789/BEP/assets/96775737/f59abff2-d4a8-4420-8e32-bd3f349c6e4a">
 <br><br>
 
 #### 1-3. 교통 위반 데이터베이스
-![교통 위반 데이터베이스](https://github.com/leehk77789/BEP/assets/96775737/5bc4a67e-6a1f-4b03-9680-7f69d3fd94c0)
+<img src="https://github.com/leehk77789/BEP/assets/96775737/5bc4a67e-6a1f-4b03-9680-7f69d3fd94c0">
 <br><br>
 
 #### 1-4. 교통 위반사항 상세보기
-![교통 위반 상세보기](https://github.com/leehk77789/BEP/assets/96775737/fb3396fe-c387-49c3-94f4-524798a76164)
+<img src="https://github.com/leehk77789/BEP/assets/96775737/fb3396fe-c387-49c3-94f4-524798a76164">
 <br><br>
 
 #### 1-5. 자율주행 버스 관제, 통제
-![자율주행 버스 관제, 통제](https://github.com/leehk77789/BEP/assets/96775737/c875cefb-cc5c-4f52-8367-d7f7d33a2e65)
+<img src="https://github.com/leehk77789/BEP/assets/96775737/c875cefb-cc5c-4f52-8367-d7f7d33a2e65">
 <br><br>
 
