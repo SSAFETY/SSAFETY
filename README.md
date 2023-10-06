@@ -118,28 +118,29 @@ https://j9a102.p.ssafy.io
 ### 1. Web
 
 #### 1-1. 메인 페이지
-![메인](/uploads/ce402d76df206015b4be963bb2c78093/메인.png)
+![image](/uploads/b78665e83cfe618f823d201b88166692/image.png)
 
 <br><br>
 
 #### 1-2. 교통 위반 통계를
-![상세보기](/uploads/f56f8fadf54443e92aea01fba106b31c/상세보기.png)
+![image](/uploads/bbf32fe2d3778f89d9050dc214d055d9/image.png)
 
 <br><br>
 
 #### 1-3. 교통 위반 데이터베이스
 
-![데이터베이스](/uploads/94fd78bcc046b4afde00106d2b117c66/데이터베이스.png)
+![image](/uploads/e7460eee25cf57701b9291ffc8b8fa67/image.png)
 
 <br><br>
 
 #### 1-4. 교통 위반사항 상세보기
-<img src="https://github.com/leehk77789/BEP/assets/96775737/fb3396fe-c387-49c3-94f4-524798a76164">
+![image](/uploads/5f6df9d5eb270a5ced00198aed93d605/image.png)
+
 <br><br>
 
 #### 1-5. 자율주행 버스 관제, 통제
 
-![관제](/uploads/a73b20a13449e639ee707bf17a835907/관제.png)
+![image](/uploads/b78665e83cfe618f823d201b88166692/image.png)
 
 <br><br>
 
