@@ -37,26 +37,8 @@ from constants import ImageInfo, ObjectInfo, VEHICLE_LIST, \
     VIOLATION_MAP, VLT_COLOR, DANGER_COLOR, NORMAL_COLOR
 from lane_detection.model import LaneSegModel
 from utils import viz_inference_result
-#import video_parcing 
-
 
 device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
-
-
-# In[2]:
-
-
-print(f"pytorch => {torch.__version__}")
-print(f"torchvision => {torchvision.__version__}")
-print(f"mmdet => {mmdet.__version__}")
-print(f"mmcv => {mmcv.__version__}")
-print(f"opencv2 => {cv2.__version__}")
-
-
-# # Useful Functions
-
-# In[3]:
-
 
 SCORE_TH = 0.5
 
@@ -69,8 +51,6 @@ def inference(img_path, vehicle_model, lane_model, device):
     image_info = ImageInfo(img_path, None)
     obj_id = 0
 
-    # >>> inference cars
-    #input_img = Image.open(img_path)
     input_img = Image.fromarray(img_path);
     
     '''
@@ -83,25 +63,16 @@ def inference(img_path, vehicle_model, lane_model, device):
     
     bbox_result, segm_result = inference_detector(vehicle_model, img_path)
 
-    #print(bbox_result)
-    #print(segm_result)
-
-
     bboxes = np.vstack(bbox_result)
     labels = [
         np.full(bbox.shape[0], i, dtype=np.int32)
         for i, bbox in enumerate(bbox_result)
     ]
 
-    #print(labels)
-
     labels = np.concatenate(labels)
     if isinstance(segm_result, tuple):
         segm_result = segm_result[0]
     segms = None
-
-    #print(segm_result)
-
 
     if segm_result is not None and len(labels) > 0:  # non empty
         segms = mmcv.concat_list(segm_result)
@@ -118,12 +89,10 @@ def inference(img_path, vehicle_model, lane_model, device):
             continue
         category = VEHICLE_LIST[labels[i]]
         segm = segms[i]
-        # remove small size objects
         if category == "vehicle_bike" and bbox[3] - bbox[1] < 100:
             continue
         elif category != "vehicle_bike" and np.sum(segm) < 10000:
             continue
-        # cv2.CHAIN_APPROX_TC89_L1, cv2.CHAIN_APPROX_TC89_KCOS, cv2.CHAIN_APPROX_SIMPLE
         c, _ = cv2.findContours(segm.astype(np.uint8), cv2.RETR_LIST, 
                                 cv2.CHAIN_APPROX_SIMPLE)
         approx_poly = cv2.approxPolyDP(
@@ -141,15 +110,7 @@ def inference(img_path, vehicle_model, lane_model, device):
 
     image_info.objects = object_list
     result_img = vehicle_model.show_result(img_path, (bbox_result, segm_result))
-    #print(result_img)
 
-    # for debug
-
-    # <<< inference cars end.
-    
-    # >>> inference lanes
-    #input_img = Image.open(img_path)
-    #w, h = input_img.size
     w, h = input_img.size
 
     img_tensor = transforms.functional.to_tensor(
@@ -170,7 +131,6 @@ def inference(img_path, vehicle_model, lane_model, device):
     lane_mask = lane_mask.astype(np.uint8)
     lane_mask = Image.fromarray(lane_mask, mode="L")
     
-    # post processing
     kernel = np.ones((5, 5), np.uint8)
     lane_mask = cv2.dilate(np.array(lane_mask), kernel, iterations=3)
 
@@ -183,10 +143,8 @@ def inference(img_path, vehicle_model, lane_model, device):
 
 
         category = LANE_LABEL_MAP_PREV[label]
-        # cv2.CHAIN_APPROX_TC89_L1, cv2.CHAIN_APPROX_TC89_KCOS, cv2.CHAIN_APPROX_SIMPLE
         c, _ = cv2.findContours(segm.astype(np.uint8), cv2.RETR_LIST, 
                                 cv2.CHAIN_APPROX_SIMPLE)
-        # TODO: deal with more than one contour
         bbox = cv2.boundingRect(c[0])
         bbox = (bbox[0], bbox[1], bbox[0] + bbox[2], bbox[1] + bbox[3])
         approx_poly = cv2.approxPolyDP(c[0], 0.005 * cv2.arcLength(c[0], True), 
@@ -196,7 +154,6 @@ def inference(img_path, vehicle_model, lane_model, device):
                               np.array(bbox), points, segm, 1.)
         obj_id += 1
         image_info.objects.append(obj_info)
-    # <<< end.
 
     return image_info
 
@@ -224,7 +181,6 @@ def detect_violation(object_info, violation_model, device):
     
     car_arr_list = []
     for car in car_list:
-        # get array intersection is filled
         car_ctg = car.category
         result_img = Image.new("RGB", img_size)
         result_img_arr = np.array(result_img)
@@ -259,10 +215,7 @@ def detect_violation(object_info, violation_model, device):
         result_img_arr = result_img_arr.astype(np.float32)
         result_img_arr /= 255.
         car_arr_list.append((result_img_arr, match))
-        #plt.imshow(result_img_arr)
-        #plt.show()
-    
-    # Inference model
+
     if len(car_arr_list) == 0:
         return result_list
     car_arr_list = np.array(car_arr_list, dtype=object)
@@ -328,7 +281,7 @@ def parsing():
     cut_duration_seconds = 10
     cut_frame_count = new_fps * cut_duration_seconds
 
-    output_fourcc = cv2.VideoWriter_fourcc(*'VP80')  # 저장할 동영상 코덱 설정
+    output_fourcc = cv2.VideoWriter_fourcc('v','p', '8', '0')  # 저장할 동영상 코덱 설정
     
     parcing_out = cv2.VideoWriter(output_filename, output_fourcc, new_fps, (int(vidcap.get(3)), int(vidcap.get(4))))
 
@@ -356,7 +309,7 @@ def make_plate(resized_frame, poly):
 
     # 이미지 저장
     cv2.imwrite(save_path, cropped_image)
-    print(f'이미지 저장 완료: {save_path}')
+    # print(f'이미지 저장 완료: {save_path}')
     # 이미지 파일 경로
     image_path = 'cropped_image.jpg'
 
@@ -380,9 +333,6 @@ def make_plate(resized_frame, poly):
         plate_image_path = os.path.join('./', f'plate_{i}.jpg')
         cv2.imwrite(plate_image_path, plate_roi)
 
-
-# In[4]:
-
 path = '/home/ssafy01/nia-82-134-main'
 main_web_mp4 = './parsing/webcam_out.mp4'
 
@@ -392,12 +342,6 @@ vehicle_ckpt_path = f"{path}/best_models/vehicle_detection_model.pth"
 lane_ckpt_path = f"{path}/best_models/lane_all.pth"
 
 violation_ckpt_path = f"{path}/best_models/vlt_cls_model.pth"
-
-
-# # 모델들 로드
-
-# In[5]:
-
 
 vehicle_model = init_detector(vehicle_cfg_path, vehicle_ckpt_path, device=device)
 
@@ -419,30 +363,17 @@ violation_model.load_state_dict(violation_model_ckpt["state_dict"])
 violation_model.to(device)
 violation_model.eval()
 
-# In[6]:
-
-
-image_list = glob(f"{path}/sample_images/BLUE/*.jpg")
-
-print(f"The number of images => {len(image_list)}")
-
-
-# # 예시 이미지
-
-# In[7]:
-
-img_path = image_list[2]
-print(img_path)
-curr_img = Image.open(img_path)
-result_img = None
-
-# 새로운 FPS 값을 설정
 new_fps = 30
 
 # 웹캠 열기
 # webcam = cv2.VideoCapture(0)
-webcam = cv2.VideoCapture("/home/ssafy01/Downloads/20230921_081358_REC_F.mp4")
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+
+#정상주행
+# webcam = cv2.VideoCapture("/home/ssafy01/nia-82-134-main/영상/정상 주행.mp4")
+
+#차선위반
+webcam = cv2.VideoCapture("/home/ssafy01/nia-82-134-main/영상/차선 위반 편집.mp4")
+fourcc = cv2.VideoWriter_fourcc('m','p','4','v')
 webcam_out = cv2.VideoWriter(main_web_mp4, fourcc, new_fps, (1280, 720))
 
 if not webcam.isOpened():
@@ -459,7 +390,6 @@ violation_frame = 0
 violation_flag = False
 
 wait_frame = 0
-#True로 변경해야 함
 wait_flag = True
 
 
@@ -483,14 +413,14 @@ while webcam.isOpened():
         if violation_frame >= new_fps * 5:
             violation_flag = False
             
-            #video_parcing.parcing(frame, time_interval*2, './parsing/webcam_out.mp4')
-
             webcam_out.release()
 
             parsing()
             data = {"nowTime": f"{str(int(now))}"}
             headers = {'Content-Type': 'application/json'}
             response = requests.post("http://localhost:8080/api/hi", headers=headers, data=json.dumps(data))
+            if response.status_code == 200:
+                print("신고가 정상적으로 등록되었습니다.")
             wait_flag = True
             wait_frame = 0
 
@@ -511,12 +441,10 @@ while webcam.isOpened():
                 image_info = inference(resized_frame, vehicle_model, lane_model, device)
 
                 result_list = detect_violation(image_info.objects, violation_model, device)
-                if not result_list:
-                    print("empty")
-                else:
+                if result_list:
                     labels = [obj.label for obj in result_list]
-                    print(labels)
                     if "violation" in labels:
+                        print("위반 사항이 감지되었습니다.")
                         now = time.time()
 
                         vehicle_polygons = [obj.poly for obj in image_info.objects if obj.obj_type == 'vehicle']
@@ -524,14 +452,13 @@ while webcam.isOpened():
 
                         violation_frame = 0
                         violation_flag = True
+                    else:
+                        print("위반 사항이 감지되지 않았습니다.")
 
-        #image_info.objects = result_list
-        #result_img = viz_inference_result(resized_frame, image_info)        
-
-    # webcam_out.write(frame)
     resize_frame = cv2.resize(frame, (1280, 720))
     webcam_out.write(resize_frame)
-    cv2.imshow("test", resize_frame )
+    resize_frame2 = cv2.resize(frame, (1024, 768))
+    cv2.imshow("test", resize_frame2 )
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
