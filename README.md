@@ -26,11 +26,11 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 ## 팀 소개
 
 ### 팀 아우토반
-- 이충혁(AD): Ubuntu 20.04.3, Morai Simulator
-- 김민재(AD): Ubuntu 20.04.3, Morai Simulator
-- 김현명(AD): Ubuntu 20.04.3, Morai Simulator, Firebase CloudStore
-- 정유준(WEB): Spring, React, Mysql, D3
-- 김용균(AI/INFRA):
+- 이충혁(팀장/AD): Lidar 클러스터링, global path planning, 상암 hd맵 반영
+- 김민재(AD): Pure Pursuit, PID제어, Lattice planning 등의 자율주행 제어, 카메라 인지 파트
+- 김현명(AD): morai simulator 환경에서 gps, imu, 차량 정보 데이터 이용하여 pub-sub 등록, 차량 정보 데이터 firebase - cloudstore간 송수신 연동
+- 정유준(WEB): Spring Jpa specification을 이용한 조건별 검색 구현, React D3를 이용한 실제 지형과 같은 지도 구현(GPS 연동 가능), Reac와 Spring을 이용한 리스트 페이지네이션 구현, Firebase에서 자율주행과 연동된 좌표를 기반으로 실시간 웹에 Pin을 통한 현재 차량 위치 및 속도 동기화, Nivo를 이용한 통계 차트와그래프 구현
+- 김용균(AI/INFRA): Resnet 기반 교통 위반 감지 AI 모델 학습 및 적용, CI/CD 인프라 구축 및 관리
 <br><br><br><br>
 
 ## 기술스택
@@ -54,7 +54,6 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 
 ## 개발환경
 
-수정해야 됨
 > BackEnd
 Java : 11.0.19 <br>
 JVM : 18.9 <br>
