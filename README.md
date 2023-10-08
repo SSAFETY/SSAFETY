@@ -45,6 +45,10 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 <br>
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+<img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ROS&logoColor=white">
+<img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
+<br>
 <br>
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white">
@@ -130,3 +134,34 @@ https://j9a102.p.ssafy.io
 
 <br><br>
 
+### 2. Autonomous driving
+
+#### 2-1. 아키텍처
+![image](/uploads/c00d8ac06330985b676f5d35f5b3548d/image.png)
+
+<br><br>
+
+#### 2-2. 인지 - 카메라
+![image](/uploads/c35eb81049c13ff2c0353da1206eda47/image.png)
+
+<br><br>
+
+#### 2-3. 인지 - 라이다
+![image](/uploads/140293026e9c294b09e7c2608f7df824/image.png)
+
+<br><br>
+
+#### 2-4. 판단 - 교통 신호
+![image](/uploads/a407b1ae258fffae09678ef78ed3078f/image.png)
+
+<br><br>
+
+#### 2-5. 판단 - 충돌 회피
+![image](/uploads/c1da832148a054cbe8f6aa609acb5941/image.png)
+
+<br><br>
+
+#### 2-6. 제어 - Pure Pursuit, PID, ACC
+![image](/uploads/f163a0af977eb9cb19bb498df9c2fc8e/image.png)
+
+<br><br>
