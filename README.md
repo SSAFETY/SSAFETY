@@ -20,15 +20,15 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <br><br><br><br>
 
 ## 개발 기간
-2023.08.28 ~ 2023.10.06
+2023.08.21 ~ 2023.10.06(7주)
 <br><br><br><br>
 
 ## 팀 소개
 
 ### 팀 아우토반
-- 이충혁(팀장/AD): Lidar 클러스터링, global path planning, 상암 hd맵 반영
-- 김민재(AD): Pure Pursuit, PID제어, Lattice planning 등의 자율주행 제어, 카메라 인지 파트
-- 김현명(AD): morai simulator 환경에서 gps, imu, 차량 정보 데이터 이용하여 pub-sub 등록, 차량 정보 데이터 firebase - cloudstore간 송수신 연동
+- 이충혁(팀장/AD/Planning): Lidar 클러스터링, global path planning, 상암 hd맵 반영
+- 김민재(AD/Perception & Control): Pure Pursuit, PID제어, ACC(Adaptive Cruise Control), Lattice planning 등의 자율 주행 제어, 카메라 센서 처리
+- 김현명(AD/Perception): morai simulator 환경에서 gps/imu/차량 정보 데이터 이용하여 pub-sub 등록, 차량 정보 데이터 firebase - cloud store간 송수신 연동
 - 정유준(WEB): Spring Jpa specification을 이용한 조건별 검색 구현, React D3를 이용한 실제 지형과 같은 지도 구현(GPS 연동 가능), Reac와 Spring을 이용한 리스트 페이지네이션 구현, Firebase에서 자율주행과 연동된 좌표를 기반으로 실시간 웹에 Pin을 통한 현재 차량 위치 및 속도 동기화, Nivo를 이용한 통계 차트와그래프 구현
 - 김용균(AI/INFRA): Resnet 기반 교통 위반 감지 AI 모델 학습 및 적용, CI/CD 인프라 구축 및 관리
 <br><br><br><br>
@@ -38,7 +38,6 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springdatajpa-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 
 <br>
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
@@ -59,46 +58,39 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 
 ## 개발환경
 
-> BackEnd       
-Java : 11.0.19 <br>
-JVM : 18.9 <br>
-SERVER : AWS EC2 Ubuntu 20.04.3 LTS <br>
+- BackEnd       
+  - Java : 11.0.19 <br>
+  - JVM : 18.9 <br>
+  - SERVER : AWS EC2 Ubuntu 20.04.3 LTS <br>
 
-> Front     
-VS Code : 1.80.2 <br>
-Node.js : 18.17.1 <br>
+- Front     
+  - VS Code : 1.80.2 <br>
+  - Node.js : 18.17.1 <br>
 
-> DB        
-MySQL : 8.1 <br>
-StmCubeIDE : 1.13.1 <br>
-Firebase Cloud Firestore <br>
+- DB        
+  - MySQL : 8.1 <br>
+  - StmCubeIDE : 1.13.1 <br>
+  - Firebase Cloud Firestore <br>
 
-> AD        
-Python : 3.8.10     
-Simulation os : Ubuntu 20.04.6 LTS      
-ROS : noetic, 1.16.0        
-NVDIA Driver : 470.199.02       
-CUDA Version: 11.4      
+- AD        
+  - Simulator : MORAI SIM ver22.R2.1
+  - Python : 3.8.10     
+    - scikit-learn : 1.3.1
+    - scipy : 1.10.1
+  - Linux os : Ubuntu 20.04.6 LTS      
+  - ROS : noetic        
+  - NVDIA Driver : 470.199.02       
+  - CUDA Version: 11.4      
 
-> AI        
-cudatoolkit : 11.0      
-cudnn : 8       
-colorlog : 6.6.0        
-easydict : 1.9      
-future : 0.18.2     
-ipywidgets : 7.6.5      
-jupyter : 1.0.0     
-matplotlib : 3.5.0      
-mmcv-full : 1.3.9       
-mmdet : 2.18.1      
-omegaconf : 2.1.1       
-pandas : 1.3.4      
-scikit-learn : 1.0.1        
-tensorboard : 2.7.0     
-torch : 1.7.0+cu110     
-torchaudio : 0.7.0      
-torchvision : 0.8.1+cu110       
-tqdm : 4.62.3       
+- AI        
+  - cudatoolkit : 11.0      
+  - cudnn : 8       
+  - mmcv-full : 1.3.9       
+  - mmdet : 2.18.1      
+  - pandas : 1.3.4      
+  - scikit-learn : 1.0.1        
+  - tensorboard : 2.7.0     
+  - torch : 1.7.0+cu110     
 
 ## 배포 주소
 https://j9a102.p.ssafy.io
