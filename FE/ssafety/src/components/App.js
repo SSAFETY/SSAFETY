@@ -20,9 +20,8 @@ function App() {
       <div>
         <NavBar />
         <Routes>
-          <Route path="/" element={<MainPage />} />
           <Route path="/violation" element={<Violation />} />
-          <Route path="/seoul" element={<Seoul />} />
+          <Route path="/" element={<Seoul />} />
           <Route path="/bus" element={<BusMap />} />
         </Routes>
       </div>
