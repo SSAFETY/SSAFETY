@@ -36,7 +36,7 @@ const GuResult = ({ data }) => {
   };
 
   return (
-    <div className='horizontal-graph' style={{ height: '320px' }}>
+    <div className='horizontal-graph' style={{ height: '200px' }}>
       <ResponsiveBar
         data={formattedData}
         keys={['사건발생수']}

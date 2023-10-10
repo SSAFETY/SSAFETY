@@ -3,8 +3,6 @@ import * as d3 from 'd3';
 import { feature } from 'topojson-client';
 import axios from 'axios';
 import korea from '../mapData/skorea-municipalities-2018-topo.json';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import '../css/SeoulMap.css'
 
 const SeoulMap = () => {
@@ -12,15 +10,6 @@ const SeoulMap = () => {
   const featureData = feature(korea, korea.objects['SeoulMap']);
   const [data, setData] = useState({});
   const [selectedData, setSelectedData] = useState(null);
-  const navigate = useNavigate();
-
-  const handleButton = () => {
-    if(selectedRegion === "서울시" && selectedDistrict === "마포구" && selectedDong === "상암동") {
-      navigate('/detailsi/detailgu');
-    } else {
-      Swal.fire('아직 지원하지 않는 구역입니다!');
-    }
-  }
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -41,7 +30,6 @@ const SeoulMap = () => {
 
     const fetchData = () => {
       axios
-        // .get('http://localhost:8080/api/getData')
         .get('https://j9a102.p.ssafy.io/api/getData')
         .then((response) => {
           const reportData = response.data;
@@ -58,9 +46,8 @@ const SeoulMap = () => {
 
           setData(newData);
 
-          const colorScale = d3.scaleLinear()
-            .domain([0, d3.max(Object.values(newData))])
-            .range(['skyblue', 'darkblue']);
+          const colorScale = d3.scaleSequential(d3.interpolateBlues) // 색상 척도 설정
+            .domain([0, d3.max(Object.values(newData))]);
 
           mapLayer
             .selectAll('path')
