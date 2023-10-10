@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
 import Violation from './Violation';
-import MainPage from './MainPage';
 import Seoul from './Seoul';
 import BusMap from './BusMap';
 import { createTheme, ThemeProvider } from '@mui/material';
