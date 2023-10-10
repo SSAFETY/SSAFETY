@@ -1,6 +1,7 @@
 # SSAFETY
 ### 교통 법규 위반 감지 자율 주행 버스 프로젝트
-<img src="https://github.com/leehk77789/BEP/assets/96775737/9ef93474-9b36-4b83-807c-14198a10aee6">
+
+![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)       
 
 <br><br><br><br>
 
@@ -25,11 +26,11 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 ## 팀 소개
 
 ### 팀 아우토반
-- 이충혁(AD):
-- 김민재(AD):
-- 김현명(AD): Ubuntu 20.04.3, Morai Simulator, Firebase CloudStore
-- 정유준(WEB): Spring, React, Mysql, D3
-- 김용균(AI/INFRA):
+- 이충혁(팀장/AD): Lidar 클러스터링, global path planning, 상암 hd맵 반영
+- 김민재(AD): Pure Pursuit, PID제어, Lattice planning 등의 자율주행 제어, 카메라 인지 파트
+- 김현명(AD): morai simulator 환경에서 gps, imu, 차량 정보 데이터 이용하여 pub-sub 등록, 차량 정보 데이터 firebase - cloudstore간 송수신 연동
+- 정유준(WEB): Spring Jpa specification을 이용한 조건별 검색 구현, React D3를 이용한 실제 지형과 같은 지도 구현(GPS 연동 가능), Reac와 Spring을 이용한 리스트 페이지네이션 구현, Firebase에서 자율주행과 연동된 좌표를 기반으로 실시간 웹에 Pin을 통한 현재 차량 위치 및 속도 동기화, Nivo를 이용한 통계 차트와그래프 구현
+- 김용균(AI/INFRA): Resnet 기반 교통 위반 감지 AI 모델 학습 및 적용, CI/CD 인프라 구축 및 관리
 <br><br><br><br>
 
 ## 기술스택
@@ -37,12 +38,17 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springdatajpa-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 
 <br>
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<br>
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+<img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ROS&logoColor=white">
+<img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
 <br>
 <br>
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
@@ -53,86 +59,110 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 
 ## 개발환경
 
-수정해야 됨
-> BackEnd
+> BackEnd       
 Java : 11.0.19 <br>
 JVM : 18.9 <br>
 SERVER : AWS EC2 Ubuntu 20.04.3 LTS <br>
 
-> Front
+> Front     
 VS Code : 1.80.2 <br>
 Node.js : 18.17.1 <br>
 
-> DB
+> DB        
 MySQL : 8.1 <br>
 StmCubeIDE : 1.13.1 <br>
-ArduinoIDE : 2.1.1 <br>
+Firebase Cloud Firestore <br>
 
 > AD        
-Python : 3.8.10
-Simulation os : Ubuntu 20.04.6 LTS
-ROS : noetic, 1.16.0
-NVDIA Driver : 470.199.02   
-CUDA Version: 11.4 
+Python : 3.8.10     
+Simulation os : Ubuntu 20.04.6 LTS      
+ROS : noetic, 1.16.0        
+NVDIA Driver : 470.199.02       
+CUDA Version: 11.4      
 
 > AI        
-cudatoolkit : 11.0
-cudnn : 8
-colorlog : 6.6.0
-easydict : 1.9
-future : 0.18.2
-ipywidgets : 7.6.5
-jupyter : 1.0.0
-matplotlib : 3.5.0
-mmcv-full : 1.3.9
-mmdet : 2.18.1
-omegaconf : 2.1.1
-pandas : 1.3.4
-scikit-learn : 1.0.1
-tensorboard : 2.7.0
-torch : 1.7.0+cu110
-torchaudio : 0.7.0
-torchvision : 0.8.1+cu110
-tqdm : 4.62.3
-
-## 인프라
-<br><br><br><br>
-
-## ERD
-<br><br><br><br>
+cudatoolkit : 11.0      
+cudnn : 8       
+colorlog : 6.6.0        
+easydict : 1.9      
+future : 0.18.2     
+ipywidgets : 7.6.5      
+jupyter : 1.0.0     
+matplotlib : 3.5.0      
+mmcv-full : 1.3.9       
+mmdet : 2.18.1      
+omegaconf : 2.1.1       
+pandas : 1.3.4      
+scikit-learn : 1.0.1        
+tensorboard : 2.7.0     
+torch : 1.7.0+cu110     
+torchaudio : 0.7.0      
+torchvision : 0.8.1+cu110       
+tqdm : 4.62.3       
 
 ## 배포 주소
 https://j9a102.p.ssafy.io
 <br><br><br><br>
 
-## 주요 기능 소개
-
-### 0. 초기 설정
-
-#### 사장님은 키오스크에서 최초 실행 시에 해당 테이블이 몇 번 테이블인지 매칭해주어야 합니다.
-<br>
-![image-8](/uploads/5e4492703141fc7ae86fc779f331a20c/image-8.png)
-<br><br>
+## 웹 서비스 화면
 
 ### 1. Web
 
 #### 1-1. 메인 페이지
-<img src="https://github.com/leehk77789/BEP/assets/96775737/080e1c1a-8c79-4401-96b0-4b9e580dab94">
+![image](/uploads/b78665e83cfe618f823d201b88166692/image.png)
+
 <br><br>
 
-#### 1-2. 교통 위반 통계
-<img src="https://github.com/leehk77789/BEP/assets/96775737/f59abff2-d4a8-4420-8e32-bd3f349c6e4a">
+#### 1-2. 교통 위반 통계를
+![image](/uploads/bbf32fe2d3778f89d9050dc214d055d9/image.png)
+
 <br><br>
 
 #### 1-3. 교통 위반 데이터베이스
-<img src="https://github.com/leehk77789/BEP/assets/96775737/5bc4a67e-6a1f-4b03-9680-7f69d3fd94c0">
+
+![image](/uploads/e7460eee25cf57701b9291ffc8b8fa67/image.png)
+
 <br><br>
 
 #### 1-4. 교통 위반사항 상세보기
-<img src="https://github.com/leehk77789/BEP/assets/96775737/fb3396fe-c387-49c3-94f4-524798a76164">
+![image](/uploads/5f6df9d5eb270a5ced00198aed93d605/image.png)
+
 <br><br>
 
 #### 1-5. 자율주행 버스 관제, 통제
-<img src="https://github.com/leehk77789/BEP/assets/96775737/c875cefb-cc5c-4f52-8367-d7f7d33a2e65">
+
+![image](/uploads/b78665e83cfe618f823d201b88166692/image.png)
+
 <br><br>
 
+### 2. Autonomous driving
+
+#### 2-1. 아키텍처
+![image](/uploads/c00d8ac06330985b676f5d35f5b3548d/image.png)
+
+<br><br>
+
+#### 2-2. 인지 - 카메라
+![image](/uploads/c35eb81049c13ff2c0353da1206eda47/image.png)
+
+<br><br>
+
+#### 2-3. 인지 - 라이다
+![image](/uploads/140293026e9c294b09e7c2608f7df824/image.png)
+
+<br><br>
+
+#### 2-4. 판단 - 교통 신호
+![image](/uploads/a407b1ae258fffae09678ef78ed3078f/image.png)
+
+<br><br>
+
+#### 2-5. 판단 - 충돌 회피
+![image](/uploads/c1da832148a054cbe8f6aa609acb5941/image.png)
+
+<br><br>
+
+#### 2-6. 제어 - Pure Pursuit, PID, ACC
+![image](/uploads/f163a0af977eb9cb19bb498df9c2fc8e/image.png)
+
+<br><br>

@@ -11,7 +11,8 @@
 
 
 ## 판단(Decision & Planning)
-- 
+- 충돌회피 제어    
+- 차량주행 제어    
 
 
 ## 제어(Control)
