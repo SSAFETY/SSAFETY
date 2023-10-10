@@ -115,7 +115,7 @@ public class ReportDataService {
         Specification<Report> spec = ReportSpecification.findByConditions(city, depth3, aiResult, startTime, endTime);
 
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        
+
         return reportRepository.findAll(spec, sort);
     }
 
