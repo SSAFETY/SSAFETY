@@ -101,30 +101,26 @@ https://j9a102.p.ssafy.io
 ### 1. Web
 
 #### 1-1. 메인 페이지
-![image](/uploads/b78665e83cfe618f823d201b88166692/image.png)
+![temp_1697100464736.286979516](/uploads/c07241ebc917c30cd865c05986c72de8/temp_1697100464736.286979516.png)
 
 <br><br>
 
-#### 1-2. 교통 위반 통계를
-![image](/uploads/bbf32fe2d3778f89d9050dc214d055d9/image.png)
+<br><br>
+
+#### 1-2. 교통 위반 데이터베이스
+
+![temp_1697100464734.286979516](/uploads/c48dc5a97557d903a48bd3914ccc8e0f/temp_1697100464734.286979516.png)
 
 <br><br>
 
-#### 1-3. 교통 위반 데이터베이스
-
-![image](/uploads/e7460eee25cf57701b9291ffc8b8fa67/image.png)
-
-<br><br>
-
-#### 1-4. 교통 위반사항 상세보기
-![image](/uploads/5f6df9d5eb270a5ced00198aed93d605/image.png)
+#### 1-3. 교통 위반사항 상세보기
+![temp_1697100464727.286979516](/uploads/b0ff5cb1e323c79335d6fc9db8d0633c/temp_1697100464727.286979516.png)
 
 <br><br>
 
-#### 1-5. 자율주행 버스 관제, 통제
+#### 1-4. 자율주행 버스 관제, 통제
 
-![image](/uploads/b78665e83cfe618f823d201b88166692/image.png)
-
+![temp_1697100464730.286979516](/uploads/0520a7f29ced7165fcf2794fb4e444f3/temp_1697100464730.286979516.png)
 <br><br>
 
 ### 2. Autonomous driving
