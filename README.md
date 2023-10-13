@@ -29,7 +29,7 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 - 이충혁(팀장/AD/Planning): Lidar 클러스터링, global path planning, 상암 hd맵 반영
 - 김민재(AD/Perception & Control): Pure Pursuit, PID제어, ACC(Adaptive Cruise Control), Lattice planning 등의 자율 주행 제어, 카메라 센서 처리
 - 김현명(AD/Perception): morai simulator 환경에서 gps/imu/차량 정보 데이터 이용하여 pub-sub 등록, 차량 정보 데이터 firebase - cloud store간 송수신 연동
-- 정유준(WEB): Spring Jpa specification을 이용한 조건별 검색 구현, React D3를 이용한 실제 지형과 같은 지도 구현(GPS 연동 가능), Reac와 Spring을 이용한 리스트 페이지네이션 구현, Firebase에서 자율주행과 연동된 좌표를 기반으로 실시간 웹에 Pin을 통한 현재 차량 위치 및 속도 동기화, Nivo를 이용한 통계 차트와그래프 구현
+- 정유준(WEB): Spring Jpa specification을 이용한 조건별 검색 구현, React D3를 이용한 실제 지형과 같은 지도 구현(GPS 연동 가능), React와 Spring을 이용한 리스트 페이지네이션 구현, Firebase에서 자율주행과 연동된 좌표를 기반으로 실시간 웹에 Pin을 통한 현재 차량 위치 및 속도 동기화, Nivo를 이용한 통계 차트와그래프 구현
 - 김용균(AI/INFRA): Resnet 기반 교통 위반 감지 AI 모델 학습 및 적용, CI/CD 인프라 구축 및 관리
 <br><br><br><br>
 
@@ -66,6 +66,8 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 - Front     
   - VS Code : 1.80.2 <br>
   - Node.js : 18.17.1 <br>
+  - D3 : 7.6.1 <br>
+  - WebPack : 5.74.0 <br>
 
 - DB        
   - MySQL : 8.1 <br>
