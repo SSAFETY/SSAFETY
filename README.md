@@ -160,29 +160,45 @@ https://j9a102.p.ssafy.io
 #### 3-1. 아키텍처
 ![image](/uploads/c00d8ac06330985b676f5d35f5b3548d/image.png)
 
+lidar, gps, imu 데이터와 hd맵 정보를 입력받아 global, local, lattice path를 planning하여 total control 노드에서 최종 제어가 됩니다.
+
 <br><br>
 
 #### 3-2. 인지 - 카메라
 ![image](/uploads/c35eb81049c13ff2c0353da1206eda47/image.png)
+
+차량이 바라보는 시점 중심으로 이미지를 자르는 ROI 기법을 적용합니다. 그리고 위에서 바라보는 시선인 BEV로 전환합니다. 이것을 다시 HSV 영역대로 전환하여 차선을 이진화합니다. 여기에 RANSAC(Random Sample Consensus) 기법을 적용시킵니다. 적용된 정보를 바탕으로 차선 곡률을 예측해서 주행에 활용합니다.
 
 <br><br>
 
 #### 3-3. 인지 - 라이다
 ![image](/uploads/140293026e9c294b09e7c2608f7df824/image.png)
 
+장애물을 탐지하기 위해 3D LiDAR를 사용해서 x, y, z, 반사세기(intensity)의 point cloud를 입력 받을 수 있습니다.
+해당 포인트와의 거리와 각도를 구하고 
+인접한 포인트를 같은 물체로 판단하고 거리를 구합니다.
+이를 DBSCAN 방식으로 클러스터링 하였습니다. 
+
 <br><br>
 
-#### 3-4. 판단 - 교통 신호
-![image](/uploads/a407b1ae258fffae09678ef78ed3078f/image.png)
+#### 3-4. 판단 - 충돌 회피
+![image17](/uploads/33944f0f8da597eee8a8fd9a1fc5ddc7/image17.gif)
+
+
+센서를 통해 받은 데이터로 충돌 회피를 진행합니다. 여기서 lattice path plan 이라는 격자 회피 주행을 실시합니다. 전방에 물체가 보이면 가능한 3차 곡선 경로를 탐색하여 가장 높은 우선 순위 경로로 주행하게 됩니다.
 
 <br><br>
 
-#### 3-5. 판단 - 충돌 회피
-![image](/uploads/c1da832148a054cbe8f6aa609acb5941/image.png)
+#### 3-5. 판단 - 교통 신호
+![image19](/uploads/593022646cae8382cc94b7b8e6058ca3/image19.gif)
+
+교통 신호는 현재 경로를 파악해 hd맵에서 가져온 데이터를 활용하여 가까운 정지선을 확인합니다. 해당 경로의 신호등 색깔에 따라 주행 여부를 판단합니다. 
 
 <br><br>
 
 #### 3-6. 제어 - Pure Pursuit, PID, ACC
-![image](/uploads/f163a0af977eb9cb19bb498df9c2fc8e/image.png)
+![image21](/uploads/0d31b606e4b8cfd03bf6bc5e62ce975a/image21.gif)
+
+조향각을 제어할 수 있도록 pure pursuit 알고리즘을 적용하고, 타겟 속도 제어를 위한 PID 제어, 특정 거리에 대한 속도 제어 ACC를 최종 제어에 반영하였습니다.
 
 <br><br>
