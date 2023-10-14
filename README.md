@@ -98,7 +98,20 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 https://j9a102.p.ssafy.io
 <br><br><br><br>
 
+### 웹 - 자율주행 환경간 데이터 송수신
+
+#### 프로토콜 규격 및 정보
+
+`car` / `car1, car2, car3` / `gps_x, gps_y, vel_x, vel_y` <br>
+
+`car`: 자율주행 정보 colleciton <br>
+`car1, car2, car3`: 자율주행 버스 종류 documentation <br>
+`gps_x, gps_y, vel_x, vel_y`: 자율주행 버스 정보(차량위치, 속도) field <br>
+
+환경: Firebase Cloud firestore (NoSql)<br>
+
 ## 웹 서비스 화면
+
 
 ### 1. Web
 
