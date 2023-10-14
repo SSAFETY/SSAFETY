@@ -38,6 +38,7 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springdatajpa-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=white">
 
 <br>
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
@@ -98,9 +99,9 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 https://j9a102.p.ssafy.io
 <br><br><br><br>
 
-### 웹 - 자율주행 환경간 데이터 송수신
+## 웹 - 자율주행 환경간 데이터 송수신
 
-#### 프로토콜 규격 및 정보
+### 프로토콜 규격 및 정보
 
 `car` / `car1, car2, car3` / `gps_x, gps_y, vel_x, vel_y` <br>
 
