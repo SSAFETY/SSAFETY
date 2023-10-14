@@ -12,7 +12,7 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <br><br><br><br>
 
 ## 프로젝트 소개
-- 자율 주행 버스가 AI 기반 영상 분석을 통해 교통 법규 위반 차량을 감지합니다.
+- Morai 시뮬레이터를 기반으로 하는 자율 주행 버스가 AI 기반 영상 분석을 통해 교통 법규 위반 차량을 감지합니다.
 - 위반 영상을 관련 정보와 함께 관제 시스템에 자동으로 등록합니다.
 - 등록된 신고 데이터는 날짜, 지역, 위반 종류 등으로 필터링하여 확인할 수 있습니다.
 - 통계 파트에서는 지역별, 시간별, 종류별 위반 통계를 확인할 수 있습니다.
@@ -38,7 +38,6 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springdatajpa-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-
 <br>
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
@@ -48,7 +47,6 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 <img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ROS&logoColor=white">
 <img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
-<br>
 <br>
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white">
@@ -95,6 +93,8 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
   - tensorboard : 2.7.0     
   - torch : 1.7.0+cu110     
 
+<br><br><br><br>
+
 ## 배포 주소
 https://j9a102.p.ssafy.io
 <br><br><br><br>
@@ -109,64 +109,80 @@ https://j9a102.p.ssafy.io
 `car1, car2, car3`: 자율주행 버스 종류 documentation <br>
 `gps_x, gps_y, vel_x, vel_y`: 자율주행 버스 정보(차량위치, 속도) field <br>
 
-환경: Firebase Cloud firestore (NoSql)<br>
+환경: Firebase Cloud firestore (NoSql)<br><br>
 
-## 웹 서비스 화면
+<br><br><br><br>
 
+### 1. 교통 위반 감지
 
-### 1. Web
+![30118bfe-a6ba-4131-a839-3161096c5276](/uploads/85cea09c9d5ed2f16d268e25a4145b15/30118bfe-a6ba-4131-a839-3161096c5276.gif)
 
-#### 1-1. 메인 페이지
+1초에 약 3번씩 교통 법규 위반을 감지합니다.<br>
+위반이 발생하지 않았을 경우에는 위반 사항이 감지되지 않았다는 메시지가 출력됩니다.<br>
+위반 사항이 감지되었을 경우에는 편집한 영상과 함께 신고 내역을 신고 페이지에 등록합니다.
+
+<br><br>
+
+### 2. Web
+
+#### 2-1. 메인 페이지
 ![temp_1697100464736.286979516](/uploads/c07241ebc917c30cd865c05986c72de8/temp_1697100464736.286979516.png)
 
-<br><br>
+교통 관제를 모토로 한 웹 페이지에서 통계 결과를 시각화해서 볼 수 있습니다.<br>
+서울 지역으로 집계된 통계 내용을 한 눈에 지역별, 시간대별, 종류별로 볼 수 있습니다.
 
 <br><br>
 
-#### 1-2. 교통 위반 데이터베이스
+#### 2-2. 교통 위반 데이터베이스
 
 ![temp_1697100464734.286979516](/uploads/c48dc5a97557d903a48bd3914ccc8e0f/temp_1697100464734.286979516.png)
 
+신고된 내역들을 한번에 확인할 수 있으며 지역과 위반 종류로 필터링이 가능합니다.
+
 <br><br>
 
-#### 1-3. 교통 위반사항 상세보기
+#### 2-3. 교통 위반사항 상세보기
 ![temp_1697100464727.286979516](/uploads/b0ff5cb1e323c79335d6fc9db8d0633c/temp_1697100464727.286979516.png)
 
+신고된 영상과 함께 지역, 위반 종류, 위반 일시와 같이 위반 사항의 상세 정보를 확인할 수 있습니다.
+
 <br><br>
 
-#### 1-4. 자율주행 버스 관제, 통제
+#### 2-4. 자율주행 버스 관제, 통제
 
 ![temp_1697100464730.286979516](/uploads/0520a7f29ced7165fcf2794fb4e444f3/temp_1697100464730.286979516.png)
+
+현재 주행 중인 버스의 위치와 속도를 실시간으로 확인할 수 있으며 경로를 지정할 수 있습니다.
 <br><br>
 
-### 2. Autonomous driving
+### 3. Autonomous driving
 
-#### 2-1. 아키텍처
+#### 3-1. 아키텍처
 ![image](/uploads/c00d8ac06330985b676f5d35f5b3548d/image.png)
 
 <br><br>
 
-#### 2-2. 인지 - 카메라
+#### 3-2. 인지 - 카메라
 ![image](/uploads/c35eb81049c13ff2c0353da1206eda47/image.png)
 
 <br><br>
 
-#### 2-3. 인지 - 라이다
+#### 3-3. 인지 - 라이다
 ![image](/uploads/140293026e9c294b09e7c2608f7df824/image.png)
 
 <br><br>
 
-#### 2-4. 판단 - 교통 신호
+#### 3-4. 판단 - 교통 신호
 ![image](/uploads/a407b1ae258fffae09678ef78ed3078f/image.png)
 
 <br><br>
 
-#### 2-5. 판단 - 충돌 회피
+#### 3-5. 판단 - 충돌 회피
 ![image](/uploads/c1da832148a054cbe8f6aa609acb5941/image.png)
 
 <br><br>
 
-#### 2-6. 제어 - Pure Pursuit, PID, ACC
+#### 3-6. 제어 - Pure Pursuit, PID, ACC
 ![image](/uploads/f163a0af977eb9cb19bb498df9c2fc8e/image.png)
 
 <br><br>
