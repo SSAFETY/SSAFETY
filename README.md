@@ -158,7 +158,7 @@ https://j9a102.p.ssafy.io
 ### 3. Autonomous driving
 
 #### 3-1. 아키텍처
-![image](/uploads/c00d8ac06330985b676f5d35f5b3548d/image.png)
+![아키텍처3](/uploads/c09966a4b412f5fcb32b3091d090f9c0/아키텍처3.png)
 
 lidar, gps, imu 데이터와 hd맵 정보를 입력받아 global, local, lattice path를 planning하여 total control 노드에서 최종 제어가 됩니다.
 
