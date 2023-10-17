@@ -19,8 +19,8 @@ server:
 cloud:
   aws:
     credentials:
-      accessKey: AKIAS42RRQAHDNJMABZF
-      secretKey: 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
+      accessKey: aws access key
+      secretKey: aws secret key
     region:
       static: ap-northeast-2
     stack:
@@ -28,7 +28,7 @@ cloud:
 
 kakao:
   api:
-    key: 4dcde7448c280266730f45df159cd184
+    key: kakao api key
 
 logging:
   level:
@@ -36,7 +36,7 @@ logging:
     org.hibernate.SQL: DEBUG
 
 naver-cloud-sms:
-  accesskey: pefU3d4Q23IViWLRqACL
-  secretkey: EAjKgQXNMKtmnNQiJYFWRXxxpEshX7MzcNZMOmBA
-  serviceId: ncp:sms:kr:310688378438:subpjt
-  phone: 01049489610
+  accesskey: naver colud sms access key
+  secretkey: naver colud sms secret key
+  serviceId: naver colud sms service id
+  phone: phone num
