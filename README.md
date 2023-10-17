@@ -1,7 +1,7 @@
 # SSAFETY
 ### 교통 법규 위반 감지 자율 주행 버스 프로젝트
 
-![싸피로고1](/uploads/93d86f044df33b845f2ccfb888b4ec07/싸피로고1.png)       
+<img src="./docs/logo.png"/>   
 
 <br><br><br><br>
 
@@ -38,16 +38,13 @@ SSAFETY는 교통 법규 위반 감지 자율 주행 버스로, 위반 감지 �
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/springdatajpa-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-<br>
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-<br>
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 <img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ROS&logoColor=white">
 <img src="https://img.shields.io/badge/pytorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white">
-<br>
 <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white">
 <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
@@ -115,7 +112,7 @@ https://j9a102.p.ssafy.io
 
 ### 1. 교통 위반 감지
 
-![30118bfe-a6ba-4131-a839-3161096c5276](/uploads/85cea09c9d5ed2f16d268e25a4145b15/30118bfe-a6ba-4131-a839-3161096c5276.gif)
+<img src="./docs/images/image.gif"/>   
 
 1초에 약 3번씩 교통 법규 위반을 감지합니다.<br>
 위반이 발생하지 않았을 경우에는 위반 사항이 감지되지 않았다는 메시지가 출력됩니다.<br>
@@ -126,7 +123,7 @@ https://j9a102.p.ssafy.io
 ### 2. Web
 
 #### 2-1. 메인 페이지
-![temp_1697100464736.286979516](/uploads/c07241ebc917c30cd865c05986c72de8/temp_1697100464736.286979516.png)
+<img src="./docs/images/image2.png"/>   
 
 교통 관제를 모토로 한 웹 페이지에서 통계 결과를 시각화해서 볼 수 있습니다.<br>
 서울 지역으로 집계된 통계 내용을 한 눈에 지역별, 시간대별, 종류별로 볼 수 있습니다.
@@ -135,14 +132,14 @@ https://j9a102.p.ssafy.io
 
 #### 2-2. 교통 위반 데이터베이스
 
-![temp_1697100464734.286979516](/uploads/c48dc5a97557d903a48bd3914ccc8e0f/temp_1697100464734.286979516.png)
+<img src="./docs/images/image3.png"/>   
 
 신고된 내역들을 한번에 확인할 수 있으며 지역과 위반 종류로 필터링이 가능합니다.
 
 <br><br>
 
 #### 2-3. 교통 위반사항 상세보기
-![temp_1697100464727.286979516](/uploads/b0ff5cb1e323c79335d6fc9db8d0633c/temp_1697100464727.286979516.png)
+<img src="./docs/images/image4.png"/>   
 
 신고된 영상과 함께 지역, 위반 종류, 위반 일시와 같이 위반 사항의 상세 정보를 확인할 수 있습니다.
 
@@ -150,7 +147,7 @@ https://j9a102.p.ssafy.io
 
 #### 2-4. 자율주행 버스 관제, 통제
 
-![temp_1697100464730.286979516](/uploads/0520a7f29ced7165fcf2794fb4e444f3/temp_1697100464730.286979516.png)
+<img src="./docs/images/image5.png"/>   
 
 현재 주행 중인 버스의 위치와 속도를 실시간으로 확인할 수 있으며 경로를 지정할 수 있습니다.
 <br><br>
@@ -158,21 +155,21 @@ https://j9a102.p.ssafy.io
 ### 3. Autonomous driving
 
 #### 3-1. 아키텍처
-![아키텍처3](/uploads/c09966a4b412f5fcb32b3091d090f9c0/아키텍처3.png)
+<img src="./docs/images/image6.png"/>   
 
 lidar, gps, imu 데이터와 hd맵 정보를 입력받아 global, local, lattice path를 planning하여 total control 노드에서 최종 제어가 됩니다.
 
 <br><br>
 
 #### 3-2. 인지 - 카메라
-![image](/uploads/c35eb81049c13ff2c0353da1206eda47/image.png)
+<img src="./docs/images/image7.png"/>   
 
 차량이 바라보는 시점 중심으로 이미지를 자르는 ROI 기법을 적용합니다. 그리고 위에서 바라보는 시선인 BEV로 전환합니다. 이것을 다시 HSV 영역대로 전환하여 차선을 이진화합니다. 여기에 RANSAC(Random Sample Consensus) 기법을 적용시킵니다. 적용된 정보를 바탕으로 차선 곡률을 예측해서 주행에 활용합니다.
 
 <br><br>
 
 #### 3-3. 인지 - 라이다
-![image](/uploads/140293026e9c294b09e7c2608f7df824/image.png)
+<img src="./docs/images/image8.png"/>   
 
 장애물을 탐지하기 위해 3D LiDAR를 사용해서 x, y, z, 반사세기(intensity)의 point cloud를 입력 받을 수 있습니다.
 해당 포인트와의 거리와 각도를 구하고 
@@ -182,7 +179,7 @@ lidar, gps, imu 데이터와 hd맵 정보를 입력받아 global, local, lattice
 <br><br>
 
 #### 3-4. 판단 - 충돌 회피
-![image17](/uploads/33944f0f8da597eee8a8fd9a1fc5ddc7/image17.gif)
+<img src="./docs/images/image9.gif"/>   
 
 
 센서를 통해 받은 데이터로 충돌 회피를 진행합니다. 여기서 lattice path plan 이라는 격자 회피 주행을 실시합니다. 전방에 물체가 보이면 가능한 3차 곡선 경로를 탐색하여 가장 높은 우선 순위 경로로 주행하게 됩니다.
@@ -190,14 +187,14 @@ lidar, gps, imu 데이터와 hd맵 정보를 입력받아 global, local, lattice
 <br><br>
 
 #### 3-5. 판단 - 교통 신호
-![image19](/uploads/593022646cae8382cc94b7b8e6058ca3/image19.gif)
+<img src="./docs/images/image10.gif"/>   
 
 교통 신호는 현재 경로를 파악해 hd맵에서 가져온 데이터를 활용하여 가까운 정지선을 확인합니다. 해당 경로의 신호등 색깔에 따라 주행 여부를 판단합니다. 
 
 <br><br>
 
 #### 3-6. 제어 - Pure Pursuit, PID, ACC
-![image21](/uploads/0d31b606e4b8cfd03bf6bc5e62ce975a/image21.gif)
+<img src="./docs/images/image11.gif"/>   
 
 조향각을 제어할 수 있도록 pure pursuit 알고리즘을 적용하고, 타겟 속도 제어를 위한 PID 제어, 특정 거리에 대한 속도 제어 ACC를 최종 제어에 반영하였습니다.
 
